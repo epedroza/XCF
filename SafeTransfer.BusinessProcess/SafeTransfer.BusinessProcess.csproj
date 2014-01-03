@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{04BFA621-320D-41D7-A2D5-915C68EE6BA7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SafeTransfer.BusinessProcess</RootNamespace>
+    <AssemblyName>SafeTransfer.BusinessProcess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="GCSoft.Utilities">
+      <HintPath>..\SafeTransfer.Web\Include\Components\GCSoft\GCSoft.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BPBase.cs" />
+    <Compile Include="Object\BPCentroServicio.cs" />
+    <Compile Include="Object\BPCiudad.cs" />
+    <Compile Include="Object\BPCliente.cs" />
+    <Compile Include="Object\BPCompany.cs" />
+    <Compile Include="Object\BPCotizacion.cs" />
+    <Compile Include="Object\BPEstado.cs" />
+    <Compile Include="Object\BPEstatusPickUp.cs" />
+    <Compile Include="Object\BPMagnitudFisica.cs" />
+    <Compile Include="Object\BPMoneda.cs" />
+    <Compile Include="Object\BPPais.cs" />
+    <Compile Include="Object\BPPickUp.cs" />
+    <Compile Include="Object\BPServicio.cs" />
+    <Compile Include="Object\BPTipoContacto.cs" />
+    <Compile Include="Object\BPTipoPieza.cs" />
+    <Compile Include="Object\BPUnidadMedida.cs" />
+    <Compile Include="Object\BPUsuario.cs" />
+    <Compile Include="Object\BPMenu.cs" />
+    <Compile Include="Object\BPSubMenu.cs" />
+    <Compile Include="Object\BPRol.cs" />
+    <Compile Include="Object\catAgentesAduanalesBSS.cs" />
+    <Compile Include="Object\catBillToShipToBSS.cs" />
+    <Compile Include="Object\catCamionesBSS.cs" />
+    <Compile Include="Object\catEstatusManifiestosBSS.cs" />
+    <Compile Include="Object\catEstatusProsBSS.cs" />
+    <Compile Include="Object\catTiposCamionesBSS.cs" />
+    <Compile Include="Object\catTiposClienteBSS.cs" />
+    <Compile Include="Object\catTransportistasBSS.cs" />
+    <Compile Include="Object\catVendedoresBSS.cs" />
+    <Compile Include="Object\tblManifiestosDetBSS.cs" />
+    <Compile Include="Object\tblManifiestosHdrBSS.cs" />
+    <Compile Include="Object\tblProsBSS.cs" />
+    <Compile Include="Page\BPPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SafeTransfer.DataAccess\SafeTransfer.DataAccess.csproj">
+      <Project>{E0FB5514-6325-4D58-90F6-9DC3FBDEF769}</Project>
+      <Name>SafeTransfer.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SafeTransfer.Entity\SafeTransfer.Entity.csproj">
+      <Project>{ACE1344C-F3A3-4C79-9D96-09D06DE2CF4D}</Project>
+      <Name>SafeTransfer.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild"></Target>
+  <Target Name="AfterBuild"></Target>
+  -->
+</Project>

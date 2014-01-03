@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E0FB5514-6325-4D58-90F6-9DC3FBDEF769}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SafeTransfer.DataAccess</RootNamespace>
+    <AssemblyName>SafeTransfer.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=4.1.0.0, Culture=neutral, PublicKeyToken=e44a2bc38ed2c13c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ObjectBuilder, Version=1.0.51205.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Microsoft.Practices.ObjectBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DABase.cs" />
+    <Compile Include="Object\catAgentesAduanalesDATA.cs" />
+    <Compile Include="Object\catBillToShipToDATA.cs" />
+    <Compile Include="Object\catCamionesDATA.cs" />
+    <Compile Include="Object\catEstatusManifiestosDATA.cs" />
+    <Compile Include="Object\catEstatusProsDATA.cs" />
+    <Compile Include="Object\catTiposCamionesDATA.cs" />
+    <Compile Include="Object\catTiposClienteDATA.cs" />
+    <Compile Include="Object\catTransportistasDATA.cs" />
+    <Compile Include="Object\catVendedoresDATA.cs" />
+    <Compile Include="Object\DACentroServicio.cs" />
+    <Compile Include="Object\DACiudad.cs" />
+    <Compile Include="Object\DACliente.cs" />
+    <Compile Include="Object\DACompany.cs" />
+    <Compile Include="Object\DACotizacion.cs" />
+    <Compile Include="Object\DAEstado.cs" />
+    <Compile Include="Object\DAEstatusPickUp.cs" />
+    <Compile Include="Object\DAMagnitudFisica.cs" />
+    <Compile Include="Object\DAMoneda.cs" />
+    <Compile Include="Object\DAPais.cs" />
+    <Compile Include="Object\DAPickUp.cs" />
+    <Compile Include="Object\DAServicio.cs" />
+    <Compile Include="Object\DATipoContacto.cs" />
+    <Compile Include="Object\DATipoPieza.cs" />
+    <Compile Include="Object\DAUnidadMedida.cs" />
+    <Compile Include="Object\DAUsuario.cs" />
+    <Compile Include="Object\DAMenu.cs" />
+    <Compile Include="Object\DASubMenu.cs" />
+    <Compile Include="Object\DARol.cs" />
+    <Compile Include="Object\tblManifiestosDetDATA.cs" />
+    <Compile Include="Object\tblManifiestosHdrDATA.cs" />
+    <Compile Include="Object\tblProsDATA.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SafeTransfer.Entity\SafeTransfer.Entity.csproj">
+      <Project>{ACE1344C-F3A3-4C79-9D96-09D06DE2CF4D}</Project>
+      <Name>SafeTransfer.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild"></Target>
+  <Target Name="AfterBuild"></Target>
+  -->
+</Project>
