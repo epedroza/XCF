@@ -1,0 +1,11 @@
+# git ignore file
+SafeTransfer.BusinessProcess/bin/
+SafeTransfer.BusinessProcess/obj/
+SafeTransfer.DataAccess/bin/
+SafeTransfer.DataAccess/obj/
+SafeTransfer.Entity/bin/
+SafeTransfer.Entity/obj/
+SafeTransfer.Web/bin/
+SafeTransfer.Web/obj/
+solSafeTransfer.sln
+solSafeTransfer.suo

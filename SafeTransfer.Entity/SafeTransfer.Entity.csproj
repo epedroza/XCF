@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ACE1344C-F3A3-4C79-9D96-09D06DE2CF4D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SafeTransfer.Entity</RootNamespace>
+    <AssemblyName>SafeTransfer.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ENTBase.cs" />
+    <Compile Include="Object\catEstatusManifiestos_Ent.cs" />
+    <Compile Include="Object\catEstatusPros_Ent.cs" />
+    <Compile Include="Object\ENTAgenteAduanal.cs" />
+    <Compile Include="Object\ENTBillToShip.cs" />
+    <Compile Include="Object\ENTCamion.cs" />
+    <Compile Include="Object\ENTCentroServicio.cs" />
+    <Compile Include="Object\ENTCiudad.cs" />
+    <Compile Include="Object\ENTCliente.cs" />
+    <Compile Include="Object\ENTCompany.cs" />
+    <Compile Include="Object\ENTCotizacion.cs" />
+    <Compile Include="Object\ENTEstado.cs" />
+    <Compile Include="Object\ENTEstatusPickUp.cs" />
+    <Compile Include="Object\ENTMagnitudFisica.cs" />
+    <Compile Include="Object\ENTMoneda.cs" />
+    <Compile Include="Object\ENTPais.cs" />
+    <Compile Include="Object\ENTPickUp.cs" />
+    <Compile Include="Object\ENTServicio.cs" />
+    <Compile Include="Object\ENTTipoCamion.cs" />
+    <Compile Include="Object\ENTTipoCliente.cs" />
+    <Compile Include="Object\ENTTipoContacto.cs" />
+    <Compile Include="Object\ENTTipoPieza.cs" />
+    <Compile Include="Object\ENTTransportista.cs" />
+    <Compile Include="Object\ENTUnidadMedida.cs" />
+    <Compile Include="Object\ENTUsuario.cs" />
+    <Compile Include="Object\ENTMenu.cs" />
+    <Compile Include="Object\ENTSubMenu.cs" />
+    <Compile Include="Object\ENTSession.cs" />
+    <Compile Include="Object\ENTResponse.cs" />
+    <Compile Include="Object\ENTRol.cs" />
+    <Compile Include="Object\ENTVendedor.cs" />
+    <Compile Include="Object\tblManifiestosDet_Ent.cs" />
+    <Compile Include="Object\tblManifiestosHdr_Ent.cs" />
+    <Compile Include="Object\tblPros_Ent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild"></Target>
+  <Target Name="AfterBuild"></Target>
+  -->
+</Project>

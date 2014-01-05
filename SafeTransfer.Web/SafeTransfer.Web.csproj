@@ -1,0 +1,557 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9AF31DB-A264-4406-BBBB-3BE40B3FF986}</ProjectGuid>
+    <ProjectTypeGuids>{349C5851-65DF-11DA-9384-00065B846F21};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SafeTransfer.Web</RootNamespace>
+    <AssemblyName>SafeTransfer.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="AjaxControlToolkit, Version=1.0.20229.20821, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Include\Components\Ajax\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="FusionCharts, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Include\Components\Charts\FusionCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="GCSoft.Utilities, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Include\Components\GCSoft\GCSoft.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Compression.Base, Version=9.303.0.61, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Include\Components\Syncfusion\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Core, Version=9.303.0.61, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Include\Components\Syncfusion\Syncfusion.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.XlsIO.Base, Version=9.303.0.61, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Include\Components\Syncfusion\Syncfusion.XlsIO.Base.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Application\WebApp\Private\Catalog\catAgentes.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catCamiones.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catCentrosDeServicio.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catCiudades.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catClientes.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catTiposCamiones.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catTransportistas.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catVendedores.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeCotizacion.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeFacturacion.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeManifiestos.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeManifiestosMonitor.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opePickUp.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opePickUpMonitor.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opePros.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeProsMonitor.aspx" />
+    <Content Include="Application\WebApp\Private\Report\rptManifiestos.aspx" />
+    <Content Include="Application\WebApp\Private\Report\rptPros.aspx" />
+    <Content Include="Application\WebApp\Private\Report\rptTarificador.aspx" />
+    <Content Include="Application\WebApp\Private\SysApp\saChangePassword.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsCompany.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsMenu.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsRol.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsSubMenu.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsUsuario.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\scatCompany.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\scatMenu.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\scatRol.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx" />
+    <Content Include="Application\WebApp\Private\SysCat\scatUsuario.aspx" />
+    <Content Include="Include\Image\Buttons\CloseWindow.png" />
+    <Content Include="Include\Image\Buttons\Cotizar.png" />
+    <Content Include="Include\Image\Buttons\Delete.png" />
+    <Content Include="Include\Image\Buttons\Delete_Over.png" />
+    <Content Include="Include\Image\Buttons\Edit.png" />
+    <Content Include="Include\Image\Buttons\Edit_Over.png" />
+    <Content Include="Include\Image\Buttons\Restore.png" />
+    <Content Include="Include\Image\Buttons\Restore_Over.png" />
+    <Content Include="Include\Image\Buttons\Search.png" />
+    <Content Include="Include\Image\Buttons\SelectItem.png" />
+    <Content Include="Include\Image\Buttons\SelectItem_Null.png" />
+    <Content Include="Include\Image\Buttons\ToolbarBack.png" />
+    <Content Include="Include\Image\Buttons\ToolbarBack_Disabled.png" />
+    <Content Include="Include\Image\Buttons\ToolbarBack_Over.png" />
+    <Content Include="Include\Image\Buttons\ToolbarDelete.png" />
+    <Content Include="Include\Image\Buttons\ToolbarDelete_Disabled.png" />
+    <Content Include="Include\Image\Buttons\ToolbarDelete_Over.png" />
+    <Content Include="Include\Image\Buttons\ToolbarNew.png" />
+    <Content Include="Include\Image\Buttons\ToolbarNew_Disabled.png" />
+    <Content Include="Include\Image\Buttons\ToolbarNew_Over.png" />
+    <Content Include="Include\Image\Buttons\ToolbarNext.png" />
+    <Content Include="Include\Image\Buttons\ToolbarNext_Disabled.png" />
+    <Content Include="Include\Image\Buttons\ToolbarNext_Over.png" />
+    <Content Include="Include\Image\Buttons\ToolbarRelease.png" />
+    <Content Include="Include\Image\Buttons\ToolbarRelease_Disabled.png" />
+    <Content Include="Include\Image\Buttons\ToolbarRelease_Over.png" />
+    <Content Include="Include\Image\Buttons\ToolbarSave.png" />
+    <Content Include="Include\Image\Buttons\ToolbarSave_Disabled.png" />
+    <Content Include="Include\Image\Buttons\ToolbarSave_Over.png" />
+    <Content Include="Include\Image\Buttons\ToolbarSearch.png" />
+    <Content Include="Include\Image\Buttons\ToolbarSearch_Disabled.png" />
+    <Content Include="Include\Image\Buttons\ToolbarSearch_Over.png" />
+    <Content Include="Include\Image\Web\Banner.png" />
+    <Content Include="Include\Image\Web\BannerFill.png" />
+    <Content Include="Include\Image\Web\BarraTitulo.png" />
+    <Content Include="Include\Image\Web\Div.png" />
+    <Content Include="Include\Image\Web\SalirOff.png" />
+    <Content Include="Include\Image\Web\SalirOn.png" />
+    <Content Include="Include\Javascript\ToolTip\ImageError.png" />
+    <Content Include="Include\Javascript\ToolTip\ImageWarning.png" />
+    <Content Include="Include\Style\Tabla.css" />
+    <Content Include="Include\WebUserControls\wucCotizador.ascx" />
+    <Content Include="Include\WebUserControls\wucProgramarPickUp.ascx" />
+    <Content Include="Include\WebUserControls\wucSelector_Cliente.ascx" />
+    <Content Include="Include\WebUserControls\wucToolbar.ascx" />
+    <Content Include="Index.aspx" />
+    <Content Include="Application\WebApp\Private\Home\AppIndex.aspx" />
+    <Content Include="Application\WebApp\Private\SysApp\saLogout.aspx" />
+    <Content Include="Application\WebApp\Private\SysApp\saNotificacion.aspx" />
+    <Content Include="Application\WebApp\Public\frmLogin.aspx" />
+    <Content Include="Include\Components\Ajax\AjaxControlToolkit.dll" />
+    <Content Include="Include\Components\Charts\FusionCharts.dll" />
+    <Content Include="Include\Components\Charts\Flash\Doughnut2D.swf" />
+    <Content Include="Include\Components\Charts\Flash\FCF_Column3D.swf" />
+    <Content Include="Include\Components\Charts\Flash\FCF_Line.swf" />
+    <Content Include="Include\Components\Charts\Flash\Pie2D.swf" />
+    <Content Include="Include\Components\GCSoft\GCSoft.Utilities.dll" />
+    <Content Include="Include\Components\GCSoft\GCSoft.Map.xml" />
+    <Content Include="Include\Components\Syncfusion\Syncfusion.Compression.Base.dll" />
+    <Content Include="Include\Components\Syncfusion\Syncfusion.Core.dll" />
+    <Content Include="Include\Components\Syncfusion\Syncfusion.XlsIO.Base.dll" />
+    <Content Include="App.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DB.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Include\Image\Buttons\Calendar.png" />
+    <Content Include="Include\Image\Buttons\Graph.png" />
+    <Content Include="Include\Image\Wait\Background.png" />
+    <Content Include="Include\Image\Wait\Loading.gif" />
+    <Content Include="Include\Image\Web\GCSoft.png" />
+    <Content Include="Include\Javascript\GCSoft\GCSoft.js" />
+    <Content Include="Include\Javascript\JQuery\jquery-1.9.1.js" />
+    <Content Include="Include\Javascript\JQuery\V1.10.3\jquery-ui.js" />
+    <Content Include="Include\Javascript\TinyBox\close.png" />
+    <Content Include="Include\Javascript\TinyBox\preload.gif" />
+    <Content Include="Include\Javascript\TinyBox\TinyBox.css" />
+    <Content Include="Include\Javascript\TinyBox\TinyBox.js" />
+    <Content Include="Include\Javascript\ToolTip\ToolTip.css" />
+    <Content Include="Include\Javascript\ToolTip\ToolTip.js" />
+    <Content Include="Include\MasterPage\LoginTemplate.Master" />
+    <Content Include="Include\MasterPage\NonMenuTemplate.Master" />
+    <Content Include="Include\MasterPage\PopUpTemplate.Master" />
+    <Content Include="Include\MasterPage\PrivateTemplate.Master" />
+    <Content Include="Include\Style\Content.css" />
+    <Content Include="Include\Style\Control.css" />
+    <Content Include="Include\Style\MasterPage.css" />
+    <Content Include="Include\Style\Text.css" />
+    <Content Include="Include\Style\Wait.css" />
+    <Content Include="Include\WebUserControls\wucCalendar.ascx" />
+    <Content Include="Include\WebUserControls\wucMenu.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Application\WebApp\Private\Catalog\catAgentes.aspx.cs">
+      <DependentUpon>catAgentes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catAgentes.aspx.designer.cs">
+      <DependentUpon>catAgentes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catCamiones.aspx.cs">
+      <DependentUpon>catCamiones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catCamiones.aspx.designer.cs">
+      <DependentUpon>catCamiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catCentrosDeServicio.aspx.cs">
+      <DependentUpon>catCentrosDeServicio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catCentrosDeServicio.aspx.designer.cs">
+      <DependentUpon>catCentrosDeServicio.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catCiudades.aspx.cs">
+      <DependentUpon>catCiudades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catCiudades.aspx.designer.cs">
+      <DependentUpon>catCiudades.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catClientes.aspx.cs">
+      <DependentUpon>catClientes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catClientes.aspx.designer.cs">
+      <DependentUpon>catClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catTiposCamiones.aspx.cs">
+      <DependentUpon>catTiposCamiones.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catTiposCamiones.aspx.designer.cs">
+      <DependentUpon>catTiposCamiones.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catTransportistas.aspx.cs">
+      <DependentUpon>catTransportistas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catTransportistas.aspx.designer.cs">
+      <DependentUpon>catTransportistas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catVendedores.aspx.cs">
+      <DependentUpon>catVendedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catVendedores.aspx.designer.cs">
+      <DependentUpon>catVendedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeCotizacion.aspx.cs">
+      <DependentUpon>opeCotizacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeCotizacion.aspx.designer.cs">
+      <DependentUpon>opeCotizacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeFacturacion.aspx.cs">
+      <DependentUpon>opeFacturacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeFacturacion.aspx.designer.cs">
+      <DependentUpon>opeFacturacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeManifiestos.aspx.cs">
+      <DependentUpon>opeManifiestos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeManifiestos.aspx.designer.cs">
+      <DependentUpon>opeManifiestos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeManifiestosMonitor.aspx.cs">
+      <DependentUpon>opeManifiestosMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeManifiestosMonitor.aspx.designer.cs">
+      <DependentUpon>opeManifiestosMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opePickUp.aspx.cs">
+      <DependentUpon>opePickUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opePickUp.aspx.designer.cs">
+      <DependentUpon>opePickUp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opePickUpMonitor.aspx.cs">
+      <DependentUpon>opePickUpMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opePickUpMonitor.aspx.designer.cs">
+      <DependentUpon>opePickUpMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opePros.aspx.cs">
+      <DependentUpon>opePros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opePros.aspx.designer.cs">
+      <DependentUpon>opePros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeProsMonitor.aspx.cs">
+      <DependentUpon>opeProsMonitor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeProsMonitor.aspx.designer.cs">
+      <DependentUpon>opeProsMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Report\rptManifiestos.aspx.cs">
+      <DependentUpon>rptManifiestos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Report\rptManifiestos.aspx.designer.cs">
+      <DependentUpon>rptManifiestos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Report\rptPros.aspx.cs">
+      <DependentUpon>rptPros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Report\rptPros.aspx.designer.cs">
+      <DependentUpon>rptPros.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Report\rptTarificador.aspx.cs">
+      <DependentUpon>rptTarificador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Report\rptTarificador.aspx.designer.cs">
+      <DependentUpon>rptTarificador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.cs">
+      <DependentUpon>saChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysApp\saChangePassword.aspx.designer.cs">
+      <DependentUpon>saChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsCompany.aspx.cs">
+      <DependentUpon>xlsCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsCompany.aspx.designer.cs">
+      <DependentUpon>xlsCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsMenu.aspx.cs">
+      <DependentUpon>xlsMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsMenu.aspx.designer.cs">
+      <DependentUpon>xlsMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsRol.aspx.cs">
+      <DependentUpon>xlsRol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsRol.aspx.designer.cs">
+      <DependentUpon>xlsRol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsSubMenu.aspx.cs">
+      <DependentUpon>xlsSubMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsSubMenu.aspx.designer.cs">
+      <DependentUpon>xlsSubMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsUsuario.aspx.cs">
+      <DependentUpon>xlsUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\ExcelMaker\xlsUsuario.aspx.designer.cs">
+      <DependentUpon>xlsUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatCompany.aspx.cs">
+      <DependentUpon>scatCompany.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatCompany.aspx.designer.cs">
+      <DependentUpon>scatCompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatMenu.aspx.cs">
+      <DependentUpon>scatMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatMenu.aspx.designer.cs">
+      <DependentUpon>scatMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatRol.aspx.cs">
+      <DependentUpon>scatRol.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatRol.aspx.designer.cs">
+      <DependentUpon>scatRol.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx.cs">
+      <DependentUpon>scatSubMenu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx.designer.cs">
+      <DependentUpon>scatSubMenu.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.cs">
+      <DependentUpon>scatUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysCat\scatUsuario.aspx.designer.cs">
+      <DependentUpon>scatUsuario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\Components\Utilities\Utilities.cs" />
+    <Compile Include="Include\WebUserControls\wucCotizador.ascx.cs">
+      <DependentUpon>wucCotizador.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucCotizador.ascx.designer.cs">
+      <DependentUpon>wucCotizador.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucProgramarPickUp.ascx.cs">
+      <DependentUpon>wucProgramarPickUp.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucProgramarPickUp.ascx.designer.cs">
+      <DependentUpon>wucProgramarPickUp.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucSelector_Cliente.ascx.cs">
+      <DependentUpon>wucSelector_Cliente.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucSelector_Cliente.ascx.designer.cs">
+      <DependentUpon>wucSelector_Cliente.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucToolbar.ascx.cs">
+      <DependentUpon>wucToolbar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucToolbar.ascx.designer.cs">
+      <DependentUpon>wucToolbar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Index.aspx.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Index.aspx.designer.cs">
+      <DependentUpon>Index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Home\AppIndex.aspx.cs">
+      <DependentUpon>AppIndex.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Home\AppIndex.aspx.designer.cs">
+      <DependentUpon>AppIndex.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysApp\saLogout.aspx.cs">
+      <DependentUpon>saLogout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysApp\saLogout.aspx.designer.cs">
+      <DependentUpon>saLogout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysApp\saNotificacion.aspx.cs">
+      <DependentUpon>saNotificacion.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\SysApp\saNotificacion.aspx.designer.cs">
+      <DependentUpon>saNotificacion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Public\frmLogin.aspx.cs">
+      <DependentUpon>frmLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Public\frmLogin.aspx.designer.cs">
+      <DependentUpon>frmLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\MasterPage\LoginTemplate.Master.cs">
+      <DependentUpon>LoginTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\MasterPage\LoginTemplate.Master.designer.cs">
+      <DependentUpon>LoginTemplate.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Include\MasterPage\NonMenuTemplate.Master.cs">
+      <DependentUpon>NonMenuTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\MasterPage\NonMenuTemplate.Master.designer.cs">
+      <DependentUpon>NonMenuTemplate.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Include\MasterPage\PopUpTemplate.Master.cs">
+      <DependentUpon>PopUpTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\MasterPage\PopUpTemplate.Master.designer.cs">
+      <DependentUpon>PopUpTemplate.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Include\MasterPage\PrivateTemplate.Master.cs">
+      <DependentUpon>PrivateTemplate.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\MasterPage\PrivateTemplate.Master.designer.cs">
+      <DependentUpon>PrivateTemplate.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucCalendar.ascx.cs">
+      <DependentUpon>wucCalendar.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucCalendar.ascx.designer.cs">
+      <DependentUpon>wucCalendar.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucMenu.ascx.cs">
+      <DependentUpon>wucMenu.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucMenu.ascx.designer.cs">
+      <DependentUpon>wucMenu.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SafeTransfer.BusinessProcess\SafeTransfer.BusinessProcess.csproj">
+      <Project>{04BFA621-320D-41D7-A2D5-915C68EE6BA7}</Project>
+      <Name>SafeTransfer.BusinessProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SafeTransfer.Entity\SafeTransfer.Entity.csproj">
+      <Project>{ACE1344C-F3A3-4C79-9D96-09D06DE2CF4D}</Project>
+      <Name>SafeTransfer.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349C5851-65DF-11DA-9384-00065B846F21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>6660</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. Other similar extension points exist, see Microsoft.Common.targets.
+   <Target Name="BeforeBuild"></Target>
+   <Target Name="AfterBuild"></Target>
+   -->
+</Project>
