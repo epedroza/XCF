@@ -9,19 +9,7 @@
    <body>
       <form id="frmIndex" runat="server">
          <div>
-            Modificación Ruben 1
-
-            Modificación Lacho 2
-
-            Modificación Jaime 3
-
-            ...Modifición Ruben usuarios múltiples sin colisión....
-
-            ... otra más de Lacho donde mismo...
-            
-            otra más...
-
-            Yo le movi otra vez (Lacho)...
+            ...xxx...
          </div>
       </form>
    </body>
