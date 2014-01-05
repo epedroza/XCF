@@ -1,4 +1,0 @@
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.Entity\bin\Debug\SafeTransfere.Entity.dll
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.Entity\bin\Debug\SafeTransfere.Entity.pdb
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.Entity\obj\Debug\SafeTransfere.Entity.dll
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.Entity\obj\Debug\SafeTransfere.Entity.pdb

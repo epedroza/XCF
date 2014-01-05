@@ -1,7 +1,0 @@
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.DataAccess\obj\Debug\SafeTransfere.DataAccess.csprojResolveAssemblyReference.cache
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.DataAccess\bin\Debug\SafeTransfere.DataAccess.dll
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.DataAccess\bin\Debug\SafeTransfere.DataAccess.pdb
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.DataAccess\bin\Debug\SafeTransfere.Entity.dll
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.DataAccess\bin\Debug\SafeTransfere.Entity.pdb
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.DataAccess\obj\Debug\SafeTransfere.DataAccess.dll
-C:\Users\Dell\Desktop\XCF\SafeTransfere\03 - Construcción\01 - Solución\SafeTransfere.DataAccess\obj\Debug\SafeTransfere.DataAccess.pdb
