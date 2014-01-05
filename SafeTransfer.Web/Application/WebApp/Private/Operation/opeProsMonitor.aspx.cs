@@ -119,8 +119,8 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
       {
           try
           {
-              Utilities.FillCombo(ref cboOrigen, "IdCentroDeServicio", "Nombre", "CentrosdeServicio");
-              Utilities.FillCombo(ref cboDestino, "IdCentroDeServicio", "Nombre", "CentrosdeServicio");
+              Utilities.FillCombo(ref cboOrigen, "IdCentroDeServicio", "sNombre", "CentrosdeServicio");
+              Utilities.FillCombo(ref cboDestino, "IdCentroDeServicio", "sNombre", "CentrosdeServicio");
               Utilities.FillCombo(ref cboClientes, "IdCliente", "Nombre", "Clientes");
               Utilities.FillCombo(ref cboEstatus, "IdEstatus", "Estatus", "EstatusPro");
           }

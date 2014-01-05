@@ -92,6 +92,7 @@
     <Content Include="Application\WebApp\Private\Operation\opePickUpMonitor.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opePros.aspx" />
     <Content Include="Application\WebApp\Private\Operation\opeProsMonitor.aspx" />
+    <Content Include="Application\WebApp\Private\Operation\opeRecepcionManifiestos.aspx" />
     <Content Include="Application\WebApp\Private\Report\rptManifiestos.aspx" />
     <Content Include="Application\WebApp\Private\Report\rptPros.aspx" />
     <Content Include="Application\WebApp\Private\Report\rptTarificador.aspx" />
@@ -312,6 +313,12 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeProsMonitor.aspx.designer.cs">
       <DependentUpon>opeProsMonitor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeRecepcionManifiestos.aspx.cs">
+      <DependentUpon>opeRecepcionManifiestos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Operation\opeRecepcionManifiestos.aspx.designer.cs">
+      <DependentUpon>opeRecepcionManifiestos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Report\rptManifiestos.aspx.cs">
       <DependentUpon>rptManifiestos.aspx</DependentUpon>

@@ -22,112 +22,120 @@ namespace SafeTransfer.Include.Components.Utilities
             string ValorCero = "[--------]";
             System.Data.DataSet ds = new System.Data.DataSet();
             cb.Items.Clear();
-            switch (Tipo)
+
+            try
             {
-                case "Paises":
-                    ENTPais entPais = new ENTPais();
-                    BPPais bssPais = new BPPais();
-                    oENTResponse = bssPais.searchcatPaisescbo(entPais);
-                    break;
-                case "Estados":
-                    ENTEstado entEstado = new ENTEstado();
-                    entEstado.idPais = 1; // Provisional, cambiar a nuevo metodo con parametro entero para consulta
-                    BPEstado bssEstado = new BPEstado();
-                    oENTResponse = bssEstado.searchcatEstadoscbo(entEstado);
-                    break;
-                case "Ciudades":
-                    ENTCiudad entCiudad = new ENTCiudad();
-                    entCiudad.idPais = 1; // Provisional, cambiar a nuevo metodo con parametro entero para consulta
-                    entCiudad.idEstado = 18; // Provisional, cambiar a nuevo metodo con parametro entero para consulta
-                    BPCiudad bssCiudad = new BPCiudad();
-                    oENTResponse = bssCiudad.searchcatCiudadescbo(entCiudad);
-                    break;
-                case "TiposCamiones":
-                    ENTTipoCamion entTipoCamion = new ENTTipoCamion();
-                    BusinessProcess.Object.catTiposCamionesBSS bssTipoCamion = new BusinessProcess.Object.catTiposCamionesBSS();
-                    oENTResponse = bssTipoCamion.searchcatTiposCamionescbo(entTipoCamion);
-                    break;
-                case "TiposClientes":
-                    ENTTipoCliente entTipoCliente = new ENTTipoCliente();
-                    BusinessProcess.Object.catTiposClienteBSS bssTipoCliente = new BusinessProcess.Object.catTiposClienteBSS();
-                    oENTResponse = bssTipoCliente.searchcatTiposClientecbo(entTipoCliente);
-                    break;
-                case "Vendedores":
-                    ENTVendedor entVendedor = new ENTVendedor();
-                    entVendedor.idCompany = 1;
-                    catVendedoresBSS bssVendedor = new catVendedoresBSS();
-                    oENTResponse = bssVendedor.searchcatVendedorescbo(entVendedor);
-                    break;
-                case "BillTo":
-                    ENTBillToShip entBillTo = new ENTBillToShip();
-                    // Asigna valores
-                    entBillTo.BillORShip = 1;
-                    BusinessProcess.Object.catBillToShipToBSS bssBillTo = new BusinessProcess.Object.catBillToShipToBSS();
-                    oENTResponse = bssBillTo.searchcatBillToShipTocbo(entBillTo);
-                    break;
-                case "ShipTo":
-                    ENTBillToShip entShipTo = new ENTBillToShip();
-                    entShipTo.BillORShip = 2;
-                    BusinessProcess.Object.catBillToShipToBSS bssShipto = new BusinessProcess.Object.catBillToShipToBSS();
-                    oENTResponse = bssShipto.searchcatBillToShipTocbo(entShipTo);
-                    break;
-                case "CentrosdeServicio":
-                    ENTCentroServicio entCentrosdeServicio = new ENTCentroServicio();
-                    entCentrosdeServicio.idCompany = 1;
-                    BPCentroServicio bssCentrosdeServicio = new BPCentroServicio();
-                    oENTResponse = bssCentrosdeServicio.searchcatCentrosDeServiciocbo(entCentrosdeServicio);
-                    break;
-                case "Clientes":
-                    ENTCliente entClientes = new ENTCliente();
-                    entClientes.idCompany = 1;
-                    BPCliente bssClientes = new BPCliente();
-                    oENTResponse = bssClientes.searchcatClientescbo(entClientes);
-                    break;
-                case "AgentesAduanales":
-                    ENTAgenteAduanal entAgentesaduanales = new ENTAgenteAduanal();
-                    entAgentesaduanales.IdCompania = 1;
-                    BusinessProcess.Object.catAgentesAduanalesBSS bssAgentesaduanales = new BusinessProcess.Object.catAgentesAduanalesBSS();
-                    oENTResponse = bssAgentesaduanales.searchcatAgentesAduanalescbo(entAgentesaduanales);
-                    break;
+                switch (Tipo)
+                {
+                    case "Paises":
+                        ENTPais entPais = new ENTPais();
+                        BPPais bssPais = new BPPais();
+                        oENTResponse = bssPais.searchcatPaisescbo(entPais);
+                        break;
+                    case "Estados":
+                        ENTEstado entEstado = new ENTEstado();
+                        entEstado.idPais = 1; // Provisional, cambiar a nuevo metodo con parametro entero para consulta
+                        BPEstado bssEstado = new BPEstado();
+                        oENTResponse = bssEstado.searchcatEstadoscbo(entEstado);
+                        break;
+                    case "Ciudades":
+                        ENTCiudad entCiudad = new ENTCiudad();
+                        entCiudad.idPais = 1; // Provisional, cambiar a nuevo metodo con parametro entero para consulta
+                        entCiudad.idEstado = 18; // Provisional, cambiar a nuevo metodo con parametro entero para consulta
+                        BPCiudad bssCiudad = new BPCiudad();
+                        oENTResponse = bssCiudad.searchcatCiudadescbo(entCiudad);
+                        break;
+                    case "TiposCamiones":
+                        ENTTipoCamion entTipoCamion = new ENTTipoCamion();
+                        BusinessProcess.Object.catTiposCamionesBSS bssTipoCamion = new BusinessProcess.Object.catTiposCamionesBSS();
+                        oENTResponse = bssTipoCamion.searchcatTiposCamionescbo(entTipoCamion);
+                        break;
+                    case "TiposClientes":
+                        ENTTipoCliente entTipoCliente = new ENTTipoCliente();
+                        BusinessProcess.Object.catTiposClienteBSS bssTipoCliente = new BusinessProcess.Object.catTiposClienteBSS();
+                        oENTResponse = bssTipoCliente.searchcatTiposClientecbo(entTipoCliente);
+                        break;
+                    case "Vendedores":
+                        ENTVendedor entVendedor = new ENTVendedor();
+                        entVendedor.idCompany = 1;
+                        catVendedoresBSS bssVendedor = new catVendedoresBSS();
+                        oENTResponse = bssVendedor.searchcatVendedorescbo(entVendedor);
+                        break;
+                    case "BillTo":
+                        ENTBillToShip entBillTo = new ENTBillToShip();
+                        // Asigna valores
+                        entBillTo.BillORShip = 1;
+                        BusinessProcess.Object.catBillToShipToBSS bssBillTo = new BusinessProcess.Object.catBillToShipToBSS();
+                        oENTResponse = bssBillTo.searchcatBillToShipTocbo(entBillTo);
+                        break;
+                    case "ShipTo":
+                        ENTBillToShip entShipTo = new ENTBillToShip();
+                        entShipTo.BillORShip = 2;
+                        BusinessProcess.Object.catBillToShipToBSS bssShipto = new BusinessProcess.Object.catBillToShipToBSS();
+                        oENTResponse = bssShipto.searchcatBillToShipTocbo(entShipTo);
+                        break;
+                    case "CentrosdeServicio":
+                        ENTCentroServicio entCentrosdeServicio = new ENTCentroServicio();
+                        entCentrosdeServicio.idCompany = 1;
+                        BPCentroServicio bssCentrosdeServicio = new BPCentroServicio();
+                        oENTResponse = bssCentrosdeServicio.searchcatCentrosDeServiciocbo(entCentrosdeServicio);
+                        break;
+                    case "Clientes":
+                        ENTCliente entClientes = new ENTCliente();
+                        entClientes.idCompany = 1;
+                        BPCliente bssClientes = new BPCliente();
+                        oENTResponse = bssClientes.searchcatClientescbo(entClientes);
+                        break;
+                    case "AgentesAduanales":
+                        ENTAgenteAduanal entAgentesaduanales = new ENTAgenteAduanal();
+                        entAgentesaduanales.IdCompania = 1;
+                        BusinessProcess.Object.catAgentesAduanalesBSS bssAgentesaduanales = new BusinessProcess.Object.catAgentesAduanalesBSS();
+                        oENTResponse = bssAgentesaduanales.searchcatAgentesAduanalescbo(entAgentesaduanales);
+                        break;
 
-                case "EstatusPickUp":
-                    ENTEstatusPickUp entEstatusPickUp = new ENTEstatusPickUp();
-                    BPEstatusPickUp bssEstautsPickUp = new BPEstatusPickUp();
+                    case "EstatusPickUp":
+                        ENTEstatusPickUp entEstatusPickUp = new ENTEstatusPickUp();
+                        BPEstatusPickUp bssEstautsPickUp = new BPEstatusPickUp();
 
-                    entEstatusPickUp.tiActivo = 1;
+                        entEstatusPickUp.tiActivo = 1;
 
-                    oENTResponse = bssEstautsPickUp.SelectEstatusPickUp(entEstatusPickUp);
-                    break;
+                        oENTResponse = bssEstautsPickUp.SelectEstatusPickUp(entEstatusPickUp);
+                        break;
 
-                case "EstatusPro":
-                    catEstatusPros_Ent entEstatusPros = new catEstatusPros_Ent();
-                    catEstatusProsBSS bssEstautsPros = new catEstatusProsBSS();
-                    oENTResponse = bssEstautsPros.searchcatEstatusProscbo(entEstatusPros);
-                    break;
+                    case "EstatusPro":
+                        catEstatusPros_Ent entEstatusPros = new catEstatusPros_Ent();
+                        catEstatusProsBSS bssEstautsPros = new catEstatusProsBSS();
+                        oENTResponse = bssEstautsPros.searchcatEstatusProscbo(entEstatusPros);
+                        break;
 
-                case "EstatusManifiestos":
-                    catEstatusManifiestos_Ent entEstatusManifiestos = new catEstatusManifiestos_Ent();
-                    catEstatusManifiestosBSS bssEstautsManifiestos = new catEstatusManifiestosBSS();
-                    oENTResponse = bssEstautsManifiestos.searchcatEstatusManifiestoscbo(entEstatusManifiestos);
-                    break;
-            }
-
-            if (oENTResponse.dsResponse.Tables[1].Rows.Count > 0)
-            {
-                oENTResponse.dsResponse.Tables[1].Rows.Add(0, ValorCero);
+                    case "EstatusManifiestos":
+                        catEstatusManifiestos_Ent entEstatusManifiestos = new catEstatusManifiestos_Ent();
+                        catEstatusManifiestosBSS bssEstautsManifiestos = new catEstatusManifiestosBSS();
+                        oENTResponse = bssEstautsManifiestos.searchcatEstatusManifiestoscbo(entEstatusManifiestos);
+                        break;
+                }
 
                 if (oENTResponse.dsResponse.Tables[1].Rows.Count > 0)
                 {
-                    cb.DataSource = oENTResponse.dsResponse.Tables[1];
-                    cb.DataValueField = strColValue;
-                    cb.DataTextField = strColDisplay;
-                    cb.DataBind();
+                    oENTResponse.dsResponse.Tables[1].Rows.Add(0, ValorCero);
+
+                    if (oENTResponse.dsResponse.Tables[1].Rows.Count > 0)
+                    {
+                        cb.DataSource = oENTResponse.dsResponse.Tables[1];
+                        cb.DataValueField = strColValue;
+                        cb.DataTextField = strColDisplay;
+                        cb.DataBind();
+                    }
                 }
+
+                //cb.Items.Insert(0, new ListItem(ValorCero, "0"));
+
+                SortDDL(ref cb);
             }
-
-            //cb.Items.Insert(0, new ListItem(ValorCero, "0"));
-
-            SortDDL(ref cb);
+            catch
+            { }
+            finally
+            { }
         }
 
         internal static void FillCombo(ref System.Web.UI.WebControls.DropDownList cb, string strColValue, string strColDisplay, string Tipo, string Parametro)

@@ -125,7 +125,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             ent.sNombre = txtNombre.Text;
 
             // Transaccion
-            SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchcatCentrosDeServiciocbo(ent);
+            SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchcatCentrosDeServicio(ent);
 
             gvApps.DataSource = oENTResponse.dsResponse.Tables[1].DefaultView;
             gvApps.DataBind();

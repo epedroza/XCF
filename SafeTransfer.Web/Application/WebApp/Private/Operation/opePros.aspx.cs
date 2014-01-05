@@ -333,8 +333,8 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
             try
             {
                 Utilities.FillCombo(ref cboIdClaveCFiscal, "IdCliente", "Nombre", "Clientes");
-                Utilities.FillCombo(ref cboIdClaveOrigen, "IdCentroDeServicio", "Nombre", "CentrosdeServicio");
-                Utilities.FillCombo(ref cboIdClaveDestino, "IdCentroDeServicio", "Nombre", "CentrosdeServicio");
+                Utilities.FillCombo(ref cboIdClaveOrigen, "IdCentroDeServicio", "sNombre", "CentrosdeServicio");
+                Utilities.FillCombo(ref cboIdClaveDestino, "IdCentroDeServicio", "sNombre", "CentrosdeServicio");
                 Utilities.FillCombo(ref cboIdClaveAAduanal, "ClaveAgenteAduanal", "Nombre", "AgentesAduanales");
                 Utilities.FillCombo(ref cboIdClaveCobrarA, "IdCliente", "Nombre", "Clientes");
                 Utilities.FillCombo(ref cboIdClaveVendOrigen, "IdVendedor", "IdVendedor", "Vendedores");
