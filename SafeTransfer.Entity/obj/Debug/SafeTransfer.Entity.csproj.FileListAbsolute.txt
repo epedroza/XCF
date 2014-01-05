@@ -12,3 +12,8 @@ E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.Enti
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.Entity\obj\Debug\SafeTransfer.Entity.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.Entity\obj\Debug\SafeTransfer.Entity.pdb
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.Entity\obj\Debug\SafeTransfer.Entity.csprojResolveAssemblyReference.cache
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.Entity\bin\Debug\SafeTransfer.Entity.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.Entity\bin\Debug\SafeTransfer.Entity.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.Entity\obj\Debug\SafeTransfer.Entity.csprojResolveAssemblyReference.cache
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.Entity\obj\Debug\SafeTransfer.Entity.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.Entity\obj\Debug\SafeTransfer.Entity.pdb

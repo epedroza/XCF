@@ -19,3 +19,10 @@ E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.Data
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.DataAccess\obj\Debug\SafeTransfer.DataAccess.csprojResolveAssemblyReference.cache
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.DataAccess\obj\Debug\SafeTransfer.DataAccess.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.DataAccess\obj\Debug\SafeTransfer.DataAccess.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.DataAccess\bin\Debug\SafeTransfer.DataAccess.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.DataAccess\bin\Debug\SafeTransfer.DataAccess.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.DataAccess\bin\Debug\SafeTransfer.Entity.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.DataAccess\bin\Debug\SafeTransfer.Entity.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.DataAccess\obj\Debug\SafeTransfer.DataAccess.csprojResolveAssemblyReference.cache
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.DataAccess\obj\Debug\SafeTransfer.DataAccess.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.DataAccess\obj\Debug\SafeTransfer.DataAccess.pdb

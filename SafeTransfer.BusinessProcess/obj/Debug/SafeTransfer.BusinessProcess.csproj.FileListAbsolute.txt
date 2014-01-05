@@ -30,3 +30,16 @@ E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.Busi
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.BusinessProcess\obj\Debug\SafeTransfer.BusinessProcess.csprojResolveAssemblyReference.cache
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.BusinessProcess\obj\Debug\SafeTransfer.BusinessProcess.dll
 E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\solSafeTransfer\SafeTransfer.BusinessProcess\obj\Debug\SafeTransfer.BusinessProcess.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\SafeTransfer.BusinessProcess.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\SafeTransfer.BusinessProcess.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\GCSoft.Utilities.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\SafeTransfer.DataAccess.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\SafeTransfer.Entity.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Data.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\Microsoft.Practices.EnterpriseLibrary.Common.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\Microsoft.Practices.ObjectBuilder.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\SafeTransfer.DataAccess.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\bin\Debug\SafeTransfer.Entity.pdb
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\obj\Debug\SafeTransfer.BusinessProcess.csprojResolveAssemblyReference.cache
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\obj\Debug\SafeTransfer.BusinessProcess.dll
+E:\Trabajo\Proyectos\Externos\Otros\GCSoft\XCF\SafeTransfer.BusinessProcess\obj\Debug\SafeTransfer.BusinessProcess.pdb
