@@ -85,15 +85,6 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::SafeTransfer.Web.Include.WebUserControls.wucCalendar WucFechaFinal;
         
         /// <summary>
-        /// chkFechas control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkFechas;
-        
-        /// <summary>
         /// txtPedimento control.
         /// </summary>
         /// <remarks>

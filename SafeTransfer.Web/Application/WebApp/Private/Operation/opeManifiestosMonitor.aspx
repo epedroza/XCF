@@ -18,13 +18,13 @@
                         <!-- Contenido Tab Monitor de Manifiestos -->
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr class="trFilaItem">
-                                <td colspan="8" class="tdCeldaHeader" >Tracking Manifiestos</td>
+                                <td colspan="8" class="tdCeldaHeader" ></td>
                             </tr>
                             <tr class="trFilaSeparaItem"><td colspan="8"></td></tr>
                             <tr class="trFilaItem">
-							    <td class="tdCeldaLeyendaItemLarge">&nbsp;Manifiesto</td>
+							    <td class="tdCeldaLeyendaItemLarge2">&nbsp;Manifiesto</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItem"><asp:TextBox ID="txtIdManifiesto" runat="server" CssClass="Textbox_General" width="50px" ></asp:TextBox></td>
+							    <td class="tdCeldaItem"><asp:TextBox ID="txtIdManifiesto" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaItem">&nbsp;</td>
                                 <td style="width:5px;"></td>
@@ -32,64 +32,65 @@
                                 <td style="width:5px;"></td>
 						    </tr>
                             <tr class="trFilaItem">
-							    <td class="tdCeldaLeyendaItemLarge">&nbsp;Origen</td>
+							    <td class="tdCeldaLeyendaItemLarge2">&nbsp;Origen</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItem"><asp:DropDownList ID="cboOrigen" runat="server" CssClass="Textbox_General" width="155px" ></asp:DropDownList></td>
+							    <td class="tdCeldaItem"><asp:DropDownList ID="cboOrigen" runat="server" CssClass="Textbox_General_16" width="155px" ></asp:DropDownList></td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaLeyendaItemLarge">&nbsp;Destino</td>
+                                <td class="tdCeldaLeyendaItemLarge2">&nbsp;Destino</td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaItem"><asp:DropDownList ID="cboDestino" runat="server" CssClass="Textbox_General" width="155px" ></asp:DropDownList></td>
+                                <td class="tdCeldaItem"><asp:DropDownList ID="cboDestino" runat="server" CssClass="Textbox_General_16" width="155px" ></asp:DropDownList></td>
                                 <td style="width:5px;"></td>
 						    </tr>
                             <tr class="trFilaItem">
-							    <td class="tdCeldaLeyendaItemLarge">&nbsp;Fecha Salida</td>
+							    <td class="tdCeldaLeyendaItemLarge2">&nbsp;Fecha Salida</td>
 							    <td style="width:5px;"></td>
 							    <td  class="tdCeldaItem">
                                     <wuc:wucCalendar ID="wucFechaInicial" runat="server" />
                                 </td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaLeyendaItemLarge">&nbsp;Fecha Arribo</td>
+                                <td class="tdCeldaLeyendaItemLarge2">&nbsp;Fecha Arribo</td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaItem">
                                     <wuc:wucCalendar ID="WucFechaFinal" runat="server" />
+                                    <asp:CheckBox ID="chkFechas" runat="server" CssClass="Textbox_General_16" Text="Usar Fechas" />
                                 </td>
                                 <td style="width:5px;"></td>
 						    </tr>
                             <tr class="trFilaItem">
-							    <td class="tdCeldaLeyendaItemLarge">&nbsp;No Tractor</td>
+							    <td class="tdCeldaLeyendaItemLarge2">&nbsp;No Tractor</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItem"><asp:TextBox ID="txtNoTractor" runat="server" CssClass="Textbox_General" width="50px" ></asp:TextBox></td>
+							    <td class="tdCeldaItem"><asp:TextBox ID="txtNoTractor" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaLeyendaItemLarge">&nbsp;Propio</td>
+                                <td class="tdCeldaLeyendaItemLarge2">&nbsp;Propio</td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaItem"><asp:TextBox ID="TextBox8" runat="server" CssClass="Textbox_General" width="50px" ></asp:TextBox></td>
+                                <td class="tdCeldaItem"><asp:TextBox ID="TextBox8" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
                                 <td style="width:5px;"></td>
 						    </tr>
                             <tr class="trFilaItem">
-							    <td class="tdCeldaLeyendaItemLarge">&nbsp;Operador</td>
+							    <td class="tdCeldaLeyendaItemLarge2">&nbsp;Operador</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItem"><asp:TextBox ID="txtPropio" runat="server" CssClass="Textbox_General" width="50px" ></asp:TextBox></td>
+							    <td class="tdCeldaItem"><asp:TextBox ID="txtPropio" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaLeyendaItemLarge">&nbsp;</td>
+                                <td class="tdCeldaLeyendaItemLarge2">&nbsp;</td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaItem"></td>
                                 <td style="width:5px;"></td>
 						    </tr>
                             <tr class="trFilaItem">
-							    <td class="tdCeldaLeyendaItemLarge">&nbsp;No Caja 1</td>
+							    <td class="tdCeldaLeyendaItemLarge2">&nbsp;No Caja 1</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItem"><asp:TextBox ID="txtNoCaja1" runat="server" CssClass="Textbox_General" width="50px" ></asp:TextBox></td>
+							    <td class="tdCeldaItem"><asp:TextBox ID="txtNoCaja1" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaLeyendaItemLarge">&nbsp;No Caja 2</td>
+                                <td class="tdCeldaLeyendaItemLarge2">&nbsp;No Caja 2</td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaItem"><asp:TextBox ID="txtNoCaja2" runat="server" CssClass="Textbox_General" width="50px" ></asp:TextBox></td>
+                                <td class="tdCeldaItem"><asp:TextBox ID="txtNoCaja2" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
                                 <td style="width:5px;"></td>
 						    </tr>
                             <tr class="trFilaItem">
-							    <td class="tdCeldaLeyendaItemLarge">&nbsp;Estatus</td>
+							    <td class="tdCeldaLeyendaItemLarge2">&nbsp;Estatus</td>
 							    <td style="width:5px;"></td>
 							    <td class="tdCeldaItem">
-                                    <asp:DropDownList ID="cboEstatus" runat="server" CssClass="Textbox_General" 
+                                    <asp:DropDownList ID="cboEstatus" runat="server" CssClass="Textbox_General_16" 
                                         Width="155px">
                                     </asp:DropDownList>
                                 </td>
@@ -102,12 +103,9 @@
                             <tr class="trFilaItem">
 							    <td class="tdCeldaItem">&nbsp;</td> 
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItem"><asp:Button ID="cmdBuscar" runat="server" Text="Buscar" CssClass="Button_General" width="110px" onclick="cmdBuscar_Click" />
-                                    &nbsp;<asp:Button ID="cmdNuevo" runat="server" CssClass="Button_General" 
-                                        OnClick="cmdNuevo_Click" Text="Nuevo" Width="110px" />
+							    <td class="tdCeldaItem" colspan="3"><asp:Button ID="cmdBuscar" runat="server" Text="Buscar" CssClass="Button_General" width="110px" onclick="cmdBuscar_Click" />
+                                    &nbsp;<asp:Button ID="cmdNuevo" runat="server" CssClass="Button_General" OnClick="cmdNuevo_Click" Text="Nuevo" Width="110px" />
                                 </td>
-                                <td style="width:5px;"></td>
-                                <td class="tdCeldaItem">&nbsp;</td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaItem"></td>
                                 <td style="width:5px;"></td>

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SafeTransfer.Entity.Object;
+using SafeTransfer.Entity;
 using SafeTransfer.BusinessProcess.Object;
 using System.Data;
 using System.Data.SqlClient;
@@ -127,15 +128,6 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         #endregion
 
         #region Rutinas de la Pagina
-        protected void cmdBuscarBarra_Click(object sender, ImageClickEventArgs e)
-        {
-            Buscar();
-        }
-
-        protected void cmdGuardar_Click(object sender, EventArgs e)
-        {
-            Guardar();
-        }
 
         protected void cboIdClaveOrigen_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -172,6 +164,23 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
             FillDatosVendedor("DESTINO");
         }
 
+        protected void cmdBuscarBarra_Click(object sender, ImageClickEventArgs e)
+        {
+            Buscar();
+        }
+
+        protected void cmdGuardar_Click(object sender, EventArgs e)
+        {
+            Guardar();
+        }
+
+        protected void txtPickUp_TextChanged(object sender, EventArgs e)
+        {
+            txtProBuacar.Text = "";
+            txtClavePro.Text = "";
+            Buscar();
+        }
+
         #endregion
 
         #region Rutinas del Programador
@@ -186,6 +195,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
             {
                 // Asignar Valores
                 ent.IdPro = (txtProBuacar.Text != "" ? Int32.Parse(txtProBuacar.Text) : 0);
+                ent.IdPickUp = (txtPickUp.Text != "" ? Int32.Parse(txtPickUp.Text) : 0);
                 // Transaccion
                 SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchtblPros(ent);
                 ds = oENTResponse.dsResponse;
@@ -193,13 +203,13 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                 if (ds.Tables[1].Rows.Count > 0)
                 {
                     txtTerminalPro.Text = ds.Tables[1].Rows[0]["ClaveTerminal"].ToString();
-//                    txtFechaCaptura.Text = ds.Tables[1].Rows[0]["FechaCaptura"].ToString();
-//                    this.txtFechaCaptura.DisplayDate = ds.Tables[1].Rows[0]["FechaCaptura"].ToString();
+                    //                    txtFechaCaptura.Text = ds.Tables[1].Rows[0]["FechaCaptura"].ToString();
+                    //                    this.txtFechaCaptura.DisplayDate = ds.Tables[1].Rows[0]["FechaCaptura"].ToString();
 
                     txtClavePro.Text = ds.Tables[1].Rows[0]["IdPro"].ToString();
-                    txtHoraCaptura.Text = ds.Tables[1].Rows[0]["FechaCaptura"].ToString();
+                    //txtHoraCaptura.Tiempo.ToString() = ds.Tables[1].Rows[0]["FechaCaptura"].ToString();
                     //txtfechaCargado.Text = ds.Tables[1].Rows[0]["FechaCargado"].ToString();
-                    txtHoraCargado.Text = ds.Tables[1].Rows[0]["FechaCargado"].ToString();
+                    //txtHoraCargado.Tiempo = ds.Tables[1].Rows[0]["FechaCargado"].ToString();
                     txtNoFactura.Text = ds.Tables[1].Rows[0]["NoFacturacion"].ToString();
                     txtPickUp.Text = ds.Tables[1].Rows[0]["IdPickUp"].ToString();
                     // Origen
@@ -257,13 +267,17 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                     txtDiasCredito.Text = ds.Tables[1].Rows[0]["DiasCredito"].ToString();
                     txtPesoTotal.Text = ds.Tables[1].Rows[0]["PesoTotalKg"].ToString();
                     txtPzasTotal.Text = ds.Tables[1].Rows[0]["PiezasTotal"].ToString();
+                    if (ds.Tables[1].Rows[0]["IdEstatus"].ToString() == "1")
+                        cmdGuardar.Enabled = true;
+                    else
+                        cmdGuardar.Enabled = false;
                 }
                 else
                 {
                     Limpiacampos();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw (ex);
             }
@@ -280,8 +294,8 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
             try
             {
                 //// Asignar Valores
-                 if (Valido() == 1)
-                 {
+                if (Valido() == 1)
+                {
                     ent.IdPro = Int32.Parse(txtClavePro.Text);
                     ent.ClaveTerminal = txtTerminalPro.Text;
                     ent.FechaCaptura = System.DateTime.Now;
@@ -302,10 +316,22 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                     ent.DiasCredito = Int32.Parse(txtDiasCredito.Text);
                     ent.PesoTotalKg = double.Parse(txtPesoTotal.Text);
                     ent.PiezasTotal = double.Parse(txtPzasTotal.Text);
+                    // Transaccion
+                    if (txtClavePro.Text != "0" && txtClavePro.Text != "")
+                    {
+                        SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.updatetblPros(ent);
+                        ds = oENTResponse.dsResponse;
+                    }
+                    else
+                    {
+                        SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.inserttblPros(ent);
+                        ds = oENTResponse.dsResponse;
+                    }
                 }
-                 // Transaccion
-                 SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.inserttblPros(ent);
-                 ds = oENTResponse.dsResponse;
+                else
+                {
+                    // Mensaje de campos requeridos
+                }
 
                 // Transaccion Deetalle
                 // INCLUIR AQUI LA TRANSACCION DEL DETALLE
@@ -333,8 +359,8 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
             try
             {
                 Utilities.FillCombo(ref cboIdClaveCFiscal, "IdCliente", "Nombre", "Clientes");
-                Utilities.FillCombo(ref cboIdClaveOrigen, "IdCentroDeServicio", "sNombre", "CentrosdeServicio");
-                Utilities.FillCombo(ref cboIdClaveDestino, "IdCentroDeServicio", "sNombre", "CentrosdeServicio");
+                Utilities.FillCombo(ref cboIdClaveOrigen, "IdCentroDeServicio", "Nombre", "CentrosdeServicio");
+                Utilities.FillCombo(ref cboIdClaveDestino, "IdCentroDeServicio", "Nombre", "CentrosdeServicio");
                 Utilities.FillCombo(ref cboIdClaveAAduanal, "ClaveAgenteAduanal", "Nombre", "AgentesAduanales");
                 Utilities.FillCombo(ref cboIdClaveCobrarA, "IdCliente", "Nombre", "Clientes");
                 Utilities.FillCombo(ref cboIdClaveVendOrigen, "IdVendedor", "IdVendedor", "Vendedores");
@@ -411,15 +437,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         void FillDatosOrigen()
         {
             // Declaracion de variables
-            ENTCentroServicio ent = new ENTCentroServicio();
-            BPCentroServicio bss = new BPCentroServicio();
+            SafeTransfer.Entity.catCentrosDeServicio_Ent ent = new SafeTransfer.Entity.catCentrosDeServicio_Ent();
+            catCentrosDeServicioBSS bss = new catCentrosDeServicioBSS();
             DataSet ds = new DataSet();
             try
             {
                 // Asignar Valores
-                ent.idCompany = 1;
-                ent.idCentroServicio = Int32.Parse(cboIdClaveOrigen.SelectedValue);
-                ent.sNombre = "";
+                ent.IdCompania = 1;
+                ent.IdCentroDeServicio = Int32.Parse(cboIdClaveOrigen.SelectedValue);
+                ent.Nombre = "";
                 // Transaccion
                 SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchcatCentrosDeServicio(ent);
                 ds = oENTResponse.dsResponse;
@@ -445,15 +471,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         void FillDatosDestino()
         {
             // Declaracion de variables
-            ENTCentroServicio ent = new ENTCentroServicio();
-            BPCentroServicio bss = new BPCentroServicio();
+            SafeTransfer.Entity.catCentrosDeServicio_Ent ent = new SafeTransfer.Entity.catCentrosDeServicio_Ent();
+            catCentrosDeServicioBSS bss = new catCentrosDeServicioBSS();
             DataSet ds = new DataSet();
             try
             {
                 // Asignar Valores
-                ent.idCompany = 1;
-                ent.idCentroServicio = Int32.Parse(cboIdClaveDestino.SelectedValue);
-                ent.sNombre = "";
+                ent.IdCompania = 1;
+                ent.IdCentroDeServicio = Int32.Parse(cboIdClaveDestino.SelectedValue);
+                ent.Nombre = "";
                 // Transaccion
                 SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchcatCentrosDeServicio(ent);
                 ds = oENTResponse.dsResponse;
@@ -478,15 +504,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         void FillDatosCFiscal()
         {
             // Declaracion de variables
-            ENTCliente ent = new ENTCliente();
-            BPCliente bss = new BPCliente();
+            SafeTransfer.Entity.catClientes_Ent ent = new SafeTransfer.Entity.catClientes_Ent();
+            catClientesBSS bss = new catClientesBSS();
             DataSet ds = new DataSet();
             try
             {
                 // Asignar Valores
-                ent.idCompany = 1;
-                ent.idCliente = Int32.Parse(cboIdClaveCFiscal.SelectedValue);
-                ent.sNombre = "";
+                ent.IdCompania = 1;
+                ent.IdCliente = Int32.Parse(cboIdClaveCFiscal.SelectedValue);
+                ent.Nombre = "";
                 ent.BillOrShip = 1;
                 // Transaccion
                 SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchcatClientesBILLSHIP(ent);
@@ -512,7 +538,8 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         void FillDatosAAduanal()
         {
             // Declaracion de variables
-            ENTAgenteAduanal ent = new ENTAgenteAduanal();
+            //SafeTransfer.Entity.catAgentesAduanales_Ent ent = new SafeTransfer.Entity.catAgentesAduanales_Ent();
+            SafeTransfer.Entity.Object.ENTAgenteAduanal ent = new SafeTransfer.Entity.Object.ENTAgenteAduanal();
             catAgentesAduanalesBSS bss = new catAgentesAduanalesBSS();
             DataSet ds = new DataSet();
             try
@@ -545,21 +572,23 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         void FillDatosVendedor(string TIPOVENDEDOR)
         {
             // Declaracion de variables
-            ENTVendedor ent = new ENTVendedor();
+            // SafeTransfer.Entity.catVendedores_Ent ent = new SafeTransfer.Entity.catVendedores_Ent();
+            SafeTransfer.Entity.Object.ENTVendedor ent = new SafeTransfer.Entity.Object.ENTVendedor();
             catVendedoresBSS bss = new catVendedoresBSS();
             DataSet ds = new DataSet();
             try
             {
                 // Asignar Valores
                 ent.idCompany = 1;
-                 if (TIPOVENDEDOR == "ORIGEN"){
-                ent.idVendedor = Int32.Parse(cboIdClaveVendOrigen.SelectedValue);
+                if (TIPOVENDEDOR == "ORIGEN")
+                {
+                    ent.idVendedor = Int32.Parse(cboIdClaveVendOrigen.SelectedValue);
                 }
-                 else
-                 {
-                ent.idVendedor = Int32.Parse(cboIdClaveVendDestino.SelectedValue);
+                else
+                {
+                    ent.idVendedor = Int32.Parse(cboIdClaveVendDestino.SelectedValue);
                 }
-                
+
                 ent.sNombre = "";
                 ent.sApellidoPaterno = "";
                 ent.sApellidoMaterno = "";
@@ -589,15 +618,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         void FillDatosCobrarA()
         {
             // Declaracion de variables
-            ENTCliente ent = new ENTCliente();
-            BPCliente bss = new BPCliente();
+            SafeTransfer.Entity.catClientes_Ent ent = new SafeTransfer.Entity.catClientes_Ent();
+            catClientesBSS bss = new catClientesBSS();
             DataSet ds = new DataSet();
             try
             {
                 // Asignar Valores
-                ent.idCompany = 1;
-                ent.idCliente = Int32.Parse(cboIdClaveCFiscal.SelectedValue);
-                ent.sNombre = "";
+                ent.IdCompania = 1;
+                ent.IdCliente = Int32.Parse(cboIdClaveCFiscal.SelectedValue);
+                ent.Nombre = "";
                 ent.BillOrShip = 2;
                 // Transaccion
                 SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchcatClientesBILLSHIP(ent);
@@ -619,14 +648,29 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         }
 
         void Limpiacampos()
-        { 
-        
-        }
-
-        int Valido()
         {
 
-            return 1;
+        }
+
+        // Rutina para validar que los campos requeridos esten completos
+        int Valido()
+        {
+            int Valido = 1;
+
+            if (txtClavePro.Text == "") { Valido = 0; }
+            if (txtTerminalPro.Text == "") { Valido = 0; }
+            if (cboIdClaveOrigen.SelectedValue == "0") { Valido = 0; }
+            if (cboIdClaveDestino.SelectedValue == "0") { Valido = 0; }
+            if (cboIdClaveCFiscal.SelectedValue == "0") { Valido = 0; }
+            if (cboIdClaveAAduanal.SelectedValue == "0") { Valido = 0; }
+            if (cboIdClaveCobrarA.SelectedValue == "0") { Valido = 0; }
+            if (txtCondPago.Text == "") { Valido = 0; }
+            if (cboIdClaveVendOrigen.SelectedValue == "0") { Valido = 0; }
+            if (cboIdClaveVendDestino.SelectedValue == "0") { Valido = 0; }
+            if (txtPesoTotal.Text == "") { Valido = 0; }
+            if (txtPzasTotal.Text == "") { Valido = 0; }
+
+            return Valido;
         }
 
         #endregion

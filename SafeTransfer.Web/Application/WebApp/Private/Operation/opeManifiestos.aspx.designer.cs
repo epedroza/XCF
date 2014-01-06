@@ -109,7 +109,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaSalida;
+        protected global::SafeTransfer.Web.Include.WebUserControls.wucCalendar txtFechaSalida;
         
         /// <summary>
         /// txtFechaArribo control.
@@ -118,7 +118,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaArribo;
+        protected global::SafeTransfer.Web.Include.WebUserControls.wucCalendar txtFechaArribo;
         
         /// <summary>
         /// txtNoTractor control.
@@ -166,31 +166,22 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.TextBox txtNoCaja2;
         
         /// <summary>
-        /// txtEstatus control.
+        /// cboEstatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEstatus;
+        protected global::System.Web.UI.WebControls.DropDownList cboEstatus;
         
         /// <summary>
-        /// cboOrigen control.
+        /// cmdAgregarPartidas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboOrigen;
-        
-        /// <summary>
-        /// cboDestino control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList cboDestino;
+        protected global::System.Web.UI.WebControls.Button cmdAgregarPartidas;
         
         /// <summary>
         /// txtIdPro control.
@@ -218,6 +209,42 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvApps;
+        
+        /// <summary>
+        /// pnlDetallePros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlDetallePros;
+        
+        /// <summary>
+        /// gvAppsSelPros control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvAppsSelPros;
+        
+        /// <summary>
+        /// cmdCerrar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cmdCerrar;
+        
+        /// <summary>
+        /// cmdAceptar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cmdAceptar;
         
         /// <summary>
         /// pnlBotones control.

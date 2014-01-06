@@ -7,31 +7,30 @@ using System.Text;
 using Microsoft.Practices.EnterpriseLibrary.Data;
 using System.Data.SqlClient;
 using SafeTransfer.Entity.Object;
-using SafeTransfer.Entity;
 
 namespace SafeTransfer.DATA
 {
-    public class catVendedoresDATA
+    public class catCentrosDeServicioDATA
     {
         Database dbs;
-        public catVendedoresDATA()
+        public catCentrosDeServicioDATA()
         {
             dbs = DatabaseFactory.CreateDatabase("Conn");
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.searchcatVendedores</name>
+        ///   <name>catCentrosDeServicio_DATA.searchcatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para obtener las catVendedores del sistema</summary>
-        public ENTResponse searchcatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para obtener las catCentrosDeServicio del sistema</summary>
+        public ENTResponse searchcatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catVendedoresSel", entcatVendedores.idCompany, entcatVendedores.idVendedor, entcatVendedores.sNombre, entcatVendedores.sApellidoPaterno, entcatVendedores.sApellidoMaterno);
+                ds = dbs.ExecuteDataSet("catCentrosDeServicioSel", entcatCentrosDeServicio.IdCompania, entcatCentrosDeServicio.IdCentroDeServicio, entcatCentrosDeServicio.Nombre);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -50,19 +49,19 @@ namespace SafeTransfer.DATA
 
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.insertcatVendedores</name>
+        ///   <name>catCentrosDeServicio_DATA.searchcatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para insertar catVendedores del sistema</summary>
-        public ENTResponse insertcatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para obtener las catCentrosDeServicio del sistema</summary>
+        public ENTResponse searchcatCentrosDeServiciocbo(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catVendedoresIns", entcatVendedores.idCompany, entcatVendedores.sDescripcion, entcatVendedores.sNombre, entcatVendedores.sApellidoPaterno, entcatVendedores.sApellidoMaterno, entcatVendedores.sDireccion, entcatVendedores.idCiudad, entcatVendedores.sCP, entcatVendedores.sTelefono1, entcatVendedores.sTelefono2, entcatVendedores.sCorreo);
+                ds = dbs.ExecuteDataSet("catCentrosDeServicioSelcbo", entcatCentrosDeServicio.IdCompania);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -81,19 +80,19 @@ namespace SafeTransfer.DATA
 
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.updatecatVendedores</name>
+        ///   <name>catCentrosDeServicio_DATA.insertcatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo que actualiza catVendedores del sistema</summary>
-        public ENTResponse updatecatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para insertar catCentrosDeServicio del sistema</summary>
+        public ENTResponse insertcatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catVendedoresUpd", entcatVendedores.idVendedor, entcatVendedores.idCompany, entcatVendedores.sDescripcion, entcatVendedores.sNombre, entcatVendedores.sApellidoPaterno, entcatVendedores.sApellidoMaterno, entcatVendedores.sDireccion, entcatVendedores.idCiudad, entcatVendedores.sCP, entcatVendedores.sTelefono1, entcatVendedores.sTelefono2, entcatVendedores.sCorreo);
+                ds = dbs.ExecuteDataSet("catCentrosDeServicioIns", entcatCentrosDeServicio.IdCompania, entcatCentrosDeServicio.Nombre, entcatCentrosDeServicio.RFC, entcatCentrosDeServicio.Terminal, entcatCentrosDeServicio.CD, entcatCentrosDeServicio.Direccion, entcatCentrosDeServicio.IdCiudad, entcatCentrosDeServicio.ProExterno);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -112,19 +111,19 @@ namespace SafeTransfer.DATA
 
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.deletecatVendedores</name>
+        ///   <name>catCentrosDeServicio_DATA.updatecatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para eliminar de catVendedores del sistema</summary>
-        public ENTResponse deletecatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo que actualiza catCentrosDeServicio del sistema</summary>
+        public ENTResponse updatecatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("catVendedoresDel", entcatVendedores.idCompany, entcatVendedores.idVendedor);
+                dbs.ExecuteDataSet("catCentrosDeServicioUpd", entcatCentrosDeServicio.IdCompania, entcatCentrosDeServicio.IdCentroDeServicio, entcatCentrosDeServicio.Nombre, entcatCentrosDeServicio.RFC, entcatCentrosDeServicio.Terminal, entcatCentrosDeServicio.CD, entcatCentrosDeServicio.Direccion, entcatCentrosDeServicio.IdCiudad, entcatCentrosDeServicio.ProExterno);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -143,19 +142,19 @@ namespace SafeTransfer.DATA
 
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.searchcatVendedorescbo</name>
+        ///   <name>catCentrosDeServicio_DATA.deletecatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para obtener las catVendedores del sistema</summary>
-        public ENTResponse searchcatVendedorescbo(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para eliminar de catCentrosDeServicio del sistema</summary>
+        public ENTResponse deletecatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
             ENTResponse oENTResponse = new ENTResponse();
             DataSet ds = new DataSet();
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("catVendedoresSelcbo", entcatVendedores.idCompany);
+                dbs.ExecuteDataSet("catCentrosDeServicioDel", entcatCentrosDeServicio.IdCompania, entcatCentrosDeServicio.IdCentroDeServicio);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

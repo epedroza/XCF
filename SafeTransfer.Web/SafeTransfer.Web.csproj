@@ -151,6 +151,7 @@
     <Content Include="Include\WebUserControls\wucCotizador.ascx" />
     <Content Include="Include\WebUserControls\wucProgramarPickUp.ascx" />
     <Content Include="Include\WebUserControls\wucSelector_Cliente.ascx" />
+    <Content Include="Include\WebUserControls\wucTimeMask.ascx" />
     <Content Include="Include\WebUserControls\wucToolbar.ascx" />
     <Content Include="Index.aspx" />
     <Content Include="Application\WebApp\Private\Home\AppIndex.aspx" />
@@ -316,6 +317,7 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeRecepcionManifiestos.aspx.cs">
       <DependentUpon>opeRecepcionManifiestos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Application\WebApp\Private\Operation\opeRecepcionManifiestos.aspx.designer.cs">
       <DependentUpon>opeRecepcionManifiestos.aspx</DependentUpon>
@@ -439,6 +441,13 @@
     </Compile>
     <Compile Include="Include\WebUserControls\wucSelector_Cliente.ascx.designer.cs">
       <DependentUpon>wucSelector_Cliente.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucTimeMask.ascx.cs">
+      <DependentUpon>wucTimeMask.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Include\WebUserControls\wucTimeMask.ascx.designer.cs">
+      <DependentUpon>wucTimeMask.ascx</DependentUpon>
     </Compile>
     <Compile Include="Include\WebUserControls\wucToolbar.ascx.cs">
       <DependentUpon>wucToolbar.ascx</DependentUpon>

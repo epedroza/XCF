@@ -68,6 +68,8 @@
     <Compile Include="Object\catAgentesAduanalesBSS.cs" />
     <Compile Include="Object\catBillToShipToBSS.cs" />
     <Compile Include="Object\catCamionesBSS.cs" />
+    <Compile Include="Object\catCentrosDeServicioBSS.cs" />
+    <Compile Include="Object\catClientesBSS.cs" />
     <Compile Include="Object\catEstatusManifiestosBSS.cs" />
     <Compile Include="Object\catEstatusProsBSS.cs" />
     <Compile Include="Object\catTiposCamionesBSS.cs" />

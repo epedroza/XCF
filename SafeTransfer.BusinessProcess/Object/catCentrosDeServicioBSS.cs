@@ -4,27 +4,26 @@ using System.Text;
 using System.Data;
 using SafeTransfer.DataAccess.Object;
 using SafeTransfer.Entity.Object;
-using SafeTransfer.Entity;
 
 namespace SafeTransfer.BusinessProcess.Object
 {
-    public class catVendedoresBSS : BPBase
+    public class catCentrosDeServicioBSS : BPBase
     {
         ///<remarks>
-        ///   <name>catVendedores_BSS.searchcatVendedores</name>
+        ///   <name>catCentrosDeServicio_BSS.searchcatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para obtener las catVendedores del sistema</summary>
-        public ENTResponse searchcatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para obtener las catCentrosDeServicio del sistema</summary>
+        public ENTResponse searchcatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                SafeTransfer.DATA.catVendedoresDATA datacatVendedores = new SafeTransfer.DATA.catVendedoresDATA();
-                oENTResponse = datacatVendedores.searchcatVendedores(entcatVendedores);
+                SafeTransfer.DATA.catCentrosDeServicioDATA datacatCentrosDeServicio = new SafeTransfer.DATA.catCentrosDeServicioDATA();
+                oENTResponse = datacatCentrosDeServicio.searchcatCentrosDeServicio(entcatCentrosDeServicio);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -40,20 +39,20 @@ namespace SafeTransfer.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.insertcatVendedores</name>
+        ///   <name>catCentrosDeServicio_BSS.searchcatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para insertar catVendedores del sistema</summary>
-        public ENTResponse insertcatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para obtener las catCentrosDeServicio del sistema</summary>
+        public ENTResponse searchcatCentrosDeServiciocbo(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                SafeTransfer.DATA.catVendedoresDATA datacatVendedores = new SafeTransfer.DATA.catVendedoresDATA();
-                oENTResponse = datacatVendedores.insertcatVendedores(entcatVendedores);
+                SafeTransfer.DATA.catCentrosDeServicioDATA datacatCentrosDeServicio = new SafeTransfer.DATA.catCentrosDeServicioDATA();
+                oENTResponse = datacatCentrosDeServicio.searchcatCentrosDeServiciocbo(entcatCentrosDeServicio);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -69,20 +68,20 @@ namespace SafeTransfer.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.updatecatVendedores</name>
+        ///   <name>catCentrosDeServicio_DATA.insertcatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo que actualiza catVendedores del sistema</summary>
-        public ENTResponse updatecatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para insertar catCentrosDeServicio del sistema</summary>
+        public ENTResponse insertcatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                SafeTransfer.DATA.catVendedoresDATA datacatVendedores = new SafeTransfer.DATA.catVendedoresDATA();
-                return datacatVendedores.updatecatVendedores(entcatVendedores);
+                SafeTransfer.DATA.catCentrosDeServicioDATA datacatCentrosDeServicio = new SafeTransfer.DATA.catCentrosDeServicioDATA();
+                oENTResponse = datacatCentrosDeServicio.insertcatCentrosDeServicio(entcatCentrosDeServicio);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -98,20 +97,20 @@ namespace SafeTransfer.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>catVendedores_DATA.deletecatVendedores</name>
+        ///   <name>catCentrosDeServicio_DATA.updatecatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para eliminar de catVendedores del sistema</summary>
-        public ENTResponse deletecatVendedores(ENTVendedor entcatVendedores)
+        ///<summary>Metodo que actualiza catCentrosDeServicio del sistema</summary>
+        public ENTResponse updatecatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                SafeTransfer.DATA.catVendedoresDATA datacatVendedores = new SafeTransfer.DATA.catVendedoresDATA();
-                return datacatVendedores.deletecatVendedores(entcatVendedores);
+                SafeTransfer.DATA.catCentrosDeServicioDATA datacatCentrosDeServicio = new SafeTransfer.DATA.catCentrosDeServicioDATA();
+                return datacatCentrosDeServicio.updatecatCentrosDeServicio(entcatCentrosDeServicio);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD
@@ -127,20 +126,20 @@ namespace SafeTransfer.BusinessProcess.Object
 
         }
         ///<remarks>
-        ///   <name>catVendedores_BSS.searchcatVendedorescbo</name>
+        ///   <name>catCentrosDeServicio_DATA.deletecatCentrosDeServicio</name>
         ///   <create>24/oct/2013</create>
         ///   <author>Generador</author>
         ///</remarks>
-        ///<summary>Metodo para obtener las catVendedores del sistema</summary>
-        public ENTResponse searchcatVendedorescbo(ENTVendedor entcatVendedores)
+        ///<summary>Metodo para eliminar de catCentrosDeServicio del sistema</summary>
+        public ENTResponse deletecatCentrosDeServicio(SafeTransfer.Entity.catCentrosDeServicio_Ent entcatCentrosDeServicio)
         {
 
             ENTResponse oENTResponse = new ENTResponse();
             try
             {
                 // Consulta a base de datos
-                SafeTransfer.DATA.catVendedoresDATA datacatVendedores = new SafeTransfer.DATA.catVendedoresDATA();
-                oENTResponse = datacatVendedores.searchcatVendedorescbo(entcatVendedores);
+                SafeTransfer.DATA.catCentrosDeServicioDATA datacatCentrosDeServicio = new SafeTransfer.DATA.catCentrosDeServicioDATA();
+                return datacatCentrosDeServicio.deletecatCentrosDeServicio(entcatCentrosDeServicio);
                 // Validación de error en consulta
                 if (oENTResponse.GeneratesException) { return oENTResponse; }
                 // Validación de mensajes de la BD

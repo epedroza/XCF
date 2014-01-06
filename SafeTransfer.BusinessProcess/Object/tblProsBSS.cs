@@ -175,5 +175,34 @@ namespace SafeTransfer.BusinessProcess.Object
             return oENTResponse;
 
         }
+        ///<remarks>
+        ///   <name>tblPros_BSS.searchtblPros</name>
+        ///   <create>19/nov/2013</create>
+        ///   <author>Generador</author>
+        ///</remarks>
+        ///<summary>Metodo para obtener las tblPros del sistema</summary>
+        public ENTResponse searchtblProsOrigen(SafeTransfer.Entity.tblPros_Ent enttblPros)
+        {
+
+            ENTResponse oENTResponse = new ENTResponse();
+            try
+            {
+                // Consulta a base de datos
+                tblProsDATA datatblPros = new tblProsDATA();
+                oENTResponse = datatblPros.searchtblProsOrigen(enttblPros);
+                // Validación de error en consulta
+                if (oENTResponse.GeneratesException) { return oENTResponse; }
+                // Validación de mensajes de la BD
+                oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+                if (oENTResponse.sMessage != "") { return oENTResponse; }
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            // Resultado
+            return oENTResponse;
+
+        }
     }
 }

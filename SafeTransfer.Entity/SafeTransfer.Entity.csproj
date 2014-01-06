@@ -41,8 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ENTBase.cs" />
+    <Compile Include="Object\catAgentesAduanales_Ent.cs" />
+    <Compile Include="Object\catCentrosDeServicio_Ent.cs" />
+    <Compile Include="Object\catClientes_Ent.cs" />
     <Compile Include="Object\catEstatusManifiestos_Ent.cs" />
     <Compile Include="Object\catEstatusPros_Ent.cs" />
+    <Compile Include="Object\catVendedores_Ent.cs" />
     <Compile Include="Object\ENTAgenteAduanal.cs" />
     <Compile Include="Object\ENTBillToShip.cs" />
     <Compile Include="Object\ENTCamion.cs" />

@@ -118,7 +118,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHoraCaptura;
+        protected global::System.Web.UI.UserControl txtHoraCaptura;
         
         /// <summary>
         /// txtFechaCargado control.
@@ -136,7 +136,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtHoraCargado;
+        protected global::System.Web.UI.UserControl txtHoraCargado;
         
         /// <summary>
         /// chkMaterialPeligroso control.
@@ -616,6 +616,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.TextBox txtPzasTotal;
         
         /// <summary>
+        /// Panel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel Panel1;
+        
+        /// <summary>
         /// gvAppsPros control.
         /// </summary>
         /// <remarks>
@@ -661,6 +670,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlBotones;
         
         /// <summary>
+        /// txtObervaciones control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtObervaciones;
+        
+        /// <summary>
         /// btnBuscar control.
         /// </summary>
         /// <remarks>
@@ -686,15 +704,6 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button cmdGuardar;
-        
-        /// <summary>
-        /// txtObervaciones control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtObervaciones;
         
         /// <summary>
         /// pnlGrid control.
