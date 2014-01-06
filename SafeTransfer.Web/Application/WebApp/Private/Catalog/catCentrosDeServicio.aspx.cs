@@ -1,258 +1,799 @@
-﻿using System;
+﻿/*---------------------------------------------------------------------------------------------------------------------------------
+' Nombre:	scatCentroServicio
+' Autor:		Ruben.Cobos
+' Fecha:		27-Octubre-2013
+'
+' Descripción:
+'           Catálogo de Sistema de CentroServicios de la aplicación
+'
+' Notas:
+'				Hereda de la clase base SafeTransfer.BusinessProcess.Page.BPPage
+'----------------------------------------------------------------------------------------------------------------------------------*/
+
+// Referencias
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
+// Referencias manuales
+using GCSoft.Utilities.Common;
+using GCSoft.Utilities.Security;
 using SafeTransfer.BusinessProcess.Object;
+using SafeTransfer.BusinessProcess.Page;
 using SafeTransfer.Entity.Object;
-using SafeTransfer.Include.Components.Utilities;
+using System.Data;
 
 namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
 {
-    public partial class catCentrosDeServicio : System.Web.UI.Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Page.IsPostBack)
-            {
-                // Se inicia la pantalla con un registro nuevo y cargando todos los registros existentes en el grid
-                hddTipoAccion.Value = "INSERT";
-                LimpiaCampos();
-                Fillcbo();
-                FillGrid();
+   public partial class catCentrosDeServicio : BPPage
+   {
+
+      // Utilerías
+      Function utilFunction = new Function();
+      Encryption utilEncryption = new Encryption();
+
+      // Enumeraciones
+      private enum CentroServicioActionTypes { DeleteCentroServicio, InsertCentroServicio, ReactivateCentroServicio, UpdateCentroServicio }
+
+      
+      // Rutinas del programador
+
+      private void ClearActionPanel(){
+         try
+         {
+
+            // Limpiar formulario
+            this.txtActionNombre.Text = "";
+            this.txtActionDescripcion.Text = "";
+            this.ddlActionStatus.SelectedIndex = 0;
+
+            // Estado incial de controles
+            this.pnlAction.Visible = false;
+            this.lblActionTitle.Text = "";
+            this.btnAction.Text = "";
+            this.lblActionMessage.Text = "";
+            this.hddCentroServicio.Value = "";
+
+         }catch (Exception ex){
+            throw (ex);
+         }
+      }
+
+      private void ExportCentroServicio(){
+         String sKey = "";
+			
+			try{
+
+            // Formulario (sNombre|tiActivo)
+            sKey = this.txtNombre.Text + "|" + this.ddlStatus.SelectedItem.Value;
+				
+				// Encriptar la llave
+				sKey = utilEncryption.EncryptString(sKey, true);
+				
+				// Llamada a rutina del lado del cliente
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "CallAsyncFame('ExcelMaker/xlsCentroServicio.aspx', '" + sKey + "');", true);
+			
+			}catch (Exception ex){
+				throw (ex);
+			}
+      }
+
+      private void InsertCentroServicio(){
+         ENTCentroServicio oENTCentroServicio = new ENTCentroServicio();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPCentroServicio oBPCentroServicio = new BPCentroServicio();
+
+			try{
+
+            // Formulario
+            oENTCentroServicio.sDescripcion = this.txtActionDescripcion.Text.Trim();
+            oENTCentroServicio.sNombre = this.txtActionNombre.Text.Trim();
+            oENTCentroServicio.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
+
+				// Transacción
+            oENTResponse = oBPCentroServicio.InsertCentroServicio(oENTCentroServicio);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != ""){throw (new Exception(oENTResponse.sMessage));}
+
+				// Transacción exitosa
+            ClearActionPanel();
+
+            // Actualizar grid
+            SelectCentroServicio();
+
+            // Mensaje de usuario
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('CentroServicio creado con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void SelectCentroServicio(){
+         ENTCentroServicio oENTCentroServicio = new ENTCentroServicio();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPCentroServicio oBPCentroServicio = new BPCentroServicio();
+         String sMessage = "tinyboxToolTipMessage_ClearOld();";
+
+			try{
+
+            // Formulario
+            oENTCentroServicio.idCompany = Int32.Parse(this.ddlCompany.SelectedItem.Value);
+            oENTCentroServicio.idCentroServicio = 0;
+            oENTCentroServicio.sNombre = this.txtNombre.Text;
+            oENTCentroServicio.tiActivo = Int16.Parse(this.ddlStatus.SelectedItem.Value);
+
+				// Transacción
+				oENTResponse = oBPCentroServicio.SelectCentroServicio(oENTCentroServicio);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+            // Mensaje de la BD
+            if (oENTResponse.sMessage != "") { sMessage = "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', true);"; }
+
+            // Llenado de controles
+            this.gvCentroServicio.DataSource = oENTResponse.dsResponse.Tables[1];
+            this.gvCentroServicio.DataBind();
+
+            // Mensaje al usuario
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), sMessage, true);
+
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void SelectCentroServicio_ForEdit(Int32 idCentroServicio){
+         ENTCentroServicio oENTCentroServicio = new ENTCentroServicio();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPCentroServicio oBPCentroServicio = new BPCentroServicio();
+
+			try{
+
+            // Formulario
+            oENTCentroServicio.idCentroServicio = idCentroServicio;
+            oENTCentroServicio.sNombre = "";
+            oENTCentroServicio.tiActivo = 2;
+
+				// Transacción
+				oENTResponse = oBPCentroServicio.SelectCentroServicio(oENTCentroServicio);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+
+            // Mensaje de la BD
+            this.lblActionMessage.Text = oENTResponse.sMessage;
+
+            // Llenado de formulario
+            this.txtActionNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sNombre"].ToString();
+            this.txtActionDescripcion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sDescripcion"].ToString();
+            this.ddlActionStatus.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["tiActivo"].ToString();
+
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void SelectCiudad(){
+         ENTCiudad oENTCiudad = new ENTCiudad();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPCiudad oBPCiudad = new BPCiudad();
+
+			try{
+
+            // Formulario
+            oENTCiudad.idCiudad = 0;
+            oENTCiudad.idEstado = Int32.Parse(this.ddlActionEstado.SelectedValue);
+            oENTCiudad.idPais = Int32.Parse(this.ddlActionPais.SelectedValue);
+            oENTCiudad.sNombre = "";
+            oENTCiudad.tiActivo = 1;
+
+				// Transacción
+				oENTResponse = oBPCiudad.SelectCiudad(oENTCiudad);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlActionEstado.ClientID + "');", true); }
+
+            // Llenado de combo
+            if (oENTResponse.dsResponse.Tables[1].Rows.Count == 0 ){
+
+               this.ddlActionCiudad.Items.Clear();
+               this.ddlActionCiudad.Items.Insert(0, new ListItem("--Sin Elementos--", "-1"));
+
+            }else{
+
+               this.ddlActionCiudad.DataTextField = "sNombre";
+               this.ddlActionCiudad.DataValueField = "idCiudad";
+               this.ddlActionCiudad.DataSource = oENTResponse.dsResponse.Tables[1];
+               this.ddlActionCiudad.DataBind();
+
             }
-        }
 
-        #region Grid
-        protected void gvApps_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
 
-        protected void gvApps_SelectedIndexChanging(object sender, EventArgs e)
-        {
-        }
+      private void SelectCompany(){
+         ENTCompany oENTCompany = new ENTCompany();
+			ENTResponse oENTResponse = new ENTResponse();
+         ENTSession oENTSession;
 
-        protected void gvApps_PageIndexChanging(Object sender, GridViewPageEventArgs e)
-        {
-        }
+			BPCompany oBPCompany = new BPCompany();
 
-        protected void gvApps_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
-        }
+         Encryption utilEncryption = new Encryption();
+         String sKey = "";
 
-        protected void gvApps_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            // Convierte el indice del renglón la propiedad CommandArgument a un int
-            int index = Convert.ToInt32(e.CommandArgument);
+			try{
 
-            // Va al renglón que contiene el botón que presionado
-            GridViewRow row = gvApps.Rows[index];
+            // Formulario
+            oENTCompany.sNombre = "";
+            oENTCompany.tiActivo = 1;
 
-            gvApps.SelectedIndex = index;
+				// Transacción
+				oENTResponse = oBPCompany.SelectCompany(oENTCompany);
 
-            if (e.CommandName == "EDITA")
-            {
-                hddTipoAccion.Value = "UPDATE";
-                hddIdCentroDeServicio.Value = gvApps.SelectedDataKey["idCentroDeServicio"].ToString();
-                txtNombre.Text = gvApps.SelectedDataKey["sNombre"].ToString();
-                txtRFC.Text = gvApps.SelectedDataKey["sRFC"].ToString();
-                txtTerminal.Text = gvApps.SelectedDataKey["iTerminal"].ToString();
-                txtCD.Text = gvApps.SelectedDataKey["sCD"].ToString();
-                txtDireccion.Text = gvApps.SelectedDataKey["sDireccion"].ToString();
-                cboCiudad.SelectedValue = gvApps.SelectedDataKey["idCiudad"].ToString();
-                txtProExterno.Text = gvApps.SelectedDataKey["sProExterno"].ToString();
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+            if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+            // Llenado de combo
+				this.ddlCompany.DataTextField = "sNombre";
+				this.ddlCompany.DataValueField = "idCompany";
+				this.ddlCompany.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlCompany.DataBind();
+
+            // Agregar Item de selección
+            this.ddlCompany.Items.Insert(0, new ListItem("[Todas]", "0"));
+
+				// Seguridad
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+            if (oENTSession.idCompany != 1){
+               this.ddlCompany.Enabled = false;
+               this.ddlCompany.SelectedValue = oENTSession.idCompany.ToString();
+
+                // Validación 
+               if(this.ddlCompany.SelectedValue != oENTSession.idCompany.ToString()){
+                  sKey = utilEncryption.EncryptString("[V04] Su compañía no tiene permisos para acceder a esta página", true);
+                  this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
+               }
             }
 
-            if (e.CommandName == "DELETE")
-            {
-                hddTipoAccion.Value = "DELETE";
-                Actualizar(hddTipoAccion.Value);
-            }
-        }
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+      
+      private void SelectCompany_Action(){
+         ENTCompany oENTCompany = new ENTCompany();
+			ENTResponse oENTResponse = new ENTResponse();
+         ENTSession oENTSession;
 
-        #endregion
+			BPCompany oBPCompany = new BPCompany();
 
-        #region Rutinas de la pagina
+         Encryption utilEncryption = new Encryption();
+         String sKey = "";
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            Buscar();
-        }
+			try{
 
-        protected void btnGuardar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (ValidaCampos() == true)
-                {
-                    Actualizar(hddTipoAccion.Value);
-                    LimpiaCampos();
-                    FillGrid();
-                    hddTipoAccion.Value = "INSERT";
-                    hddIdCentroDeServicio.Value = "0";
-                }
-            }
-            catch
-            {
+            // Formulario
+            oENTCompany.sNombre = "";
+            oENTCompany.tiActivo = 1;
 
-            }
-            finally
-            { }
-        }
+				// Transacción
+				oENTResponse = oBPCompany.SelectCompany(oENTCompany);
 
-        protected void btnNuevo_Click(object sender, EventArgs e)
-        {
-            hddTipoAccion.Value = "INSERT";
-            LimpiaCampos();
-            FillGrid();
-        }
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+            if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
 
-        #endregion
+            // Llenado de combo
+            this.ddlActionCompany.DataTextField = "sNombre";
+            this.ddlActionCompany.DataValueField = "idCompany";
+            this.ddlActionCompany.DataSource = oENTResponse.dsResponse.Tables[1];
+            this.ddlActionCompany.DataBind();
 
-        #region Rutinas del programador
+            // Agregar Item de selección
+            this.ddlActionCompany.Items.Insert(0, new ListItem("[Seleccione]", "0"));
 
-        void FillGrid()
-        {
-            // Declaracion de variables
-            ENTCentroServicio ent = new ENTCentroServicio();
-            BPCentroServicio bss = new BPCentroServicio();
+				// Seguridad
+            oENTSession = (ENTSession)this.Session["oENTSession"];
+            if (oENTSession.idCompany != 1){
+               this.ddlActionCompany.Enabled = false;
+               this.ddlActionCompany.SelectedValue = oENTSession.idCompany.ToString();
 
-            // Asignar Valores
-            ent.idCompany = 1;
-            ent.idCentroServicio = (txtIdCentroDeServicio.Text != "" ? Int32.Parse(txtIdCentroDeServicio.Text) : 0);
-            ent.sNombre = txtNombre.Text;
-
-            // Transaccion
-            SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.searchcatCentrosDeServicio(ent);
-
-            gvApps.DataSource = oENTResponse.dsResponse.Tables[1].DefaultView;
-            gvApps.DataBind();
-        }
-
-        void Fillcbo()
-        {
-            Utilities.FillCombo(ref cboCiudad, "idCiudad", "Ciudad", "Ciudades");
-        }
-
-        bool ValidaCampos()
-        {
-            bool Valido = true;
-            int Terminal = 0;
-
-            if (txtNombre.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Nombre] es obligatorio', 'Warning', true); focusControl('" + this.txtNombre.ClientID + "');", true);
-                return false;
+                // Validación 
+               if(this.ddlCompany.SelectedValue != oENTSession.idCompany.ToString()){
+                  sKey = utilEncryption.EncryptString("[V04] Su compañía no tiene permisos para acceder a esta página", true);
+                  this.Response.Redirect("~/Application/WebApp/Private/SysApp/saNotificacion.aspx?key=" + sKey, true);
+               }
             }
 
-            if (txtRFC.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [RFC] es obligatorio', 'Warning', true); focusControl('" + this.txtRFC.ClientID + "');", true);
-                return false;
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void SelectEstado(){
+         ENTEstado oENTEstado = new ENTEstado();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPEstado oBPEstado = new BPEstado();
+
+			try{
+
+            // Formulario
+            oENTEstado.idEstado = 0;
+            oENTEstado.idPais = Int32.Parse(this.ddlActionPais.SelectedValue);
+            oENTEstado.sNombre = "";
+            oENTEstado.tiActivo = 1;
+
+				// Transacción
+				oENTResponse = oBPEstado.SelectEstado(oENTEstado);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlActionPais.ClientID + "');", true); }
+
+            // Llenado de combo
+             if (oENTResponse.dsResponse.Tables[1].Rows.Count == 0 ){
+
+                this.ddlActionEstado.Items.Clear();
+                this.ddlActionEstado.Items.Insert(0, new ListItem("--Sin Elementos--", "-1"));
+
+            }else{
+
+               this.ddlActionEstado.DataTextField = "sNombre";
+               this.ddlActionEstado.DataValueField = "idEstado";
+               this.ddlActionEstado.DataSource = oENTResponse.dsResponse.Tables[1];
+               this.ddlActionEstado.DataBind();
+
             }
 
-            if (txtTerminal.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Terminal] es obligatorio', 'Warning', true); focusControl('" + this.txtTerminal.ClientID + "');", true);
-                return false;
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void SelectPais(){
+         ENTPais oENTPais = new ENTPais();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPPais oBPPais = new BPPais();
+
+			try{
+
+            // Formulario
+            oENTPais.idPais = 0;
+            oENTPais.sNombre = "";
+            oENTPais.tiActivo = 1;
+
+				// Transacción
+				oENTResponse = oBPPais.SelectPais(oENTPais);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+            if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+            // Llenado de combo
+				this.ddlActionPais.DataTextField = "sNombre";
+				this.ddlActionPais.DataValueField = "idPais";
+				this.ddlActionPais.DataSource = oENTResponse.dsResponse.Tables[1];
+				this.ddlActionPais.DataBind();
+
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void SelectStatus(){
+         try
+         {
+
+            // Opciones de DropDownList
+            this.ddlStatus.Items.Insert(0, new ListItem("[Todos]", "2"));
+            this.ddlStatus.Items.Insert(1, new ListItem("Activos", "1"));
+            this.ddlStatus.Items.Insert(2, new ListItem("Inactivos", "0"));
+
+         }catch (Exception ex){
+            throw (ex);
+         }
+      }
+
+      private void SelectStatus_Action(){
+         try
+         {
+
+            // Opciones de DropDownList
+            this.ddlActionStatus.Items.Insert(0, new ListItem("[Seleccione]", "2"));
+            this.ddlActionStatus.Items.Insert(1, new ListItem("Activo", "1"));
+            this.ddlActionStatus.Items.Insert(2, new ListItem("Inactivo", "0"));
+
+         }catch (Exception ex){
+            throw (ex);
+         }
+      }
+
+      private void SetPanel(CentroServicioActionTypes CentroServicioActionType, Int32 idItem = 0){
+         try
+         {
+
+            // Acciones comunes
+            this.pnlAction.Visible = true;
+            this.hddCentroServicio.Value = idItem.ToString();
+
+            // Detalle de acción
+            switch (CentroServicioActionType){
+               case CentroServicioActionTypes.InsertCentroServicio:
+                  this.lblActionTitle.Text = "Nuevo CentroServicio";
+                  this.btnAction.Text = "Crear CentroServicio";
+                  
+                  break;
+
+               case CentroServicioActionTypes.UpdateCentroServicio:
+                  this.lblActionTitle.Text = "Edición de CentroServicio";
+                  this.btnAction.Text = "Actualizar CentroServicio";
+                  SelectCentroServicio_ForEdit(idItem);
+                  break;
+
+               default:
+                  throw (new Exception("Opción inválida"));
             }
 
-            if (!int.TryParse(txtTerminal.Text.Trim(), out Terminal))
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Terminal] debe ser númerico', 'Warning', true); focusControl('" + this.txtTerminal.ClientID + "');", true);
-                return false;
+            // Foco
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" +  (this.ddlCompany.Enabled ? this.ddlActionCompany.ClientID : this.txtActionNombre.ClientID ) + "');", true);
+
+         }catch (Exception ex){
+            throw (ex);
+         }
+      }
+
+      private void UpdateCentroServicio(Int32 idCentroServicio){
+         ENTCentroServicio oENTCentroServicio = new ENTCentroServicio();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPCentroServicio oBPCentroServicio = new BPCentroServicio();
+
+			try{
+
+            // Formulario
+            oENTCentroServicio.idCentroServicio = idCentroServicio;
+            oENTCentroServicio.sDescripcion = this.txtActionDescripcion.Text.Trim();
+            oENTCentroServicio.sNombre = this.txtActionNombre.Text.Trim();
+            oENTCentroServicio.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
+
+				// Transacción
+            oENTResponse = oBPCentroServicio.UpdateCentroServicio(oENTCentroServicio);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != ""){throw (new Exception(oENTResponse.sMessage));}
+
+				// Transacción exitosa
+            ClearActionPanel();
+
+            // Actualizar grid
+            SelectCentroServicio();
+
+            // Mensaje de usuario
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Información actualizada con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void UpdateCentroServicio_Estatus(Int32 idCentroServicio, CentroServicioActionTypes CentroServicioActionType){
+         ENTCentroServicio oENTCentroServicio = new ENTCentroServicio();
+			ENTResponse oENTResponse = new ENTResponse();
+
+			BPCentroServicio oBPCentroServicio = new BPCentroServicio();
+
+			try{
+
+            // Formulario
+            oENTCentroServicio.idCentroServicio = idCentroServicio;
+            switch (CentroServicioActionType){
+               case CentroServicioActionTypes.DeleteCentroServicio:
+                  oENTCentroServicio.tiActivo = 0;
+                  break;
+               case CentroServicioActionTypes.ReactivateCentroServicio:
+                  oENTCentroServicio.tiActivo = 1;
+                  break;
+               default:
+                  throw new Exception("Opción inválida");
             }
 
-            if (txtCD.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [CD] es obligatorio', 'Warning', true); focusControl('" + this.txtCD.ClientID + "');", true);
-                return false;
+				// Transacción
+            oENTResponse = oBPCentroServicio.UpdateCentroServicio_Estatus(oENTCentroServicio);
+
+				// Validaciones
+            if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+				if (oENTResponse.sMessage != ""){throw (new Exception(oENTResponse.sMessage));}
+
+				// Actualizar datos
+            SelectCentroServicio();
+
+			}catch (Exception ex){
+            throw (ex);
+			}
+      }
+
+      private void ValidateActionForm(){
+         try
+         {
+
+            // Nombre
+            if(this.txtActionNombre.Text.Trim() == ""){ throw new Exception("* El campo [Nombre] es requerido"); }
+
+            // Estatus
+            if (this.ddlActionStatus.SelectedIndex == 0) { throw new Exception("* El campo [Estatus] es requerido"); }
+
+         }catch (Exception ex){
+            throw (ex);
+         }
+      }
+
+
+      // Eventos de la página
+      
+      protected void Page_Load(object sender, EventArgs e){
+         // Validación. Solo la primera vez que se ejecuta la página
+         if (this.IsPostBack) { return; }
+
+         // Lógica de la página
+         try{
+
+            // Llenado de controles
+            SelectCompany();
+            SelectCompany_Action();
+            SelectPais();
+            SelectEstado();
+            SelectCiudad();
+            SelectStatus();
+            SelectStatus_Action();
+            SelectCentroServicio();
+
+            // Estado inicial del formulario
+            ClearActionPanel();
+
+            // Foco
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+         }
+      }
+
+      protected void btnAction_Click(object sender, EventArgs e){
+         try{
+
+            // Validar formulario
+            ValidateActionForm();
+
+            // Determinar acción
+            if (this.hddCentroServicio.Value == "0"){
+
+               InsertCentroServicio();
+            }else{
+
+               UpdateCentroServicio(Int32.Parse(this.hddCentroServicio.Value));
             }
 
-            if (txtDireccion.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Dirección] es obligatorio', 'Warning', true); focusControl('" + this.txtDireccion.ClientID + "');", true);
-                return false;
+         }catch (Exception ex){
+            this.lblActionMessage.Text = ex.Message;
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlActionCompany.ClientID : this.txtActionNombre.ClientID ) + "');", true);
+         }
+      }
+
+      protected void btnBuscar_Click(object sender, EventArgs e){
+         try{
+
+            // Filtrar información
+            SelectCentroServicio();
+
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+         }
+      }
+
+      protected void btnExportar_Click(object sender, EventArgs e){
+         try{
+
+            // Exportar información
+            ExportCentroServicio();
+
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+         }
+      }
+
+      protected void btnNuevo_Click(object sender, EventArgs e){
+         try{
+
+            // Nuevo registro
+            SetPanel(CentroServicioActionTypes.InsertCentroServicio);
+
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+         }
+      }
+
+      protected void ddlActionPais_SelectedIndexChanged(object sender, EventArgs e){
+         try
+         {
+
+            // Consulta de estados y ciudades
+            SelectEstado();
+            SelectCiudad();
+
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlActionPais.ClientID + "');", true);
+         }
+      }
+
+      protected void ddlActionEstado_SelectedIndexChanged(object sender, EventArgs e){
+         try
+         {
+
+            // Consulta de ciudades
+            SelectCiudad();
+
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlActionPais.ClientID + "');", true);
+         }
+      }
+
+      protected void gvCentroServicio_RowDataBound(object sender, GridViewRowEventArgs e){
+			ImageButton imgEdit = null;
+         ImageButton imgAction = null;
+
+         String idCentroServicio = "";
+         String sNombreCentroServicio = "";
+         String tiActivo = "";
+
+         String sImagesAttributes = "";
+         String sTootlTip = "";
+			
+			try{
+
+            // Validación de que sea fila
+            if (e.Row.RowType != DataControlRowType.DataRow) { return; }
+
+				// Obtener imagenes
+				imgEdit = (ImageButton)e.Row.FindControl("imgEdit");
+            imgAction = (ImageButton)e.Row.FindControl("imgAction");
+
+				// Datakeys
+            idCentroServicio = this.gvCentroServicio.DataKeys[e.Row.RowIndex]["idCentroServicio"].ToString();
+            tiActivo = this.gvCentroServicio.DataKeys[e.Row.RowIndex]["tiActivo"].ToString();
+            sNombreCentroServicio = this.gvCentroServicio.DataKeys[e.Row.RowIndex]["sNombre"].ToString();
+
+            // Tooltip Edición
+            sTootlTip = "Editar CentroServicio [" + sNombreCentroServicio + "]";
+            imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+            imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
+            imgEdit.Attributes.Add("style", "cursor:hand;");
+
+				// Tooltip Action
+            sTootlTip = (tiActivo == "1" ? "Eliminar" : "Reactivar") + " CentroServicio [" + sNombreCentroServicio + "]";
+				imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
+				imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
+				imgAction.Attributes.Add("style", "cursor:hand;");
+
+            // Imagen del botón [imgAction]
+            imgAction.ImageUrl = "../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png";
+
+				// Atributos Over
+            sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit_Over.png';";
+            sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + "_Over.png';";
+
+				// Puntero y Sombra en fila Over
+				e.Row.Attributes.Add("onmouseover", "this.className='Grid_Row_Over'; " + sImagesAttributes);
+
+				// Atributos Out
+            sImagesAttributes = " document.getElementById('" + imgEdit.ClientID + "').src='../../../../Include/Image/Buttons/Edit.png';";
+            sImagesAttributes = sImagesAttributes + " document.getElementById('" + imgAction.ClientID + "').src='../../../../Include/Image/Buttons/" + (tiActivo == "1" ? "Delete" : "Restore") + ".png';";
+
+				// Puntero y Sombra en fila Out
+				e.Row.Attributes.Add("onmouseout", "this.className='" + ((e.Row.RowIndex % 2) != 0 ? "Grid_Row_Alternating" : "Grid_Row") + "'; " + sImagesAttributes);
+				
+			}catch (Exception ex){
+				throw (ex);
+			}
+		}
+
+		protected void gvCentroServicio_RowCommand(object sender, GridViewCommandEventArgs e){
+         Int32 idCentroServicio = 0;
+
+			String strCommand = "";
+			Int32 intRow = 0;
+			
+			try{
+
+				// Opción seleccionada
+				strCommand = e.CommandName.ToString();
+
+				// Se dispara el evento RowCommand en el ordenamiento
+				if (strCommand == "Sort") { return; }
+
+				// Fila
+				intRow = Int32.Parse(e.CommandArgument.ToString());
+
+				// Datakeys
+				idCentroServicio = Int32.Parse(this.gvCentroServicio.DataKeys[intRow]["idCentroServicio"].ToString());
+
+            // Reajuste de Command
+            if (strCommand == "Action"){
+               strCommand = (this.gvCentroServicio.DataKeys[intRow]["tiActivo"].ToString() == "0" ? "Reactivar" : "Eliminar");
             }
 
-            if (cboCiudad.SelectedValue == "0")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Ciudad] es obligatorio', 'Warning', true); focusControl('" + this.cboCiudad.ClientID + "');", true);
-                return false;
-            }
+				// Acción
+				switch (strCommand){
+					case "Editar":
+                  SetPanel(CentroServicioActionTypes.UpdateCentroServicio, idCentroServicio);
+                  ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tooltip.hide();", true);
+						break;
+               case "Eliminar":
+                  UpdateCentroServicio_Estatus(idCentroServicio, CentroServicioActionTypes.DeleteCentroServicio);
+                  break;
+               case "Reactivar":
+                  UpdateCentroServicio_Estatus(idCentroServicio, CentroServicioActionTypes.ReactivateCentroServicio);
+                  break;
+				}
+				
+			}catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+			}
+		}
 
-            if (txtProExterno.Text == "")
-            {
-                ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Pro Externo] es obligatorio', 'Warning', true); focusControl('" + this.txtProExterno.ClientID + "');", true);
-                return false;
-            }
+		protected void gvCentroServicio_Sorting(object sender, GridViewSortEventArgs e){
+			DataTable tblRegionesTelcel = null;
+			DataView viewRegionesTelcel = null;
+			
+			try{
 
+				// Obtener DataTable y DataView del GridView
+				tblRegionesTelcel = utilFunction.ParseGridViewToDataTable(this.gvCentroServicio, true);
+				viewRegionesTelcel = new DataView(tblRegionesTelcel);
 
-            return Valido;
+				// Determinar ordenamiento
+				this.hddSort.Value = (this.hddSort.Value == e.SortExpression ? e.SortExpression + " DESC" : e.SortExpression);
 
-        }
+				// Ordenar vista
+				viewRegionesTelcel.Sort = this.hddSort.Value;
 
-        void Actualizar(string TipoAccion)
-        {
-            // Declaracion de variables
-            ENTCentroServicio ent = new ENTCentroServicio();
-            BPCentroServicio bss = new BPCentroServicio();
-            SafeTransfer.Entity.Object.ENTResponse oENTResponse = new ENTResponse();
+				// Vaciar datos
+				this.gvCentroServicio.DataSource = viewRegionesTelcel;
+				this.gvCentroServicio.DataBind();
+				
+			}catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+			}
 
-            try
-            {
-                // Asignar Valores
-                ent.idCompany = 2;
-                ent.idCentroServicio = Int32.Parse(hddIdCentroDeServicio.Value);
-                ent.sNombre = txtNombre.Text;
-                ent.RFC = txtRFC.Text;
-                ent.Terminal = Int32.Parse(txtTerminal.Text);
-                ent.CD = txtCD.Text;
-                ent.Direccion = txtDireccion.Text;
-                ent.IdCiudad = Int32.Parse(cboCiudad.SelectedValue);
-                ent.ProExterno = txtProExterno.Text.Trim();
+		}
 
-                // Transaccion
-                switch (TipoAccion)
-                {
-                    case "INSERT":
-                        oENTResponse = bss.insertcatCentrosDeServicio(ent);
-                        break;
-                    case "UPDATE":
-                        oENTResponse = bss.updatecatCentrosDeServicio(ent);
-                        break;
-                    case "DELETE":
-                        oENTResponse = bss.deletecatCentrosDeServicio(ent);
-                        break;
-                }
-            }
-            catch
-            { }
-            finally
-            { }
+      protected void imgCloseWindow_Click(object sender, ImageClickEventArgs e){
+         try{
 
-        }
+            // Cancelar transacción
+            ClearActionPanel();
 
-        void Buscar()
-        {
-            FillGrid();
-        }
-
-        void LimpiaCampos()
-        {
-            txtIdCentroDeServicio.Text = "";
-            txtNombre.Text = "";
-            txtRFC.Text = "";
-            txtTerminal.Text = "";
-            txtCD.Text = "";
-            txtDireccion.Text = "";
-            cboCiudad.SelectedValue = "0";
-            txtProExterno.Text = "";
-            hddIdCentroDeServicio.Value = "0";
-        }
-
-        #endregion
-    }
+         }catch (Exception ex){
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
+         }
+      }
+        
+   }
 }
