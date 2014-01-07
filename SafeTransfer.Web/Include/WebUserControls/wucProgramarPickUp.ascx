@@ -16,7 +16,7 @@
         </asp:Panel>
         <asp:Panel ID="pnlActionBody" runat="server" CssClass="ActionBody">
             <div style="margin:0 auto; width:98%;">
-                <table class="ProgramarPickUpTable">
+                <table class="GeneralTable">
                     <tr>
                         <td class="Nombre">Número de PickUp</td>
 					    <td class="Espacio"></td>

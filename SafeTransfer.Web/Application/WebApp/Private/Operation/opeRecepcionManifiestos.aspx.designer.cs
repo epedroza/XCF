@@ -22,13 +22,22 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Panel pnlFormulario;
         
         /// <summary>
-        /// txtIdManifiesto control.
+        /// CentroServicioList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdManifiesto;
+        protected global::System.Web.UI.WebControls.DropDownList CentroServicioList;
+        
+        /// <summary>
+        /// ManifiestoBox control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox ManifiestoBox;
         
         /// <summary>
         /// cmdBuscar control.
@@ -40,13 +49,22 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Button cmdBuscar;
         
         /// <summary>
-        /// gvApps control.
+        /// DescargarGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvApps;
+        protected global::System.Web.UI.WebControls.GridView DescargarGrid;
+        
+        /// <summary>
+        /// CargarGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView CargarGrid;
         
         /// <summary>
         /// pnlBotones control.

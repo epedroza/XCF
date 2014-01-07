@@ -6,7 +6,7 @@
 ' Descripción:	Hoja de estilos para las tablas de la aplicación
 '----------------------------------------------------------------------------------------------------------------------------------*/
 
-.ProgramarPickUpTable
+.GeneralTable
 {
 	border-spacing: 5px;
 	color:#4B4878;
@@ -17,23 +17,23 @@
 	vertical-align: top;
 }
 
-.ProgramarPickUpTable .Boton
+.GeneralTable .Boton
 {
 	text-align: left;
 }
 
-.ProgramarPickUpTable .Control
+.GeneralTable .Control
 {
 	text-align: left;
 	width: 115px;
 }
 
-.ProgramarPickUpTable .Espacio
+.GeneralTable .Espacio
 {
 	width: 15px;
 }
 
-.ProgramarPickUpTable .Nombre
+.GeneralTable .Nombre
 {
 	text-align: left;
 	vertical-align: top;

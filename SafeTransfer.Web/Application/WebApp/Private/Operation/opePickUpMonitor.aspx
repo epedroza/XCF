@@ -20,7 +20,7 @@
          <td align="left">
             <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
                 <!-- Contenido Tab Monitor de Manifiestos -->
-                <table class="ProgramarPickUpTable">
+                <table class="GeneralTable">
                     <tr>
 						<td class="Nombre">PickUp</td>
 						<td><asp:TextBox ID="txtIdPickUp" runat="server" CssClass="Textbox_General" width="50px" ></asp:TextBox></td>

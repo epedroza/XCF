@@ -12,60 +12,84 @@ using SafeTransfer.Include.Components.Utilities;
 
 namespace SafeTransfere.Web.Application.WebApp.Private.Operation
 {
-   public partial class opeRecepcionManifiestos : System.Web.UI.Page
-   {
-      protected void Page_Load(object sender, EventArgs e)
-      {
-          if (!Page.IsPostBack)
-          {
-              Fillcbo();
-          }
-      }
+    public partial class opeRecepcionManifiestos : System.Web.UI.Page
+    {
+        #region Rutinas de la Pagina
+            protected void cmdBuscar_Click(object sender, EventArgs e)
+            {
+                FillGrid();
+            }
 
-      #region GridgvApps
-      protected void gvApps_SelectedIndexChanged(object sender, EventArgs e)
-      {
-      }
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                PageLoad();
+            }
+        #endregion
 
-      protected void gvApps_SelectedIndexChanging(object sender, EventArgs e)
-      {
-      }
-
-      protected void gvApps_PageIndexChanging(Object sender, GridViewPageEventArgs e)
-      {
-      }
-
-      protected void gvApps_RowDataBound(object sender, GridViewRowEventArgs e)
-      {
-      }
-
-      protected void gvApps_RowCommand(Object sender, GridViewCommandEventArgs e)
-      {
-
-      }
-      #endregion
-
-      #region Rutinas de la Pagina
-      protected void cmdBuscar_Click(object sender, EventArgs e)
-      {
-          FillGrid();
-      }
-
-      #endregion
-
-      #region Rutinas del Programador
-
-      void FillGrid()
-      {
+        #region Rutinas del Programador
+            void FillGrid()
+            {
           
-      }
+            }
 
-      void Fillcbo()
-      {
+            void Fillcbo()
+            {
 
-      }
+            }
 
-      #endregion
+            private void PageLoad()
+            {
+                if (!Page.IsPostBack)
+                {
+                    SelectCentroServicio();
 
-   }
+                    DescargarGrid.DataSource = null;
+                    DescargarGrid.DataBind();
+
+                    CargarGrid.DataSource = null;
+                    CargarGrid.DataBind();
+                }
+            }
+
+            private void SelectCentroServicio()
+            {
+                ENTCentroServicio oENTCentroServicio = new ENTCentroServicio();
+                ENTResponse oENTResponse = new ENTResponse();
+                ENTSession oENTSession;
+                BPCentroServicio oBPCentroServicio = new BPCentroServicio();
+
+                try
+                {
+                    // Datos de usuario
+                    oENTSession = (ENTSession)this.Session["oENTSession"];
+
+                    // Formulario
+                    oENTCentroServicio.idCentroServicio = 0;
+                    oENTCentroServicio.idCompany = oENTSession.idCompany;
+                    oENTCentroServicio.sNombre = "";
+                    oENTCentroServicio.tiActivo = 1;
+
+                    // Transacción
+                    oENTResponse = oBPCentroServicio.SelectCentroServicio(oENTCentroServicio);
+
+                    // Validaciones
+                    if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
+                    if (oENTResponse.sMessage != "") { throw (new Exception(oENTResponse.sMessage)); }
+
+                    // Llenado de combo
+                    CentroServicioList.DataTextField = "sNombre";
+                    CentroServicioList.DataValueField = "idCentroServicio";
+                    CentroServicioList.DataSource = oENTResponse.dsResponse.Tables[1];
+                    CentroServicioList.DataBind();
+
+                    // Agregar Item de selección
+                    CentroServicioList.Items.Insert(0, new ListItem("[Seleccione]", "0"));
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
+            }
+        #endregion
+    }
 }
