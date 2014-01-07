@@ -18,7 +18,7 @@
                   <tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItem">&nbsp;Compañía</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:DropDownList id="ddlCompany" runat="server" CssClass="DropDownList_General" width="216px" AutoPostBack="True" onselectedindexchanged="ddlCompany_SelectedIndexChanged" ></asp:DropDownList></td>
+							<td class="tdCeldaItem"><asp:DropDownList id="ddlCompany" runat="server" CssClass="DropDownList_General" width="216px" AutoPostBack="True" ></asp:DropDownList></td>
 						</tr>
                   <tr style="height:3px;"><td colspan="3"></td></tr>
 						<tr class="trFilaItem">
@@ -44,7 +44,7 @@
                   <tr>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnBuscar" runat="server" Text="Buscar" CssClass="Button_General" width="125px" onclick="btnBuscar_Click" /></td>
                      <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="Button_General" width="125px" onclick="btnNuevo_Click" /></td>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnExportar" runat="server" Text="Exportar" CssClass="Button_General" width="125px" onclick="btnExportar_Click" /></td>
+                     <td style="height:24px; text-align:left; width:130px;"></td>
 							<td style="height:24px; width:400px;"></td>
                   </tr>
                </table>
@@ -67,17 +67,23 @@
 							<table border="1px" cellpadding="0px" cellspacing="0px">
 								<tr class="Grid_Header">
 									<td style="width:150px;">Centro de Servicio</td>
-									<td style="width:540px;">Descripción</td>
+									<td style="width:100px;">Terminal</td>
+                           <td style="width:100px;">RFC</td>
+                           <td style="width:100px;">Pro Externo</td>
+                           <td style="width:240px;">Descripción</td>
                            <td style="width:100px;">Estatus</td>
 								</tr>
 								<tr class="Grid_Row">
-									<td colspan="3">No se encontraron Centro de Servicio registrados en el sistema</td>
+									<td colspan="6">No se encontraron Centro de Servicio registrados en el sistema</td>
 								</tr>
 							</table>
 						</EmptyDataTemplate>
 						<Columns>
 							<asp:BoundField HeaderText="Centro de Servicio" ItemStyle-HorizontalAlign="Left"    ItemStyle-Width="150px" DataField="sNombre"        SortExpression="sNombre"></asp:BoundField>
-							<asp:BoundField HeaderText="Descripción"        ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="500px" DataField="sDescripcion"	SortExpression="sDescripcion"></asp:BoundField>
+                     <asp:BoundField HeaderText="Terminal"           ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="iTerminal"      SortExpression="iTerminal"></asp:BoundField>
+                     <asp:BoundField HeaderText="RFC"                ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sRFC"           SortExpression="sRFC"></asp:BoundField>
+                     <asp:BoundField HeaderText="Pro Externo"        ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sProExterno"    SortExpression="sProExterno"></asp:BoundField>
+							<asp:BoundField HeaderText="Descripción"        ItemStyle-HorizontalAlign="Left"		ItemStyle-Width="240px" DataField="sDescripcion"	SortExpression="sDescripcion"></asp:BoundField>
                      <asp:BoundField HeaderText="Estatus"            ItemStyle-HorizontalAlign="Center"  ItemStyle-Width="100px" DataField="sEstatus"       SortExpression="sEstatus"></asp:BoundField>
 							<asp:TemplateField ItemStyle-HorizontalAlign ="Center" ItemStyle-Width="20px">
 								<ItemTemplate>
@@ -97,7 +103,7 @@
       <tr>
          <td>
             <asp:Panel id="pnlAction" runat="server" CssClass="ActionBlock" >
-               <asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:200px;" Height="210px" Width="400px">
+               <asp:Panel id="pnlActionContent" runat="server" CssClass="ActionContent" style="top:50px;" Height="510px" Width="400px">
                   <asp:Panel ID="pnlActionHeader" runat="server" CssClass="ActionHeader">
                      <table border="0" cellpadding="0" cellspacing="0" style="height:100%; width:100%">
 								<tr>
@@ -139,31 +145,34 @@
                            <tr class="trFilaItem">
 									   <td class="tdActionCeldaLeyendaItem">&nbsp;Terminal</td>
 									   <td style="width:5px;"></td>
-									   <td><asp:TextBox ID="txtActionTerminal" runat="server" CssClass="Textbox_General" MaxLength="200" width="310px" ></asp:TextBox></td>
+									   <td>
+                                 <asp:TextBox ID="txtActionTerminal" runat="server" CssClass="Textbox_General" MaxLength="10" width="310px" ></asp:TextBox>
+                                 <ajaxToolkit:MaskedEditExtender ID="maskActionTerminal" runat="server" TargetControlID="txtActionTerminal" Mask="9999999999" AcceptNegative="None" MessageValidatorTip="false" MaskType="Number" InputDirection="RightToLeft" DisplayMoney="None" ErrorTooltipEnabled="False"/>
+                              </td>
 								   </tr>
 								   <tr style="height:5px;"><td colspan="3"></td></tr>
                            <tr class="trFilaItem">
 									   <td class="tdActionCeldaLeyendaItem">&nbsp;CD</td>
 									   <td style="width:5px;"></td>
-									   <td><asp:TextBox ID="txtActionCD" runat="server" CssClass="Textbox_General" MaxLength="200" width="310px" ></asp:TextBox></td>
+									   <td><asp:TextBox ID="txtActionCD" runat="server" CssClass="Textbox_General" MaxLength="10" width="310px" ></asp:TextBox></td>
 								   </tr>
 								   <tr style="height:5px;"><td colspan="3"></td></tr>
                            <tr class="trFilaItem">
 									   <td class="tdActionCeldaLeyendaItem">&nbsp;RFC</td>
 									   <td style="width:5px;"></td>
-									   <td><asp:TextBox ID="txtActionRFC" runat="server" CssClass="Textbox_General" MaxLength="200" width="310px" ></asp:TextBox></td>
+									   <td><asp:TextBox ID="txtActionRFC" runat="server" CssClass="Textbox_General" MaxLength="20" width="310px" ></asp:TextBox></td>
 								   </tr>
 								   <tr style="height:5px;"><td colspan="3"></td></tr>
                            <tr class="trFilaItem">
 									   <td class="tdActionCeldaLeyendaItem">&nbsp;ProExterno</td>
 									   <td style="width:5px;"></td>
-									   <td><asp:TextBox ID="txtActionProExterno" runat="server" CssClass="Textbox_General" MaxLength="200" width="310px" ></asp:TextBox></td>
+									   <td><asp:TextBox ID="txtActionProExterno" runat="server" CssClass="Textbox_General" MaxLength="30" width="310px" ></asp:TextBox></td>
 								   </tr>
 								   <tr style="height:5px;"><td colspan="3"></td></tr>
 								   <tr class="trFilaItem">
 									   <td class="tdActionCeldaLeyendaItem">&nbsp;Nombre</td>
 									   <td style="width:5px;"></td>
-									   <td><asp:TextBox ID="txtActionNombre" runat="server" CssClass="Textbox_General" MaxLength="200" width="310px" ></asp:TextBox></td>
+									   <td><asp:TextBox ID="txtActionNombre" runat="server" CssClass="Textbox_General" MaxLength="20" width="310px" ></asp:TextBox></td>
 								   </tr>
 								   <tr style="height:5px;"><td colspan="3"></td></tr>
 								   <tr class="trFilaItem">
@@ -175,7 +184,7 @@
                             <tr class="trFilaItem">
 									   <td class="tdActionCeldaLeyendaItem">&nbsp;Direccion</td>
 									   <td></td>
-									   <td><asp:TextBox ID="txtActionDireccion" runat="server" CssClass="Textarea_General" height="50px" MaxLength="200" TextMode="MultiLine" width="310px" ></asp:TextBox></td>
+									   <td><asp:TextBox ID="txtActionDireccion" runat="server" CssClass="Textarea_General" height="50px" MaxLength="100" TextMode="MultiLine" width="310px" ></asp:TextBox></td>
 								   </tr>
 								   <tr style="height:5px;"><td colspan="3"></td></tr>
 								   <tr class="trFilaItem">
@@ -186,7 +195,7 @@
                            <tr style="height:5px;"><td colspan="3"></td></tr>
                            <tr>
                               <td colspan="3" style="text-align:right;">
-                                 <asp:Button ID="btnAction" runat="server" Text="" CssClass="Button_General" width="125px" onclick="btnAction_Click" />
+                                 <asp:Button ID="btnAction" runat="server" Text="" CssClass="Button_General" width="150px" onclick="btnAction_Click" />
                               </td>
                            </tr>
                            <tr>

@@ -76,15 +76,6 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog {
         protected global::System.Web.UI.WebControls.Button btnNuevo;
         
         /// <summary>
-        /// btnExportar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnExportar;
-        
-        /// <summary>
         /// pnlGrid control.
         /// </summary>
         /// <remarks>
@@ -200,6 +191,15 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtActionTerminal;
+        
+        /// <summary>
+        /// maskActionTerminal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.MaskedEditExtender maskActionTerminal;
         
         /// <summary>
         /// txtActionCD control.

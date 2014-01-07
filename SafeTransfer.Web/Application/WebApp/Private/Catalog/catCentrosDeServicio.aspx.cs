@@ -46,8 +46,13 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
          {
 
             // Limpiar formulario
+            this.txtActionTerminal.Text = "";
+            this.txtActionCD.Text = "";
+            this.txtActionRFC.Text = "";
+            this.txtActionProExterno.Text = "";
             this.txtActionNombre.Text = "";
             this.txtActionDescripcion.Text = "";
+            this.txtActionDireccion.Text = "";
             this.ddlActionStatus.SelectedIndex = 0;
 
             // Estado incial de controles
@@ -62,25 +67,6 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
          }
       }
 
-      private void ExportCentroServicio(){
-         String sKey = "";
-			
-			try{
-
-            // Formulario (sNombre|tiActivo)
-            sKey = this.txtNombre.Text + "|" + this.ddlStatus.SelectedItem.Value;
-				
-				// Encriptar la llave
-				sKey = utilEncryption.EncryptString(sKey, true);
-				
-				// Llamada a rutina del lado del cliente
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "CallAsyncFame('ExcelMaker/xlsCentroServicio.aspx', '" + sKey + "');", true);
-			
-			}catch (Exception ex){
-				throw (ex);
-			}
-      }
-
       private void InsertCentroServicio(){
          ENTCentroServicio oENTCentroServicio = new ENTCentroServicio();
 			ENTResponse oENTResponse = new ENTResponse();
@@ -90,8 +76,15 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
 			try{
 
             // Formulario
+            oENTCentroServicio.idCompany = Int32.Parse(this.ddlActionCompany.SelectedValue);
+            oENTCentroServicio.idCiudad = Int32.Parse(this.ddlActionCiudad.SelectedValue);
+            oENTCentroServicio.iTerminal = Int32.Parse(this.txtActionTerminal.Text.Trim());
+            oENTCentroServicio.sCD = this.txtActionCD.Text.Trim();
+            oENTCentroServicio.sDireccion = this.txtActionDireccion.Text.Trim();
             oENTCentroServicio.sDescripcion = this.txtActionDescripcion.Text.Trim();
             oENTCentroServicio.sNombre = this.txtActionNombre.Text.Trim();
+            oENTCentroServicio.sRFC = this.txtActionRFC.Text.Trim();
+            oENTCentroServicio.sProExterno = this.txtActionProExterno.Text.Trim();
             oENTCentroServicio.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
 
 				// Transacción
@@ -108,7 +101,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             SelectCentroServicio();
 
             // Mensaje de usuario
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('CentroServicio creado con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('Centro de Servicio creado con éxito!', 'Success', true); focusControl('" + this.txtNombre.ClientID + "');", true);
 
 			}catch (Exception ex){
             throw (ex);
@@ -174,9 +167,22 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             this.lblActionMessage.Text = oENTResponse.sMessage;
 
             // Llenado de formulario
+            this.txtActionTerminal.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["iTerminal"].ToString();
+            this.txtActionCD.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sCD"].ToString();
+            this.txtActionRFC.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sRFC"].ToString();
+            this.txtActionProExterno.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sDescripcion"].ToString();
             this.txtActionNombre.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sNombre"].ToString();
             this.txtActionDescripcion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sDescripcion"].ToString();
+            this.txtActionDireccion.Text = oENTResponse.dsResponse.Tables[1].Rows[0]["sDireccion"].ToString();
             this.ddlActionStatus.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["tiActivo"].ToString();
+
+            this.ddlActionPais.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["idPais"].ToString();
+
+            SelectEstado();
+            this.ddlActionEstado.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["idEstado"].ToString();
+
+            SelectCiudad();
+            this.ddlActionCiudad.SelectedValue = oENTResponse.dsResponse.Tables[1].Rows[0]["idCiudad"].ToString();
 
 			}catch (Exception ex){
             throw (ex);
@@ -203,7 +209,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
 
 				// Validaciones
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlActionEstado.ClientID + "');", true); }
+            //if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlActionEstado.ClientID + "');", true); }
 
             // Llenado de combo
             if (oENTResponse.dsResponse.Tables[1].Rows.Count == 0 ){
@@ -344,7 +350,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
 
 				// Validaciones
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlActionPais.ClientID + "');", true); }
+            //if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlActionPais.ClientID + "');", true); }
 
             // Llenado de combo
              if (oENTResponse.dsResponse.Tables[1].Rows.Count == 0 ){
@@ -436,14 +442,13 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             // Detalle de acción
             switch (CentroServicioActionType){
                case CentroServicioActionTypes.InsertCentroServicio:
-                  this.lblActionTitle.Text = "Nuevo CentroServicio";
-                  this.btnAction.Text = "Crear CentroServicio";
-                  
+                  this.lblActionTitle.Text = "Nuevo Centro de Servicio";
+                  this.btnAction.Text = "Crear Centro de Servicio";
                   break;
 
                case CentroServicioActionTypes.UpdateCentroServicio:
-                  this.lblActionTitle.Text = "Edición de CentroServicio";
-                  this.btnAction.Text = "Actualizar CentroServicio";
+                  this.lblActionTitle.Text = "Edición de Centro de  Servicio";
+                  this.btnAction.Text = "Actualizar Centro de Servicio";
                   SelectCentroServicio_ForEdit(idItem);
                   break;
 
@@ -452,7 +457,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             }
 
             // Foco
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" +  (this.ddlCompany.Enabled ? this.ddlActionCompany.ClientID : this.txtActionNombre.ClientID ) + "');", true);
+            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "focusControl('" +  (this.ddlCompany.Enabled ? this.ddlActionCompany.ClientID : this.ddlActionPais.ClientID ) + "');", true);
 
          }catch (Exception ex){
             throw (ex);
@@ -469,8 +474,15 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
 
             // Formulario
             oENTCentroServicio.idCentroServicio = idCentroServicio;
+            oENTCentroServicio.idCompany = Int32.Parse(this.ddlActionCompany.SelectedValue);
+            oENTCentroServicio.idCiudad = Int32.Parse(this.ddlActionCiudad.SelectedValue);
+            oENTCentroServicio.iTerminal = Int32.Parse(this.txtActionTerminal.Text.Trim());
+            oENTCentroServicio.sCD = this.txtActionCD.Text.Trim();
+            oENTCentroServicio.sDireccion = this.txtActionDireccion.Text.Trim();
             oENTCentroServicio.sDescripcion = this.txtActionDescripcion.Text.Trim();
             oENTCentroServicio.sNombre = this.txtActionNombre.Text.Trim();
+            oENTCentroServicio.sRFC = this.txtActionRFC.Text.Trim();
+            oENTCentroServicio.sProExterno = this.txtActionProExterno.Text.Trim();
             oENTCentroServicio.tiActivo = Int16.Parse(this.ddlActionStatus.SelectedValue);
 
 				// Transacción
@@ -534,6 +546,15 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
          try
          {
 
+            // Compañía
+            if (this.ddlActionCompany.SelectedIndex == 0) { throw new Exception("* El campo [Compañía] es requerido"); }
+
+            // Ciudad
+            if (this.ddlActionCiudad.SelectedValue == "-1") { throw new Exception("* El campo [Ciudad] es requerido"); }
+
+            // Terminal
+            if (this.txtActionTerminal.Text.Trim() == "") { throw new Exception("* El campo [Terminal] es requerido"); }
+
             // Nombre
             if(this.txtActionNombre.Text.Trim() == ""){ throw new Exception("* El campo [Nombre] es requerido"); }
 
@@ -550,7 +571,11 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
       
       protected void Page_Load(object sender, EventArgs e){
          // Validación. Solo la primera vez que se ejecuta la página
-         if (this.IsPostBack) { return; }
+         if (this.IsPostBack) {
+
+            this.lblActionMessage.Text = "";
+            return;
+         }
 
          // Lógica de la página
          try{
@@ -593,7 +618,6 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
 
          }catch (Exception ex){
             this.lblActionMessage.Text = ex.Message;
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlActionCompany.ClientID : this.txtActionNombre.ClientID ) + "');", true);
          }
       }
 
@@ -602,17 +626,6 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
 
             // Filtrar información
             SelectCentroServicio();
-
-         }catch (Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
-         }
-      }
-
-      protected void btnExportar_Click(object sender, EventArgs e){
-         try{
-
-            // Exportar información
-            ExportCentroServicio();
 
          }catch (Exception ex){
             ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" +  (this.ddlCompany.Enabled ? this.ddlCompany.ClientID : this.txtNombre.ClientID ) + "');", true);
@@ -639,7 +652,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             SelectCiudad();
 
          }catch (Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlActionPais.ClientID + "');", true);
+            this.lblActionMessage.Text = ex.Message;
          }
       }
 
@@ -651,7 +664,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             SelectCiudad();
 
          }catch (Exception ex){
-            ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(ex.Message) + "', 'Fail', true); focusControl('" + this.ddlActionPais.ClientID + "');", true);
+            this.lblActionMessage.Text = ex.Message;
          }
       }
 
@@ -681,13 +694,13 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             sNombreCentroServicio = this.gvCentroServicio.DataKeys[e.Row.RowIndex]["sNombre"].ToString();
 
             // Tooltip Edición
-            sTootlTip = "Editar CentroServicio [" + sNombreCentroServicio + "]";
+            sTootlTip = "Editar Centro de Servicio [" + sNombreCentroServicio + "]";
             imgEdit.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
             imgEdit.Attributes.Add("onmouseout", "tooltip.hide();");
             imgEdit.Attributes.Add("style", "cursor:hand;");
 
 				// Tooltip Action
-            sTootlTip = (tiActivo == "1" ? "Eliminar" : "Reactivar") + " CentroServicio [" + sNombreCentroServicio + "]";
+            sTootlTip = (tiActivo == "1" ? "Eliminar" : "Reactivar") + " Centro de Servicio [" + sNombreCentroServicio + "]";
 				imgAction.Attributes.Add("onmouseover", "tooltip.show('" + sTootlTip + "', 'Izq');");
 				imgAction.Attributes.Add("onmouseout", "tooltip.hide();");
 				imgAction.Attributes.Add("style", "cursor:hand;");
