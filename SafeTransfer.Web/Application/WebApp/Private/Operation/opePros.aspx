@@ -79,28 +79,28 @@
                                         <td class="tdCeldaLeyendaItemLargeLeft" colspan="1">&nbsp;<asp:CheckBox ID="chkPrimeTime" runat="server" Text="PrimeTime" /></td>
 						            </tr>
 						            <tr class="trFilaItem">
-                                        <td class="tdCeldaLeyendaItemLarge" style="width:50px;">Pro</td>
+                                        <td class="tdCeldaLeyendaItemHdr" style="width:50px;">Pro</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtClavePro" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Terminal</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Terminal</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtTerminalPro" runat="server" CssClass="Textbox_General_16" width="70px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge" style="background-color:Yellow;">&nbsp;Fecha</td>
+                                        <td class="tdCeldaLeyendaItemHdr" style="background-color:Yellow;">&nbsp;Fecha</td>
                                         <td class="tdCeldaItem" style="background-color:Yellow;">
                                             <wuc:wucCalendar ID="txtFechaCaptura" runat="server" />
                                         </td>
-                                        <td class="tdCeldaLeyendaItemLarge" style="background-color:Yellow;">&nbsp;Hora</td>
+                                        <td class="tdCeldaLeyendaItemHdr" style="background-color:Yellow;">&nbsp;Hora</td>
                                         <td class="tdCeldaItem" style="background-color:Yellow;"><wuc:TimeMask ID="txtHoraCaptura" runat="server" /></td>
-                                        <td class="tdCeldaLeyendaItemLarge" style="background-color:Orange;">&nbsp;Fecha</td>
+                                        <td class="tdCeldaLeyendaItemHdr" style="background-color:Orange;">&nbsp;Fecha</td>
                                         <td class="tdCeldaItem" style="background-color:Orange;">
                                             <wuc:wucCalendar ID="txtFechaCargado" runat="server" />
                                         </td>
-                                        <td class="tdCeldaLeyendaItemLarge" style="background-color:Orange;">&nbsp;Hora</td>
+                                        <td class="tdCeldaLeyendaItemHdr" style="background-color:Orange;">&nbsp;Hora</td>
                                         <td class="style1" style="background-color:Orange;"><wuc:TimeMask ID="txtHoraCargado" runat="server" /></td>
-                                        <td class="tdCeldaLeyendaItemLargeLeft" colspan="2">&nbsp;<asp:CheckBox ID="chkMaterialPeligroso" runat="server" Text="Material Peligroso" /></td>
+                                        <td class="tdCeldaLeyendaItemHdr" colspan="2">&nbsp;<asp:CheckBox ID="chkMaterialPeligroso" runat="server" Text="Material Peligroso" /></td>
 						            </tr>
                                     <tr class="trFilaItem">
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Factura</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Factura</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtNoFactura" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge" colspan="3">&nbsp;Factura Fecha</td>
+                                        <td class="tdCeldaLeyendaItemHdr" colspan="3">&nbsp;Factura Fecha</td>
                                         <td class="tdCeldaItem">
                                             <wuc:wucCalendar ID="txtFechaFactura" runat="server" />
                                         </td>
@@ -108,7 +108,7 @@
                                         <td class="tdCeldaLeyendaItemLargeLeft" colspan="1">&nbsp;<asp:CheckBox ID="chkPuertaaPuerta" runat="server" Text="Puerta a Puerta" /></td>
 						            </tr>
                                     <tr class="trFilaItem">
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;PickUp</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;PickUp</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtPickUp" runat="server" 
                                                 CssClass="Textbox_General_16" width="50px" AutoPostBack="True" 
                                                 ontextchanged="txtPickUp_TextChanged" ></asp:TextBox></td>
@@ -235,11 +235,14 @@
                                         <td class="tdCeldaItemGray2"><asp:TextBox ID="txtCdCFiscal" runat="server" 
                                                 CssClass="Textbox_General_16" width="50px" Enabled="False" ></asp:TextBox></td>
                                         <td class="tdCeldaLeyendaItemLargeGreen">&nbsp;RFC</td>
-                                        <td class="tdCeldaItemGreen" colspan="1"><asp:TextBox ID="txtRFCAAduanal" runat="server" CssClass="Textbox_General_16" width="100px" ></asp:TextBox></td>
+                                        <td class="tdCeldaItemGreen" colspan="1"><asp:TextBox ID="txtRFCAAduanal" 
+                                                runat="server" CssClass="Textbox_General_16" width="100px" Enabled="False" ></asp:TextBox></td>
                                         <td class="tdCeldaLeyendaItemLargeGreen">&nbsp;Terminal</td>
-                                        <td class="tdCeldaItemGreen"><asp:TextBox ID="txtTerminalAAduanal" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
+                                        <td class="tdCeldaItemGreen"><asp:TextBox ID="txtTerminalAAduanal" runat="server" 
+                                                CssClass="Textbox_General_16" width="50px" Enabled="False" ></asp:TextBox></td>
                                         <td class="style3">&nbsp;Cd</td>
-                                        <td class="tdCeldaItemGreen"><asp:TextBox ID="txtCdAAduanal" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
+                                        <td class="tdCeldaItemGreen"><asp:TextBox ID="txtCdAAduanal" runat="server" 
+                                                CssClass="Textbox_General_16" width="50px" Enabled="False" ></asp:TextBox></td>
                                         <td class="tdCeldaItemGreen">&nbsp;</td>
                                         <td class="tdCeldaItem">&nbsp;</td>
 						            </tr>
@@ -248,7 +251,8 @@
                                         <td class="tdCeldaItemGray2" colspan="6"><asp:TextBox ID="txtDireccionCFiscal" 
                                                 runat="server" CssClass="Textbox_General_16" width="370px" Enabled="False" ></asp:TextBox></td>
                                         <td class="tdCeldaLeyendaItemLargeGreen">&nbsp;Dirección</td>
-                                        <td class="tdCeldaItemGreen" colspan="6"><asp:TextBox ID="txtDireccionAAduanal" runat="server" CssClass="Textbox_General_16" width="370px" ></asp:TextBox></td>
+                                        <td class="tdCeldaItemGreen" colspan="6"><asp:TextBox ID="txtDireccionAAduanal" 
+                                                runat="server" CssClass="Textbox_General_16" width="370px" Enabled="False" ></asp:TextBox></td>
                                         <td class="tdCeldaItem" colspan="2">&nbsp;</td>
 						            </tr>
                                     <tr class="trFilaItem">
@@ -269,17 +273,17 @@
                             <td colspan="15">
                                 <table width="100%" cellpadding="1" cellspacing="1" border="0">
                                     <tr class="trFilaItem">
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;COBRAR A</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;COBRAR A</td>
                                         <td class="tdCeldaItem">
                                             <asp:DropDownList ID="cboIdClaveCobrarA" runat="server" AutoPostBack="True" 
                                                 onselectedindexchanged="cboIdClaveCobrarA_SelectedIndexChanged">
                                             </asp:DropDownList>
                                         </td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Nombre</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Nombre</td>
                                         <td class="tdCeldaItem" colspan="4"><asp:TextBox ID="txtNombreCobrarA" runat="server" CssClass="Textbox_General_16" width="220px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;RFC</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;RFC</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtRFCCobrarA" runat="server" CssClass="Textbox_General_16" width="70px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Terminal</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Terminal</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtTerminalCobrarA" runat="server" CssClass="Textbox_General_16" width="100px" ></asp:TextBox></td>
                                         <td class="style4">&nbsp;Cd</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtCdCobrarA" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
@@ -287,9 +291,9 @@
                                         <td class="tdCeldaItem">&nbsp;</td>
 						            </tr>
                                     <tr class="trFilaItem">
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Cond Pago</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Cond Pago</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtCondPago" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Vend Origen</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Vend Origen</td>
                                         <td class="tdCeldaItem" colspan="4">
                                             <asp:DropDownList ID="cboIdClaveVendOrigen" runat="server" AutoPostBack="True" 
                                                 onselectedindexchanged="cboIdClaveVendOrigen_SelectedIndexChanged">
@@ -297,7 +301,7 @@
                                                                             <asp:TextBox ID="txtVendedorOrigen" 
                                                 runat="server" CssClass="Textbox_General_16" width="160px" Enabled="False" ></asp:TextBox></td>
                                         <td class="tdCeldaItem" colspan="2">&nbsp;</td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Vend Destino</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Vend Destino</td>
                                         <td class="tdCeldaItem" align="right" colspan="3">
                                             <asp:DropDownList ID="cboIdClaveVendDestino" runat="server" AutoPostBack="True" 
                                                 onselectedindexchanged="cboIdClaveVendDestino_SelectedIndexChanged">
@@ -307,16 +311,16 @@
                                         <td class="tdCeldaItem">&nbsp;</td>
 						            </tr>
                                     <tr class="trFilaItem">
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Term Fac.</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Term Fac.</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtTermFac" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Patente</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Patente</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtPatente" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Pedimento</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Pedimento</td>
                                         <td class="tdCeldaItem" colspan="1"><asp:TextBox ID="txtPedimento" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;<asp:CheckBox ID="chkOcurre" runat="server" Text="Ocurre" /></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Días Crédito</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;<asp:CheckBox ID="chkOcurre" runat="server" Text="Ocurre" /></td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Días Crédito</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtDiasCredito" runat="server" CssClass="Textbox_General_16" width="100px" ></asp:TextBox></td>
-                                        <td class="tdCeldaLeyendaItemLarge">&nbsp;Peso Total</td>
+                                        <td class="tdCeldaLeyendaItemHdr">&nbsp;Peso Total</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtPesoTotal" runat="server" CssClass="Textbox_General_16" width="100px" ></asp:TextBox></td>
                                         <td class="style4">&nbsp;Pzas. Total</td>
                                         <td class="tdCeldaItem"><asp:TextBox ID="txtPzasTotal" runat="server" CssClass="Textbox_General_16" width="100px" ></asp:TextBox></td>

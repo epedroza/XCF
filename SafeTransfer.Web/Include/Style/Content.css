@@ -350,3 +350,30 @@ tdCeldaItemChica{
 	vertical-align:middle;
 	height:14px;
 }
+.tdCeldaLeyendaItemWhiteRight{
+	background-color: White;
+	border:1px none #4B4878;
+	color:Black;
+	font-family: Arial, Sans-Serif;
+	font-size:11px;
+	font-weight:bold;
+	text-align:right;
+	width:100px;
+}
+
+.tdCeldaItemSmall
+{
+	text-align:left;
+	vertical-align:middle;
+}
+
+.tdCeldaLeyendaItemHdr{
+	background-color: white;
+	border:1px none #4B4878;
+	color:navy;
+	font-family: Arial, Sans-Serif;
+	font-size:11px;
+	font-weight:lighter;
+	text-align:right;
+	height:14px;
+}

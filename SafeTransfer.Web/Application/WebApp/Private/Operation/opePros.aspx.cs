@@ -300,7 +300,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                     ent.ClaveTerminal = txtTerminalPro.Text;
                     ent.FechaCaptura = System.DateTime.Now;
                     ent.FechaCargado = System.DateTime.Parse(txtFechaCargado.EndDate);
-                    ent.IdPickUp = Int32.Parse(txtPickUp.Text);
+                    ent.IdPickUp = (txtPickUp.Text != "" ? Int32.Parse(txtPickUp.Text) : 0);
                     ent.IdClaveOrigen = Int32.Parse(cboIdClaveOrigen.SelectedValue);
                     ent.IdClaveDestino = Int32.Parse(cboIdClaveDestino.SelectedValue);
                     ent.IdClaveClienteFiscal = Int32.Parse(cboIdClaveCFiscal.SelectedValue);
@@ -317,16 +317,16 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                     ent.PesoTotalKg = double.Parse(txtPesoTotal.Text);
                     ent.PiezasTotal = double.Parse(txtPzasTotal.Text);
                     // Transaccion
-                    if (txtClavePro.Text != "0" && txtClavePro.Text != "")
-                    {
-                        SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.updatetblPros(ent);
-                        ds = oENTResponse.dsResponse;
-                    }
-                    else
-                    {
+                    //if (txtClavePro.Text != "0" && txtClavePro.Text != "")
+                    //{
+                    //    SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.updatetblPros(ent);
+                    //    ds = oENTResponse.dsResponse;
+                    //}
+                    //else
+                    //{
                         SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.inserttblPros(ent);
                         ds = oENTResponse.dsResponse;
-                    }
+                    //}
                 }
                 else
                 {

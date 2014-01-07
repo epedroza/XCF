@@ -118,7 +118,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl txtHoraCaptura;
+        protected global::SafeTransfere.Web.Include.WebUserControls.wucTimeMask txtHoraCaptura;
         
         /// <summary>
         /// txtFechaCargado control.
@@ -136,7 +136,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.UserControl txtHoraCargado;
+        protected global::SafeTransfere.Web.Include.WebUserControls.wucTimeMask txtHoraCargado;
         
         /// <summary>
         /// chkMaterialPeligroso control.
