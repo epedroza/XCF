@@ -42,9 +42,9 @@
                                     <table>
                                         <tr class="Grid_Header">
                                             <th style="width: 75px;"></th>
-                                            <th style="width: 125px;">Pros</th>
-                                            <th style="width: 155px;">Origen</th>
-                                            <th style="width: 155px;">Destino</th>
+                                            <th style="width: 95px;">Pro</th>
+                                            <th style="width: 195px;">Origen</th>
+                                            <th style="width: 195px;">Destino</th>
                                         </tr>
                                         <tr>
                                             <td class="Grid_Row" colspan="4">&nbsp;</td>
@@ -68,6 +68,11 @@
                         </td>
                     </tr>
                     <tr>
+                        <td class="BotonRight" colspan="2">
+                            <asp:Button CssClass="Button_General" ID="DownloadButton" OnClick="DownloadButton_Click" runat="server" Text="Descargar Pros" />
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="2">
                             <br /><br />
                             Cargar Pros
@@ -77,9 +82,9 @@
                                     <table>
                                         <tr class="Grid_Header">
                                             <th style="width: 75px;"></th>
-                                            <th style="width: 125px;">Pros</th>
-                                            <th style="width: 155px;">Origen</th>
-                                            <th style="width: 155px;">Destino</th>
+                                            <th style="width: 95px;">Pro</th>
+                                            <th style="width: 195px;">Origen</th>
+                                            <th style="width: 195px;">Destino</th>
                                         </tr>
                                         <tr>
                                             <td class="Grid_Row" colspan="4">&nbsp;</td>
@@ -100,6 +105,11 @@
                                 <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
                                 <RowStyle CssClass="Grid_Row" />
                             </asp:GridView>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="BotonRight" colspan="2">
+                            <asp:Button CssClass="Button_General" ID="UploadButton" OnClick="UploadButton_Click" runat="server" Text="Cargar Pros" />
                         </td>
                     </tr>
                 </table>

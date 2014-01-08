@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,18 +17,56 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
     public partial class opeRecepcionManifiestos : System.Web.UI.Page
     {
         #region Rutinas de la Pagina
-            protected void SearchButton_Click(object sender, EventArgs e)
+            protected void DownloadButton_Click(object sender, EventArgs e)
             {
-                SelectPros(int.Parse(CentroServicioList.SelectedValue), ManifiestoBox.Text.Trim());
+                DownloadPro();
             }
 
             protected void Page_Load(object sender, EventArgs e)
             {
                 PageLoad();
             }
+
+            protected void SearchButton_Click(object sender, EventArgs e)
+            {
+                SelectPros(int.Parse(CentroServicioList.SelectedValue), ManifiestoBox.Text.Trim());
+            }
+
+            protected void UploadButton_Click(object sender, EventArgs e)
+            {
+                UploadPro();
+            }
         #endregion
 
         #region Rutinas del Programador
+            private void DownloadPro()
+            {
+                string ProIdText = string.Empty;
+
+                ProIdText = GetProDowload();
+
+                DownloadPro(ProIdText);
+            }
+
+            private void DownloadPro(string ProIdText)
+            {
+
+            }
+
+            private string GetProDowload()
+            {
+                StringBuilder ProIdText = new StringBuilder();
+
+                return ProIdText.ToString();
+            }
+
+            private string GetProUpload()
+            {
+                StringBuilder ProIdText = new StringBuilder();
+
+                return ProIdText.ToString();
+            }
+
             private void PageLoad()
             {
                 if (!Page.IsPostBack)
@@ -40,6 +79,12 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                     UploadGrid.DataSource = null;
                     UploadGrid.DataBind();
                 }
+            }
+
+            private void ResetForm()
+            {
+                CentroServicioList.SelectedIndex = 0;
+                ManifiestoBox.Text = "";
             }
 
             private void SelectCentroServicio()
@@ -125,6 +170,20 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                     UploadGrid.DataSource = ResponseEntity.dsResponse.Tables[0].DefaultView;
                     UploadGrid.DataBind();
                 }
+            }
+
+            private void UploadPro()
+            {
+                string ProIdText = string.Empty;
+
+                ProIdText = GetProUpload();
+
+                UploadPro(ProIdText);
+            }
+
+            private void UploadPro(string ProIdText)
+            {
+
             }
 
             private bool ValidateInfo(int CentroServicioId, string ManifiestoId)

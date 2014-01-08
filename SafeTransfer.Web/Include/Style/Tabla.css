@@ -22,6 +22,11 @@
 	text-align: left;
 }
 
+.GeneralTable .BotonRight
+{
+	text-align: right;
+}
+
 .GeneralTable .Control
 {
 	text-align: left;

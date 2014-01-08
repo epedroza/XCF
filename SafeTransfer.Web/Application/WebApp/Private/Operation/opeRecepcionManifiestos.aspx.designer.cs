@@ -58,6 +58,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.GridView DownloadGrid;
         
         /// <summary>
+        /// DownloadButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button DownloadButton;
+        
+        /// <summary>
         /// UploadGrid control.
         /// </summary>
         /// <remarks>
@@ -65,6 +74,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView UploadGrid;
+        
+        /// <summary>
+        /// Button1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Button1;
         
         /// <summary>
         /// pnlBotones control.
