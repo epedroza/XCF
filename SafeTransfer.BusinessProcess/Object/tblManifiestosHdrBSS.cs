@@ -157,14 +157,44 @@ namespace SafeTransfer.BusinessProcess.Object
         }
 
         /// <summary>
+        ///     Actualiza los estatus de los Pros de un manifiesto.
+        /// </summary>
+        /// <param name="ManifiestoEntity">Entidad de Manifiesto.</param>
+        /// <returns>ENTResponse</returns>
+        public ENTResponse SaveDownloadPro(Entity.tblManifiestosHdr_Ent ManifiestoEntity)
+        {
+            ENTResponse ResponseEntity = new ENTResponse();
+            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
+
+            ResponseEntity = ManifiestoAccess.UpdateManifiestoDownload(ManifiestoEntity, sConnectionApplication);
+
+            return ResponseEntity;
+        }
+
+        /// <summary>
+        ///     Actualiza los estatus de los Pros de un manifiesto.
+        /// </summary>
+        /// <param name="ManifiestoEntity">Entidad de Manifiesto.</param>
+        /// <returns>ENTResponse</returns>
+        public ENTResponse SaveUploadPro(Entity.tblManifiestosHdr_Ent ManifiestoEntity)
+        {
+            ENTResponse ResponseEntity = new ENTResponse();
+            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
+
+            ResponseEntity = ManifiestoAccess.UpdateManifiestoUpload(ManifiestoEntity, sConnectionApplication);
+
+            return ResponseEntity;
+        }
+
+        /// <summary>
         ///     Obtiene el listado de los pickups que se van a descargar en la Recepción.
         /// </summary>
         /// <param name="PickUpEntity">Entidad del manifiesto.</param>
         /// <returns>ENTResponse</returns>
         public ENTResponse SelectProsDownload(Entity.tblManifiestosHdr_Ent ManifiestoEntity)
         {
-            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
             ENTResponse ResponseEntity = new ENTResponse();
+            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
 
             try
             {
@@ -188,8 +218,8 @@ namespace SafeTransfer.BusinessProcess.Object
         /// <returns>ENTResponse</returns>
         public ENTResponse SelectProsUpload(Entity.tblManifiestosHdr_Ent ManifiestoEntity)
         {
-            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
             ENTResponse ResponseEntity = new ENTResponse();
+            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
 
             try
             {

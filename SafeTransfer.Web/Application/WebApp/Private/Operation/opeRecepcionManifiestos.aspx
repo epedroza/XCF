@@ -37,7 +37,7 @@
                             <br />
                             Descargar Pros
                             <br />
-                            <asp:GridView ID="DownloadGrid" runat="server">
+                            <asp:GridView DataKeyNames="Pro" ID="DownloadGrid" runat="server">
                                 <EmptyDataTemplate>
                                     <table>
                                         <tr class="Grid_Header">
@@ -69,7 +69,7 @@
                     </tr>
                     <tr>
                         <td class="BotonRight" colspan="2">
-                            <asp:Button CssClass="Button_General" ID="DownloadButton" OnClick="DownloadButton_Click" runat="server" Text="Descargar Pros" />
+                            <asp:Button CssClass="Button_General" ID="DownloadButton" OnClick="DownloadButton_Click" runat="server" Text="Descargar Pros" Width="110px" />
                         </td>
                     </tr>
                     <tr>
@@ -77,7 +77,7 @@
                             <br /><br />
                             Cargar Pros
                             <br />
-                            <asp:GridView ID="UploadGrid" runat="server">
+                            <asp:GridView DataKeyNames="Pro" ID="UploadGrid" runat="server">
                                 <EmptyDataTemplate>
                                     <table>
                                         <tr class="Grid_Header">
@@ -109,7 +109,7 @@
                     </tr>
                     <tr>
                         <td class="BotonRight" colspan="2">
-                            <asp:Button CssClass="Button_General" ID="UploadButton" OnClick="UploadButton_Click" runat="server" Text="Cargar Pros" />
+                            <asp:Button CssClass="Button_General" ID="UploadButton" OnClick="UploadButton_Click" runat="server" Text="Cargar Pros" Width="110px" />
                         </td>
                     </tr>
                 </table>

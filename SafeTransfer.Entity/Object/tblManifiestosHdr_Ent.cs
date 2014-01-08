@@ -19,6 +19,7 @@ namespace SafeTransfer.Entity
         private DateTime _FechaLlegada; // Valor de FechaLlegada
         private int _IdCompania;
         private int _Estatus;
+        private string _ProIdText;
 
         public tblManifiestosHdr_Ent()
         {
@@ -36,6 +37,7 @@ namespace SafeTransfer.Entity
             _FechaLlegada = System.DateTime.Now;
             _IdCompania = 0;
             _Estatus = 0;
+            _ProIdText = string.Empty;
         }
         ///<remarks>
         ///   <name>tblManifiestosHdr_Ent.IdManifiesto</name>
@@ -190,6 +192,15 @@ namespace SafeTransfer.Entity
         {
             get { return _Estatus; }
             set { _Estatus = value; }
+        }
+
+        /// <summary>
+        ///     Cadena de texto con identificadores de Pros.
+        /// </summary>
+        public string ProIdText
+        {
+            get { return _ProIdText; }
+            set { _ProIdText = value; }
         }
     }
 }

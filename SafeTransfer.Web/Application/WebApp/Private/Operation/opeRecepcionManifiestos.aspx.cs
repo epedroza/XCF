@@ -19,7 +19,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         #region Rutinas de la Pagina
             protected void DownloadButton_Click(object sender, EventArgs e)
             {
-                DownloadPro();
+                //DownloadPro();
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
 
             protected void UploadButton_Click(object sender, EventArgs e)
             {
-                UploadPro();
+                //UploadPro();
             }
         #endregion
 
@@ -50,12 +50,37 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
 
             private void DownloadPro(string ProIdText)
             {
+                ENTResponse ResponseEntity = new ENTResponse();
+                SafeTransfer.Entity.tblManifiestosHdr_Ent ManifiestoEntity = new SafeTransfer.Entity.tblManifiestosHdr_Ent();
+                tblManifiestosHdrBSS ManifiestoProcess = new tblManifiestosHdrBSS();
 
+                ManifiestoEntity.ProIdText = ProIdText;
+
+                ManifiestoProcess.SaveDownloadPro(ManifiestoEntity);
+
+                if (ResponseEntity.sMessage == "")
+                    SelectProsDownload(int.Parse(CentroServicioList.SelectedValue), ManifiestoBox.Text.Trim());
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ResponseEntity.sMessage + "', 'Warning', true);", true);
             }
 
             private string GetProDowload()
             {
                 StringBuilder ProIdText = new StringBuilder();
+                CheckBox ProCheck;
+
+                ProIdText.Append(",");
+
+                foreach (GridViewRow GridRow in DownloadGrid.Rows)
+                {
+                    ProCheck = (CheckBox)GridRow.FindControl("ProCheck");
+
+                    if (ProCheck.Checked)
+                    {
+                        ProIdText.Append(DownloadGrid.DataKeys[GridRow.RowIndex]["Pro"].ToString());
+                        ProIdText.Append(",");
+                    }
+                }
 
                 return ProIdText.ToString();
             }
@@ -63,6 +88,20 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
             private string GetProUpload()
             {
                 StringBuilder ProIdText = new StringBuilder();
+                CheckBox ProCheck;
+
+                ProIdText.Append(",");
+
+                foreach (GridViewRow GridRow in UploadGrid.Rows)
+                {
+                    ProCheck = (CheckBox)GridRow.FindControl("ProCheck");
+
+                    if (ProCheck.Checked)
+                    {
+                        ProIdText.Append(UploadGrid.DataKeys[GridRow.RowIndex]["Pro"].ToString());
+                        ProIdText.Append(",");
+                    }
+                }
 
                 return ProIdText.ToString();
             }
@@ -183,7 +222,18 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
 
             private void UploadPro(string ProIdText)
             {
+                ENTResponse ResponseEntity = new ENTResponse();
+                SafeTransfer.Entity.tblManifiestosHdr_Ent ManifiestoEntity = new SafeTransfer.Entity.tblManifiestosHdr_Ent();
+                tblManifiestosHdrBSS ManifiestoProcess = new tblManifiestosHdrBSS();
 
+                ManifiestoEntity.ProIdText = ProIdText;
+
+                ManifiestoProcess.SaveUploadPro(ManifiestoEntity);
+
+                if (ResponseEntity.sMessage == "")
+                    SelectProsUpload(int.Parse(CentroServicioList.SelectedValue), ManifiestoBox.Text.Trim());
+                else
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + ResponseEntity.sMessage + "', 'Warning', true);", true);
             }
 
             private bool ValidateInfo(int CentroServicioId, string ManifiestoId)
