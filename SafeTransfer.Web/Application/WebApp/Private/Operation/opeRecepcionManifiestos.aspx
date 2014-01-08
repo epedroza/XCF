@@ -24,12 +24,12 @@
 					</tr>
                     <tr>
                         <td class="Nombre">Manifiesto</td>
-					    <td class="Control"><asp:TextBox CssClass="Textbox_General" ID="ManifiestoBox" ReadOnly="true" runat="server" width="100px"></asp:TextBox></td>
+					    <td class="Control"><asp:TextBox CssClass="Textbox_General" ID="ManifiestoBox" MaxLength="6" runat="server" width="100px"></asp:TextBox></td>
 				    </tr>
                     <tr>
                         <td class="Nombre">&nbsp;</td>
                         <td>
-                            <asp:Button ID="cmdBuscar" runat="server" CssClass="Button_General" Text="Buscar" Width="110px" />
+                            <asp:Button CssClass="Button_General" ID="SearchButton" OnClick="SearchButton_Click" runat="server" Text="Buscar" Width="110px" />
                         </td>
                     </tr>
                     <tr>
@@ -37,14 +37,14 @@
                             <br />
                             Descargar Pros
                             <br />
-                            <asp:GridView ID="DescargarGrid" runat="server">
+                            <asp:GridView ID="DownloadGrid" runat="server">
                                 <EmptyDataTemplate>
                                     <table>
                                         <tr class="Grid_Header">
                                             <th style="width: 75px;"></th>
                                             <th style="width: 125px;">Pros</th>
-                                            <th style="width: 125px;">Origen</th>
-                                            <th style="width: 125px;">Destino</th>
+                                            <th style="width: 155px;">Origen</th>
+                                            <th style="width: 155px;">Destino</th>
                                         </tr>
                                         <tr>
                                             <td class="Grid_Row" colspan="4">&nbsp;</td>
@@ -52,7 +52,15 @@
                                     </table>
                                 </EmptyDataTemplate>
                                 <Columns>
-                                    
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:CheckBox id="ProCheck" runat="server"></asp:CheckBox>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="Pro" HeaderText="Pro" />
+                                    <asp:BoundField DataField="NombreOrigen" HeaderText="Origen" />
+                                    <asp:BoundField DataField="NombreDestino" HeaderText="Pro" />
                                 </Columns>
                                 <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
                                 <RowStyle CssClass="Grid_Row" />
@@ -64,14 +72,14 @@
                             <br /><br />
                             Cargar Pros
                             <br />
-                            <asp:GridView ID="CargarGrid" runat="server">
+                            <asp:GridView ID="UploadGrid" runat="server">
                                 <EmptyDataTemplate>
                                     <table>
                                         <tr class="Grid_Header">
                                             <th style="width: 75px;"></th>
                                             <th style="width: 125px;">Pros</th>
-                                            <th style="width: 125px;">Origen</th>
-                                            <th style="width: 125px;">Destino</th>
+                                            <th style="width: 155px;">Origen</th>
+                                            <th style="width: 155px;">Destino</th>
                                         </tr>
                                         <tr>
                                             <td class="Grid_Row" colspan="4">&nbsp;</td>
@@ -79,7 +87,15 @@
                                     </table>
                                 </EmptyDataTemplate>
                                 <Columns>
-                                    
+                                    <asp:TemplateField HeaderText="">
+                                        <ItemTemplate>
+                                            <asp:CheckBox id="ProCheck" runat="server"></asp:CheckBox>
+                                        </ItemTemplate>
+                                        <ItemStyle HorizontalAlign="Center" />
+                                    </asp:TemplateField>
+                                    <asp:BoundField DataField="Pro" HeaderText="Pro" />
+                                    <asp:BoundField DataField="NombreOrigen" HeaderText="Origen" />
+                                    <asp:BoundField DataField="NombreDestino" HeaderText="Pro" />
                                 </Columns>
                                 <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
                                 <RowStyle CssClass="Grid_Row" />

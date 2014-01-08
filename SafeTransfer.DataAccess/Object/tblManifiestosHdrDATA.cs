@@ -172,5 +172,119 @@ namespace SafeTransfer.DataAccess.Object
             return oENTResponse;
 
         }
+
+        /// <summary>
+        ///     Obtiene el listado de los pickups que se van a descargar en la Recepción.
+        /// </summary>
+        /// <param name="Connection">Conexión a la base de datos.</param>
+        /// <param name="PickUpEntity">Entidad del Manifiesto.</param>
+        /// <returns>ENTResponse</returns>
+        public ENTResponse SelectProsDownload(Entity.tblManifiestosHdr_Ent ManifuestoEntity, String sConnection)
+        {
+            SqlConnection sqlCnn = new SqlConnection(sConnection);
+            SqlCommand sqlCom;
+            SqlParameter sqlPar;
+            SqlDataAdapter sqlDA;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            // Configuración de objetos
+            sqlCom = new SqlCommand("tblManifiestoRecepcionDescargar_Sel", sqlCnn);
+            sqlCom.CommandType = CommandType.StoredProcedure;
+
+            // Parametros
+            sqlPar = new SqlParameter("IdManifiesto", SqlDbType.Int);
+            sqlPar.Value = ManifuestoEntity.IdManifiesto;
+            sqlCom.Parameters.Add(sqlPar);
+
+            sqlPar = new SqlParameter("idCentroServicio", SqlDbType.Int);
+            sqlPar.Value = ManifuestoEntity.ClaveOrigen;
+            sqlCom.Parameters.Add(sqlPar);
+
+            // Inicializaciones
+            oENTResponse.dsResponse = new DataSet();
+            sqlDA = new SqlDataAdapter(sqlCom);
+
+            // Transacción
+            try
+            {
+                sqlCnn.Open();
+                sqlDA.Fill(oENTResponse.dsResponse);
+                sqlCnn.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+                if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+                sqlCnn.Dispose();
+            }
+
+            // Resultado
+            return oENTResponse;
+        }
+
+        /// <summary>
+        ///     Obtiene el listado de los pickups que se van a carcar en la Recepción.
+        /// </summary>
+        /// <param name="Connection">Conexión a la base de datos.</param>
+        /// <param name="PickUpEntity">Entidad del Manifiesto.</param>
+        /// <returns>ENTResponse</returns>
+        public ENTResponse SelectProsUpload(Entity.tblManifiestosHdr_Ent ManifuestoEntity, String sConnection)
+        {
+            SqlConnection sqlCnn = new SqlConnection(sConnection);
+            SqlCommand sqlCom;
+            SqlParameter sqlPar;
+            SqlDataAdapter sqlDA;
+
+            ENTResponse oENTResponse = new ENTResponse();
+
+            // Configuración de objetos
+            sqlCom = new SqlCommand("tblManifiestoRecepcionCargar_Sel", sqlCnn);
+            sqlCom.CommandType = CommandType.StoredProcedure;
+
+            // Parametros
+            sqlPar = new SqlParameter("IdManifiesto", SqlDbType.Int);
+            sqlPar.Value = ManifuestoEntity.IdManifiesto;
+            sqlCom.Parameters.Add(sqlPar);
+
+            sqlPar = new SqlParameter("idCentroServicio", SqlDbType.Int);
+            sqlPar.Value = ManifuestoEntity.ClaveOrigen;
+            sqlCom.Parameters.Add(sqlPar);
+
+            // Inicializaciones
+            oENTResponse.dsResponse = new DataSet();
+            sqlDA = new SqlDataAdapter(sqlCom);
+
+            // Transacción
+            try
+            {
+                sqlCnn.Open();
+                sqlDA.Fill(oENTResponse.dsResponse);
+                sqlCnn.Close();
+            }
+            catch (SqlException sqlEx)
+            {
+                oENTResponse.ExceptionRaised(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                oENTResponse.ExceptionRaised(ex.Message);
+            }
+            finally
+            {
+                if (sqlCnn.State == ConnectionState.Open) { sqlCnn.Close(); }
+                sqlCnn.Dispose();
+            }
+
+            // Resultado
+            return oENTResponse;
+        }
     }
 }

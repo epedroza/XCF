@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
 using SafeTransfer.Entity.Object;
 using SafeTransfer.BusinessProcess.Object;
 using System.Data;
@@ -15,9 +16,9 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
     public partial class opeRecepcionManifiestos : System.Web.UI.Page
     {
         #region Rutinas de la Pagina
-            protected void cmdBuscar_Click(object sender, EventArgs e)
+            protected void SearchButton_Click(object sender, EventArgs e)
             {
-                FillGrid();
+                SelectPros(int.Parse(CentroServicioList.SelectedValue), ManifiestoBox.Text.Trim());
             }
 
             protected void Page_Load(object sender, EventArgs e)
@@ -27,27 +28,17 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
         #endregion
 
         #region Rutinas del Programador
-            void FillGrid()
-            {
-          
-            }
-
-            void Fillcbo()
-            {
-
-            }
-
             private void PageLoad()
             {
                 if (!Page.IsPostBack)
                 {
                     SelectCentroServicio();
 
-                    DescargarGrid.DataSource = null;
-                    DescargarGrid.DataBind();
+                    DownloadGrid.DataSource = null;
+                    DownloadGrid.DataBind();
 
-                    CargarGrid.DataSource = null;
-                    CargarGrid.DataBind();
+                    UploadGrid.DataSource = null;
+                    UploadGrid.DataBind();
                 }
             }
 
@@ -89,6 +80,72 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                 {
                     throw (ex);
                 }
+            }
+
+            private void SelectPros(int CentroServicioId, string ManifiestoId)
+            {
+                if (ValidateInfo(CentroServicioId, ManifiestoId))
+                {
+                    SelectProsDownload(CentroServicioId, ManifiestoId);
+                    SelectProsUpload(CentroServicioId, ManifiestoId);
+                }
+            }
+
+            private void SelectProsDownload(int CentroServicioId, string ManifiestoId)
+            {
+                ENTResponse ResponseEntity = new ENTResponse();
+                SafeTransfer.Entity.tblManifiestosHdr_Ent ManifiestoEntity = new SafeTransfer.Entity.tblManifiestosHdr_Ent();
+                tblManifiestosHdrBSS ManifiestoProcess = new tblManifiestosHdrBSS();
+
+                ManifiestoEntity.IdManifiesto = int.Parse(ManifiestoId);
+                ManifiestoEntity.ClaveDestino = CentroServicioId;
+
+                ResponseEntity = ManifiestoProcess.SelectProsDownload(ManifiestoEntity);
+
+                if (ResponseEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    DownloadGrid.DataSource = ResponseEntity.dsResponse.Tables[0].DefaultView;
+                    DownloadGrid.DataBind();
+                }
+            }
+
+            private void SelectProsUpload(int CentroServicioId, string ManifiestoId)
+            {
+                ENTResponse ResponseEntity = new ENTResponse();
+                SafeTransfer.Entity.tblManifiestosHdr_Ent ManifiestoEntity = new SafeTransfer.Entity.tblManifiestosHdr_Ent();
+                tblManifiestosHdrBSS ManifiestoProcess = new tblManifiestosHdrBSS();
+
+                ManifiestoEntity.IdManifiesto = int.Parse(ManifiestoId);
+                ManifiestoEntity.ClaveDestino = CentroServicioId;
+
+                ResponseEntity = ManifiestoProcess.SelectProsUpload(ManifiestoEntity);
+
+                if (ResponseEntity.dsResponse.Tables[0].Rows.Count > 0)
+                {
+                    UploadGrid.DataSource = ResponseEntity.dsResponse.Tables[0].DefaultView;
+                    UploadGrid.DataBind();
+                }
+            }
+
+            private bool ValidateInfo(int CentroServicioId, string ManifiestoId)
+            {
+                int Result = 0;
+
+                if (CentroServicioId == 0)
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Centro] es obligatorio', 'Warning', true);", true);
+
+                    return false;
+                }
+
+                if (!int.TryParse(ManifiestoId, out Result))
+                {
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('El campo [Manifiesto] debe ser numérico', 'Warning', true);", true);
+
+                    return false;
+                }
+
+                return true;
             }
         #endregion
     }

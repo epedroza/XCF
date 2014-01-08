@@ -40,31 +40,31 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.TextBox ManifiestoBox;
         
         /// <summary>
-        /// cmdBuscar control.
+        /// SearchButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdBuscar;
+        protected global::System.Web.UI.WebControls.Button SearchButton;
         
         /// <summary>
-        /// DescargarGrid control.
+        /// DownloadGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView DescargarGrid;
+        protected global::System.Web.UI.WebControls.GridView DownloadGrid;
         
         /// <summary>
-        /// CargarGrid control.
+        /// UploadGrid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView CargarGrid;
+        protected global::System.Web.UI.WebControls.GridView UploadGrid;
         
         /// <summary>
         /// pnlBotones control.

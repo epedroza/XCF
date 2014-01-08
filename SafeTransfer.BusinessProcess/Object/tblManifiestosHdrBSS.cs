@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using SafeTransfer.DataAccess.Object;
+
 using SafeTransfer.Entity.Object;
 
 namespace SafeTransfer.BusinessProcess.Object
@@ -153,6 +154,56 @@ namespace SafeTransfer.BusinessProcess.Object
             // Resultado
             return oENTResponse;
 
+        }
+
+        /// <summary>
+        ///     Obtiene el listado de los pickups que se van a descargar en la Recepción.
+        /// </summary>
+        /// <param name="PickUpEntity">Entidad del manifiesto.</param>
+        /// <returns>ENTResponse</returns>
+        public ENTResponse SelectProsDownload(Entity.tblManifiestosHdr_Ent ManifiestoEntity)
+        {
+            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
+            ENTResponse ResponseEntity = new ENTResponse();
+
+            try
+            {
+                ResponseEntity = ManifiestoAccess.SelectProsDownload(ManifiestoEntity, this.sConnectionApplication);
+
+                return ResponseEntity;
+            }
+            catch (Exception ex)
+            {
+                ResponseEntity.ExceptionRaised(ex.Message);
+            }
+
+            // Resultado
+            return ResponseEntity;
+        }
+
+        /// <summary>
+        ///     Obtiene el listado de los pickups que se van a cargar en la Recepción.
+        /// </summary>
+        /// <param name="PickUpEntity">Entidad del manifiesto.</param>
+        /// <returns>ENTResponse</returns>
+        public ENTResponse SelectProsUpload(Entity.tblManifiestosHdr_Ent ManifiestoEntity)
+        {
+            tblManifiestosHdrDATA ManifiestoAccess = new tblManifiestosHdrDATA();
+            ENTResponse ResponseEntity = new ENTResponse();
+
+            try
+            {
+                ResponseEntity = ManifiestoAccess.SelectProsUpload(ManifiestoEntity, this.sConnectionApplication);
+
+                return ResponseEntity;
+            }
+            catch (Exception ex)
+            {
+                ResponseEntity.ExceptionRaised(ex.Message);
+            }
+
+            // Resultado
+            return ResponseEntity;
         }
     }
 }
