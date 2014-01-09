@@ -75,6 +75,16 @@
 }
 
 
+.tdActionCeldaLeyendaItem_High{
+	border:0px solid #4B4878;
+	color:#4B4878;
+	font-family: Arial, Sans-Serif;
+	font-size:12px;
+	font-weight:bold;
+	text-align:left;
+	width:120px;
+}
+
 /* Formulario General*/
 .tdCeldaTituloEncabezado{
 	color:#27245D;

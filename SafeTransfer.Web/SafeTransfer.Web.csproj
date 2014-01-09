@@ -81,6 +81,8 @@
     <Content Include="Application\WebApp\Private\Catalog\catCentrosDeServicio.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catCiudades.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catClientes.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catContacto.aspx" />
+    <Content Include="Application\WebApp\Private\Catalog\catSucursal.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catTiposCamiones.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catTransportistas.aspx" />
     <Content Include="Application\WebApp\Private\Catalog\catVendedores.aspx" />
@@ -107,6 +109,8 @@
     <Content Include="Application\WebApp\Private\SysCat\scatRol.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatSubMenu.aspx" />
     <Content Include="Application\WebApp\Private\SysCat\scatUsuario.aspx" />
+    <Content Include="Include\Components\Syncfusion\Syncfusion.HtmlConverter.Base.dll" />
+    <Content Include="Include\Components\Syncfusion\Syncfusion.Pdf.Base.dll" />
     <Content Include="Include\Image\Buttons\CloseWindow.png" />
     <Content Include="Include\Image\Buttons\Cotizar.png" />
     <Content Include="Include\Image\Buttons\Delete.png" />
@@ -237,6 +241,20 @@
     </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catClientes.aspx.designer.cs">
       <DependentUpon>catClientes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catContacto.aspx.cs">
+      <DependentUpon>catContacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catContacto.aspx.designer.cs">
+      <DependentUpon>catContacto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catSucursal.aspx.cs">
+      <DependentUpon>catSucursal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Application\WebApp\Private\Catalog\catSucursal.aspx.designer.cs">
+      <DependentUpon>catSucursal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Application\WebApp\Private\Catalog\catTiposCamiones.aspx.cs">
       <DependentUpon>catTiposCamiones.aspx</DependentUpon>

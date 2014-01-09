@@ -50,6 +50,8 @@
     <Compile Include="Object\BPCiudad.cs" />
     <Compile Include="Object\BPCliente.cs" />
     <Compile Include="Object\BPCompany.cs" />
+    <Compile Include="Object\BPConceptoCliente.cs" />
+    <Compile Include="Object\BPContacto.cs" />
     <Compile Include="Object\BPCotizacion.cs" />
     <Compile Include="Object\BPEstado.cs" />
     <Compile Include="Object\BPEstatusPickUp.cs" />
@@ -58,6 +60,8 @@
     <Compile Include="Object\BPPais.cs" />
     <Compile Include="Object\BPPickUp.cs" />
     <Compile Include="Object\BPServicio.cs" />
+    <Compile Include="Object\BPSucursal.cs" />
+    <Compile Include="Object\BPTipoCliente.cs" />
     <Compile Include="Object\BPTipoContacto.cs" />
     <Compile Include="Object\BPTipoPieza.cs" />
     <Compile Include="Object\BPUnidadMedida.cs" />

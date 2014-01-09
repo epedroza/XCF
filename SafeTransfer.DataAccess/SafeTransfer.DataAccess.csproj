@@ -68,6 +68,8 @@
     <Compile Include="Object\DACiudad.cs" />
     <Compile Include="Object\DACliente.cs" />
     <Compile Include="Object\DACompany.cs" />
+    <Compile Include="Object\DAConceptoCliente.cs" />
+    <Compile Include="Object\DAContacto.cs" />
     <Compile Include="Object\DACotizacion.cs" />
     <Compile Include="Object\DAEstado.cs" />
     <Compile Include="Object\DAEstatusPickUp.cs" />
@@ -76,6 +78,8 @@
     <Compile Include="Object\DAPais.cs" />
     <Compile Include="Object\DAPickUp.cs" />
     <Compile Include="Object\DAServicio.cs" />
+    <Compile Include="Object\DASucursal.cs" />
+    <Compile Include="Object\DATipoCliente.cs" />
     <Compile Include="Object\DATipoContacto.cs" />
     <Compile Include="Object\DATipoPieza.cs" />
     <Compile Include="Object\DAUnidadMedida.cs" />

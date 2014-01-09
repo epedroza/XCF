@@ -54,6 +54,8 @@
     <Compile Include="Object\ENTCiudad.cs" />
     <Compile Include="Object\ENTCliente.cs" />
     <Compile Include="Object\ENTCompany.cs" />
+    <Compile Include="Object\ENTConceptoCliente.cs" />
+    <Compile Include="Object\ENTContacto.cs" />
     <Compile Include="Object\ENTCotizacion.cs" />
     <Compile Include="Object\ENTEstado.cs" />
     <Compile Include="Object\ENTEstatusPickUp.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Object\ENTPais.cs" />
     <Compile Include="Object\ENTPickUp.cs" />
     <Compile Include="Object\ENTServicio.cs" />
+    <Compile Include="Object\ENTSucursal.cs" />
     <Compile Include="Object\ENTTipoCamion.cs" />
     <Compile Include="Object\ENTTipoCliente.cs" />
     <Compile Include="Object\ENTTipoContacto.cs" />
