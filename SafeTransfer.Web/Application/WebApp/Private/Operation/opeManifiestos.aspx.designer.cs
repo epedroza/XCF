@@ -184,22 +184,22 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         protected global::System.Web.UI.WebControls.Button cmdAgregarPartidas;
         
         /// <summary>
-        /// txtIdPro control.
+        /// cmdGuardarManifiestox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdPro;
+        protected global::System.Web.UI.WebControls.Button cmdGuardarManifiestox;
         
         /// <summary>
-        /// cmdAgregarPro control.
+        /// hddTipoAccion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdAgregarPro;
+        protected global::System.Web.UI.WebControls.HiddenField hddTipoAccion;
         
         /// <summary>
         /// gvApps control.
@@ -209,6 +209,15 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvApps;
+        
+        /// <summary>
+        /// hddIdManifiesto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hddIdManifiesto;
         
         /// <summary>
         /// pnlDetallePros control.
@@ -254,24 +263,6 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlBotones;
-        
-        /// <summary>
-        /// cmdGuardar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cmdGuardar;
-        
-        /// <summary>
-        /// btnNuevo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevo;
         
         /// <summary>
         /// pnlGrid control.

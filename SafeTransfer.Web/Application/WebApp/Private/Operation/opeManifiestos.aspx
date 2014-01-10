@@ -48,7 +48,9 @@
                             <tr class="trFilaItem">
 							    <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;Origen</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItemSmall"><asp:DropDownList ID="cboIdClaveOrigen" runat="server" AutoPostBack="True"></asp:DropDownList></td>
+							    <td class="tdCeldaItemSmall"><asp:DropDownList ID="cboIdClaveOrigen" runat="server" 
+                                        AutoPostBack="True" 
+                                        onselectedindexchanged="cboIdClaveOrigen_SelectedIndexChanged"></asp:DropDownList></td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;Destino</td>
                                 <td style="width:5px;"></td>
@@ -92,7 +94,9 @@
                             <tr class="trFilaItem">
 							    <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;No Caja 1</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItemSmall"><asp:TextBox ID="txtNoCaja1" runat="server" CssClass="Textbox_General_16" width="50px" ></asp:TextBox></td>
+							    <td class="tdCeldaItemSmall"><asp:TextBox ID="txtNoCaja1" runat="server" 
+                                        CssClass="Textbox_General_16" width="50px" 
+                                        ontextchanged="txtNoCaja1_TextChanged" ></asp:TextBox></td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;No Caja 2</td>
                                 <td style="width:5px;"></td>
@@ -120,7 +124,10 @@
                                         onclick="cmdAgregarPartidas_Click" Text="AgregarPros" width="104px" />
                                 </td>
                                 <td style="width:5px;"></td>
-                                <td>&nbsp;</td>
+                                <td>
+                                    <asp:Button ID="cmdGuardarManifiestox" runat="server" CssClass="Button_General" 
+                                        onclick="cmdGuardarManifiesto" Text="Guardar" width="104px" />
+                                </td>
                                 <td style="width:5px;"></td>
                                 <td></td>
                                 <td style="width:5px;"></td>
@@ -130,7 +137,7 @@
 							    <td style="width:5px;"></td>
 							    <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;</td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;Pro</td>
+                                <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;</td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaItemSmall"></td>
                                 <td style="width:5px;"></td>
@@ -141,10 +148,11 @@
 							    <td class="tdCeldaLeyendaItemWhiteRight">
                                     &nbsp;</td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;<asp:TextBox ID="txtIdPro" runat="server" CssClass="Textbox_General_16" width="50px" AutoPostBack="True"></asp:TextBox></td>
+                                <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;</td>
                                 <td style="width:5px;"></td>
-                                <td class="tdCeldaItemSmall"><asp:Button ID="cmdAgregarPro" runat="server" Text="[+]" 
-                                        CssClass="Button_General" width="50px" onclick="cmdAgregarPro_Click" />&nbsp;</td>
+                                <td class="tdCeldaItemSmall">
+                                    <asp:HiddenField ID="hddTipoAccion" runat="server" />
+                                </td>
                                 <td style="width:5px;"></td>
 						    </tr>
                             <tr class="trFilaSeparaItem"><td colspan="8"></td></tr>
@@ -169,61 +177,71 @@
                                             </asp:BoundField>
                                             <asp:BoundField DataField="IdPro" HeaderText="Pro">
                                             </asp:BoundField>
-                                            <asp:ButtonField CommandName="EDITA" HeaderText="Editar" Text="Editar" />
+                                            <asp:ButtonField CommandName="ELIMINA" HeaderText="Eliminar" Text="Eliminar" />
                                         </Columns>
                                     </asp:GridView>
+                                    <asp:HiddenField ID="hddIdManifiesto" runat="server" />
                                 </td>
                             </tr>
-                            <tr class="trFilaSeparaItem"><td colspan="8">
-                                <asp:Panel ID="pnlDetallePros" runat="server">
-                                <table>
-                                    <tr>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                        &nbsp;<asp:GridView ID="gvAppsSelPros" runat="server" AutoGenerateColumns="False" 
-                                                AutoUpdateAfterCallBack="True" DataKeyNames="IdPro" 
-                                                OnPageIndexChanging="gvAppsSelPros_PageIndexChanging" OnRowCommand="gvAppsSelPros_RowCommand" 
-                                                OnRowDataBound="gvAppsSelPros_RowDataBound" 
-                                                OnSelectedIndexChanged="gvAppsSelPros_SelectedIndexChanged" 
-                                                OnSelectedIndexChanging="gvAppsSelPros_SelectedIndexChanging" PageSize="30" 
-                                                ShowHeaderWhenEmpty="True" Style="text-align: center" 
-                                                UpdateAfterCallBack="True" Width="600px">
-                                                <RowStyle CssClass="Grid_Row" />
-                                                <EditRowStyle Wrap="True" />
-                                                <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
-                                                <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
-                                                <Columns>
-                                                    <asp:TemplateField HeaderText="Seleccionar">
-                                                        <HeaderTemplate>
-                                                            <asp:CheckBox ID="chkSeleccionaTodos" runat="server" />
-                                                        </HeaderTemplate>
-                                                        <ItemTemplate>
-                                                            <asp:CheckBox ID="chkSeleccionar" runat="server" />
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:BoundField DataField="IdPro" HeaderText="Pro" />
-                                                    <asp:BoundField DataField="IdOrigenPro" HeaderText="Origen Pro" Visible="False">
-                                                    <ItemStyle HorizontalAlign="Left" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="IdDestinoPro" HeaderText="Destino Pro" 
-                                                        Visible="False">
-                                                    <ItemStyle HorizontalAlign="Left" />
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="Origen" HeaderText="Origen" />
-                                                    <asp:BoundField DataField="Destino" HeaderText="Destino" />
-                                                </Columns>
-                                            </asp:GridView>
-                                        <asp:Button ID="cmdCerrar" runat="server" Text="Cerrar" CssClass="Button_General" 
-                                                width="100px" onclick="cmdCerrar_Click" />
-                                            &nbsp;<asp:Button ID="cmdAceptar" runat="server" CssClass="Button_General" 
-                                                onclick="cmdAceptar_Click" Text="Aceptar" width="100px" />
-                                        </td>
-                                        </tr>
-                                    </table>
-                                </asp:Panel>
-                                </td></tr>
+                            <tr class="trFilaSeparaItem">
+                                <td colspan="8">
+                                    <div id="inner" style="position:absolute;top:100px;left:100px;">
+                                        <asp:Panel ID="pnlDetallePros" runat="server" Visible="false" BackColor="White" 
+                                            BorderColor="Silver" BorderStyle="Solid" BorderWidth="1px">
+                                            <table>
+                                                <tr>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                    &nbsp;<asp:GridView ID="gvAppsSelPros" runat="server" AutoGenerateColumns="False" 
+                                                            AutoUpdateAfterCallBack="True" DataKeyNames="IdPro,IdOrigenPro,IdDestinoPro" 
+                                                            OnPageIndexChanging="gvAppsSelPros_PageIndexChanging" OnRowCommand="gvAppsSelPros_RowCommand" 
+                                                            OnRowDataBound="gvAppsSelPros_RowDataBound" 
+                                                            OnSelectedIndexChanged="gvAppsSelPros_SelectedIndexChanged" 
+                                                            OnSelectedIndexChanging="gvAppsSelPros_SelectedIndexChanging" PageSize="30" 
+                                                            ShowHeaderWhenEmpty="True" Style="text-align: center" 
+                                                            UpdateAfterCallBack="True" Width="600px">
+                                                            <RowStyle CssClass="Grid_Row" />
+                                                            <EditRowStyle Wrap="True" />
+                                                            <HeaderStyle CssClass="Grid_Header" ForeColor="#E3EBF5" />
+                                                            <AlternatingRowStyle CssClass="Grid_Row_Alternating" />
+                                                            <Columns>
+                                                                <asp:TemplateField HeaderText="Seleccionar">
+                                                                    <HeaderTemplate>
+                                                                        <asp:CheckBox ID="chkTodos" runat="server" 
+                                                                            oncheckedchanged="chkTodos_CheckedChanged" />
+                                                                    </HeaderTemplate>
+                                                                    <ItemTemplate>
+                                                                        <asp:CheckBox ID="chkSelecciona" runat="server" 
+                                                                            oncheckedchanged="chkSelecciona_CheckedChanged" />
+                                                                    </ItemTemplate>
+                                                                </asp:TemplateField>
+                                                                <asp:BoundField DataField="IdPro" HeaderText="Pro" />
+                                                                <asp:BoundField DataField="IdOrigenPro" HeaderText="IdOrigenPro" 
+                                                                    Visible="False">
+                                                                <ItemStyle HorizontalAlign="Left" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="IdDestinoPro"  HeaderText="IdDestinoPro" 
+                                                                    Visible="False">
+                                                                <ItemStyle HorizontalAlign="Left" />
+                                                                </asp:BoundField>
+                                                                <asp:BoundField DataField="Origen" HeaderText="Origen" />
+                                                                <asp:BoundField DataField="Destino" HeaderText="Destino" />
+                                                                <asp:BoundField DataField="NoCaja" HeaderText="No Caja" Visible="False" />
+                                                            </Columns>
+                                                        </asp:GridView>
+                                                    <asp:Button ID="cmdCerrar" runat="server" Text="Cerrar" CssClass="Button_General" 
+                                                            width="100px" onclick="cmdCerrar_Click" />
+                                                        &nbsp;<asp:Button ID="cmdAceptar" runat="server" CssClass="Button_General" 
+                                                            onclick="cmdAceptar_Click" Text="Aceptar" width="100px" />
+                                                    </td>
+                                                    </tr>
+                                                </table>
+                                         </asp:Panel>
+                                     </div>
+                                 </td>
+                            </tr>
                         </table>
             </asp:Panel>
          </td>
@@ -234,10 +252,8 @@
             <asp:Panel id="pnlBotones" runat="server" Width="100%">
                <table border="0" cellpadding="0" cellspacing="0" width="100%">
                   <tr>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="cmdGuardar" 
-                             runat="server" Text="Buscar" CssClass="Button_General" width="125px" 
-                             onclick="cmdGuardar_Click" /></td>
-                     <td style="height:24px; text-align:left; width:130px;"><asp:Button ID="btnNuevo" runat="server" Text="Nuevo" CssClass="Button_General" width="125px" /></td>
+                     <td style="height:24px; text-align:left; width:130px;">&nbsp;</td>
+                     <td style="height:24px; text-align:left; width:130px;">&nbsp;</td>
 							<td style="height:24px; width:530px;"></td>
                   </tr>
                </table>

@@ -141,6 +141,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                     // Formulario
                     oENTCentroServicio.idCentroServicio = 0;
                     oENTCentroServicio.idCompany = oENTSession.idCompany;
+                    oENTCentroServicio.idCompany = 0;
                     oENTCentroServicio.sNombre = "";
                     oENTCentroServicio.tiActivo = 1;
 

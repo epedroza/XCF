@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SafeTransfer.Entity.Object;
+using SafeTransfer.Entity;
 using SafeTransfer.BusinessProcess.Object;
 using System.Data;
 using System.Data.SqlClient;
@@ -22,14 +23,18 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                if (Request.QueryString["IdManifiesto"].ToString() != "0")
                {
                    txtIdManifiesto.Text = Request.QueryString["IdManifiesto"].ToString();
+                   hddIdManifiesto.Value = Request.QueryString["IdManifiesto"].ToString();
                    Buscar();
+                   FillGridSelPros();
                }
                else
                {
                    gvApps.DataSource = null;
                    gvApps.DataBind();
+
+                   gvAppsSelPros.DataSource = null;
+                   gvAppsSelPros.DataBind();
                }
-               FillGridSelPros();
            }
        }
 
@@ -53,25 +58,27 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
        protected void gvApps_RowCommand(Object sender, GridViewCommandEventArgs e)
        {
            //// Convierte el indice del renglón la propiedad CommandArgument a un int
-           //int index = Convert.ToInt32(e.CommandArgument);
+           int index = Convert.ToInt32(e.CommandArgument);
+           DataSet ds = new DataSet();
+           tblManifiestosDet_Ent ent = new tblManifiestosDet_Ent();
+           tblManifiestosDetBSS bss = new tblManifiestosDetBSS();
 
-           //// Va al renglón que contiene el botón que presionado
-           //GridViewRow row = gvApps.Rows[index];
+           // Va al renglón que contiene el botón que presionado
+           GridViewRow row = gvApps.Rows[index];
 
-           //gvApps.SelectedIndex = index;
+           gvApps.SelectedIndex = index;
 
-           //if (e.CommandName == "EDITA")
-           //{
-           //    hddTipoAccion.Value = "UPDATE";
-           //    hddClaveAgenteAduanal.Value = gvApps.SelectedDataKey["ClaveAgenteAduanal"].ToString();
-           //    txtClaveAgente.Text = gvApps.SelectedDataKey["ClaveAgenteAduanal"].ToString();
-           //    txtNombre.Text = gvApps.SelectedDataKey["Nombre"].ToString();
-           //    txtRFC.Text = gvApps.SelectedDataKey["RFC"].ToString();
-           //    txtTerminal.Text = gvApps.SelectedDataKey["Terminal"].ToString();
-           //    txtCD.Text = gvApps.SelectedDataKey["CD"].ToString();
-           //    txtDireccion.Text = gvApps.SelectedDataKey["Direccion"].ToString();
-           //    cboCiudad.SelectedValue = gvApps.SelectedDataKey["IdCiudad"].ToString();
-           //}
+           if (e.CommandName == "ELIMINA")
+           {
+               // Asigna valores
+               hddTipoAccion.Value = "DELETE";
+               ent.IdManifiesto = Int32.Parse(txtIdManifiesto.Text);
+               ent.Pro = Int32.Parse(gvApps.SelectedDataKey["IdPro"].ToString());
+
+               //Transaccion
+               SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.deletetblManifiestosDet(ent);
+               ds = oENTResponse.dsResponse;
+           }
 
            //if (e.CommandName == "DELETE")
            //{
@@ -130,6 +137,12 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
        #endregion
 
        #region Rutinas de la Pagina
+
+       protected void cboIdClaveOrigen_SelectedIndexChanged(object sender, EventArgs e)
+       {
+           FillGridSelPros();
+       }
+
        protected void cmdBuscar_Click(object sender, EventArgs e)
        {
            FillGrid();
@@ -140,50 +153,23 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
 
        }
 
-       protected void cmdAgregarPro_Click(object sender, EventArgs e)
-       {
-           // Agregar a grid
-           DataTable dt = new DataTable();
-           DataRow dr;
-           DataColumn dc = new DataColumn();
-
-           dc = new DataColumn("OrigenPro");
-           dt.Columns.Add(dc);
-           dc = new DataColumn("DestinoPro");
-           dt.Columns.Add(dc);
-           dc = new DataColumn("IdPro");
-           dt.Columns.Add(dc);
-           dr = dt.NewRow();
-
-           dr["OrigenPro"] = "1";
-           dr["DestinoPro"] = "2";
-           dr["IdPro"] = txtIdPro.Text;
-           dt.Rows.Add(dr);
-
-           for (int i = 0; i <= gvApps.Rows.Count - 1; i++)
-           {
-               dr = dt.NewRow();
-               dr[0] = Server.HtmlEncode(gvApps.Rows[i].Cells[0].Text);
-               dr[1] = Server.HtmlEncode(gvApps.Rows[i].Cells[1].Text);
-               dr[2] = Server.HtmlEncode(gvApps.Rows[i].Cells[2].Text);
-               dt.Rows.Add(dr);
-           }
-
-           DataSet dsA = new DataSet();
-           dsA.Tables.Add(dt);
-
-           gvApps.DataSource = dsA;
-           gvApps.DataBind();
-       }
-
        protected void cmdGuardar_Click(object sender, EventArgs e)
        {
            Guardar();
        }
 
+       protected void cmdGuardarManifiesto(object sender, EventArgs e)
+       {
+           if (ValidaCampos() == 1)
+           Guardar();
+       }
+
        protected void cmdAgregarPartidas_Click(object sender, EventArgs e)
        {
-           pnlDetallePros.Visible = true;
+           if(txtIdManifiesto.Text !="")
+               pnlDetallePros.Visible = true;
+           else
+               ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Debe guardar el manifiesto antes de seleccionar los pros')", true);
        }
 
        protected void cmdCerrar_Click(object sender, EventArgs e)
@@ -193,7 +179,31 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
 
        protected void cmdAceptar_Click(object sender, EventArgs e)
        {
+           if (txtIdManifiesto.Text != "")
+           {
+               GuardaProsSeleccionados();
+               FillGrid();
+               pnlDetallePros.Visible = false;
+           }
+           else
+           {
+               ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Debe guardar el manifiesto antes de seleccionar los pros')", true);
+           }
+       }
 
+       protected void chkSelecciona_CheckedChanged(object sender, EventArgs e)
+       {
+
+       }
+
+       protected void chkTodos_CheckedChanged(object sender, EventArgs e)
+       {
+           CheckBox chk;
+           foreach (GridViewRow Row in gvAppsSelPros.Rows)
+           {
+               chk = (CheckBox)(Row.Cells[0].FindControl("chkSelecciona"));
+               chk.Checked = ((CheckBox)sender).Checked;
+           }
        }
 
        #endregion
@@ -267,25 +277,68 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.inserttblManifiestosHdr(ent);
                ds = oENTResponse.dsResponse;
 
-               // Transaccion Deetalle
-               // INCLUIR AQUI LA TRANSACCION DEL DETALLE
-
                if (ds.Tables[1].Rows.Count > 0)
                {
                    txtIdManifiesto.Text = ds.Tables[1].Rows[0]["IdManifiesto"].ToString();
+                   hddIdManifiesto.Value = ds.Tables[1].Rows[0]["IdManifiesto"].ToString();
 
-                   FillGrid();
+                   //FillGrid();
                }
                else
                {
                    Limpiacampos();
                }
            }
-           catch
+           catch (Exception ex)
            {
+               throw (ex);
            }
            finally
            { }
+       }
+
+       void GuardaProsSeleccionados()
+       {
+           // Declaracion de variables
+           int Contador = 0;
+           DataSet ds = new DataSet();
+           tblManifiestosDet_Ent ent = new tblManifiestosDet_Ent();
+           tblManifiestosDetBSS bss = new tblManifiestosDetBSS();
+
+           for (int i = 0; i <= gvAppsSelPros.Rows.Count - 1; i++)
+           {
+               GridViewRow Row = gvAppsSelPros.Rows[i];
+               bool isChecked = ((CheckBox)Row.FindControl("chkSelecciona")).Checked;
+
+               gvAppsSelPros.SelectedIndex = i;
+
+               if (isChecked)
+               {
+                   if (Contador == 0)
+                   {
+                       //if (ValidaCampos() == 1)
+                       //{
+                       //    Guardar();
+                       //    Contador++;
+                       //}
+                   }
+                   // Asigna valores
+                   ent.IdManifiesto = Int32.Parse(hddIdManifiesto.Value);
+                   ent.Pro = Int32.Parse(gvAppsSelPros.SelectedDataKey["IdPro"].ToString());
+                   ent.OrigenPro = Int32.Parse(gvAppsSelPros.SelectedDataKey["IdOrigenPro"].ToString());
+                   ent.DestinoPro = Int32.Parse(gvAppsSelPros.SelectedDataKey["IdDestinoPro"].ToString());
+                   //ent.NoCaja = Int32.Parse(gvApps.SelectedDataKey["NoCaja"].ToString());
+
+                   // Guarda pros seleccionados
+                   // Transacción
+                   SafeTransfer.Entity.Object.ENTResponse oENTResponse = bss.inserttblManifiestosDet(ent);
+                   ds = oENTResponse.dsResponse;
+               }
+           }
+
+           // Llenar Grid principal
+           FillGrid();
+
        }
 
        void Fillcbo()
@@ -321,6 +374,11 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                gvApps.DataSource = oENTResponse.dsResponse.Tables[1].DefaultView;
                gvApps.DataBind();
            }
+           else
+           {
+               gvApps.DataSource = null;
+               gvApps.DataBind();
+           }
        }
 
        void FillGridSelPros()
@@ -340,6 +398,11 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                gvAppsSelPros.DataSource = oENTResponse.dsResponse.Tables[1].DefaultView;
                gvAppsSelPros.DataBind();
            }
+           else
+           {
+               gvAppsSelPros.DataSource = null;
+               gvAppsSelPros.DataBind();
+           }
        }
 
        void Limpiacampos()
@@ -347,7 +410,23 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
 
        }
 
+       int ValidaCampos()
+       {
+           int Valido = 1;
+
+           //if (txtIdManifiesto.Text == "") { Valido = 0; }
+           if (cboIdClaveOrigen.SelectedValue == "0") { Valido = 0; }
+           if (cboIdClaveDestino.SelectedValue == "0") { Valido = 0; }
+           if (txtNoTractor.Text == "") { Valido = 0; }
+           if (txtPropio.Text == "") { Valido = 0; }
+           //if (txtClaveOperador.Text == "") { Valido = 0; }
+           //if (txtNoCaja1.Text == "") { Valido = 0; }
+
+           return Valido;
+       }
+
        #endregion
+
 
    }
 }

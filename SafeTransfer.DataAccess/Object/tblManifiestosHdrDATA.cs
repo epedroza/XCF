@@ -61,7 +61,7 @@ namespace SafeTransfer.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("tblManifiestosHdrIns", enttblManifiestosHdr.IdManifiesto);
+                ds = dbs.ExecuteDataSet("tblManifiestosHdrIns", enttblManifiestosHdr.ClaveOrigen, enttblManifiestosHdr.ClaveDestino, enttblManifiestosHdr.NoTractor, enttblManifiestosHdr.NoCaja1, enttblManifiestosHdr.NoCaja2, enttblManifiestosHdr.TractorPropio, enttblManifiestosHdr.Caja1Propia, enttblManifiestosHdr.Caja2Propia, enttblManifiestosHdr.CveOperador, enttblManifiestosHdr.FechaSalida, enttblManifiestosHdr.FechaLlegada);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -154,7 +154,8 @@ namespace SafeTransfer.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("tblManifiestosHdrSelMonitor", enttblManifiestosHdr.IdManifiesto, enttblManifiestosHdr.ClaveOrigen, enttblManifiestosHdr.ClaveDestino, enttblManifiestosHdr.NoTractor, enttblManifiestosHdr.TractorPropio, enttblManifiestosHdr.Estatus);
+                ds = dbs.ExecuteDataSet("tblManifiestosHdrSelMonitor", enttblManifiestosHdr.IdManifiesto, enttblManifiestosHdr.ClaveOrigen, enttblManifiestosHdr.ClaveDestino, enttblManifiestosHdr.NoTractor, enttblManifiestosHdr.TractorPropio, enttblManifiestosHdr.Estatus, enttblManifiestosHdr.FechaSalida, enttblManifiestosHdr.FechaLlegada);
+                //ds = dbs.ExecuteDataSet("tblManifiestosHdrSelMonitor", enttblManifiestosHdr.IdManifiesto, enttblManifiestosHdr.ClaveOrigen, enttblManifiestosHdr.ClaveDestino, enttblManifiestosHdr.NoTractor, enttblManifiestosHdr.TractorPropio, enttblManifiestosHdr.Estatus);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)

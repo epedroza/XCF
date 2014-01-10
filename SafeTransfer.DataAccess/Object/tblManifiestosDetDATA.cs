@@ -61,7 +61,7 @@ namespace SafeTransfer.DataAccess.Object
             // Transacción
             try
             {
-                ds = dbs.ExecuteDataSet("tblManifiestosDetIns", enttblManifiestosDet.IdManifiesto);
+                ds = dbs.ExecuteDataSet("tblManifiestosDetIns", enttblManifiestosDet.IdManifiesto, enttblManifiestosDet.Pro, enttblManifiestosDet.OrigenPro, enttblManifiestosDet.DestinoPro, enttblManifiestosDet.NoCaja);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
@@ -123,7 +123,7 @@ namespace SafeTransfer.DataAccess.Object
             // Transacción
             try
             {
-                dbs.ExecuteDataSet("tblManifiestosDetDel", enttblManifiestosDet.IdManifiesto);
+                dbs.ExecuteDataSet("tblManifiestosDetDel", enttblManifiestosDet.IdManifiesto, enttblManifiestosDet.Pro);
                 oENTResponse.dsResponse = ds;
             }
             catch (SqlException sqlEx)
