@@ -136,7 +136,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             oENTCliente.tiActivo = Int16.Parse(this.ddlStatus.SelectedItem.Value);
 
 				// Transacción
-				oENTResponse = oBPCliente.SelectCliente(oENTCliente);
+				oENTResponse = oBPCliente.SelectCliente_Catalogo(oENTCliente);
 
 				// Validaciones
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
@@ -172,7 +172,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Catalog
             oENTCliente.tiActivo = 2;
 
 				// Transacción
-				oENTResponse = oBPCliente.SelectCliente(oENTCliente);
+				oENTResponse = oBPCliente.SelectCliente_Catalogo(oENTCliente);
 
 				// Validaciones
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }

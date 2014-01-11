@@ -147,6 +147,38 @@ namespace SafeTransfer.BusinessProcess.Object
 			// Resultado
 			return oENTResponse;
 		}
+
+      ///<remarks>
+      ///   <name>BPCliente.SelectCliente_Catalogo</name>
+      ///   <create>21-Octubre-2013</create>
+      ///   <author>GCSoft - Web Project Creator BETA 1.0</author>
+      ///</remarks>
+      ///<summary>Consulta el catálogo de Clientes</summary>
+      ///<param name="oENTCliente">Entidad de Cliente con los filtros necesarios para la consulta</param>
+      ///<returns>Una entidad de respuesta</returns>
+      public ENTResponse SelectCliente_Catalogo(ENTCliente oENTCliente){
+         DACliente oDACliente = new DACliente();
+         ENTResponse oENTResponse = new ENTResponse();
+
+			try{
+
+            // Transacción en base de datos
+            oENTResponse = oDACliente.SelectCliente_Catalogo(oENTCliente, this.sConnectionApplication, 0);
+
+            // Validación de error en consulta
+            if (oENTResponse.GeneratesException) { return oENTResponse; }
+
+            // Validación de mensajes de la BD
+            oENTResponse.sMessage = oENTResponse.dsResponse.Tables[0].Rows[0]["sResponse"].ToString();
+            if (oENTResponse.sMessage != "") { return oENTResponse; }
+
+			}catch (Exception ex){
+				oENTResponse.ExceptionRaised(ex.Message);
+			}
+
+			// Resultado
+			return oENTResponse;
+		}
 	  
       ///<remarks>
       ///   <name>BPCliente.UpdateCliente</name>
