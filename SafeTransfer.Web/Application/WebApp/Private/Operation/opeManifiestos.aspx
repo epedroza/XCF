@@ -94,9 +94,7 @@
                             <tr class="trFilaItem">
 							    <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;No Caja 1</td>
 							    <td style="width:5px;"></td>
-							    <td class="tdCeldaItemSmall"><asp:TextBox ID="txtNoCaja1" runat="server" 
-                                        CssClass="Textbox_General_16" width="50px" 
-                                        ontextchanged="txtNoCaja1_TextChanged" ></asp:TextBox></td>
+							    <td class="tdCeldaItemSmall"><asp:TextBox ID="txtNoCaja1" runat="server" CssClass="Textbox_General_16" width="50px"></asp:TextBox></td>
                                 <td style="width:5px;"></td>
                                 <td class="tdCeldaLeyendaItemWhiteRight">&nbsp;No Caja 2</td>
                                 <td style="width:5px;"></td>

@@ -163,7 +163,7 @@ namespace SafeTransfere.Web.Application.WebApp.Private.Operation
                 }
                 catch (Exception ex)
                 {
-                    throw (ex);
+                    ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), ex.Message, true);
                 }
             }
 
