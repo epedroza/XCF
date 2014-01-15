@@ -640,7 +640,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Operation
 
 				// Validaciones
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlEstado.ClientID + "');", true); }
+            //if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlEstado.ClientID + "');", true); }
 
             // Llenado de combo
             if (oENTResponse.dsResponse.Tables[1].Rows.Count == 0 ){
@@ -734,7 +734,7 @@ namespace SafeTransfer.Web.Application.WebApp.Private.Operation
 
 				// Validaciones
             if (oENTResponse.GeneratesException) { throw (new Exception(oENTResponse.sErrorMessage)); }
-            if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlPais.ClientID + "');", true); }
+            //if (oENTResponse.sMessage != "") { ScriptManager.RegisterStartupScript(this.Page, this.GetType(), Convert.ToString(Guid.NewGuid()), "tinyboxMessage('" + utilFunction.JSClearText(oENTResponse.sMessage) + "', 'Warning', false); focusControl('" + this.ddlPais.ClientID + "');", true); }
 
             // Llenado de combo
              if (oENTResponse.dsResponse.Tables[1].Rows.Count == 0 ){
