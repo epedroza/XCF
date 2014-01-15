@@ -14,17 +14,17 @@
       <tr>
          <td>
             <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-					<table border="0" cellpadding="2" cellspacing="0" width="100%">
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
 						<tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItem">&nbsp;Clave Tipo de Camión</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:TextBox ID="txtIdTipoCamion" runat="server" 
-                                    CssClass="Textbox_General" width="80px" Enabled="False" ></asp:TextBox></td>
+							<td class="tdCeldaItem"><asp:TextBox ID="txtIdTipoCamion" runat="server" CssClass="Textbox_General" width="210px" Enabled="False" ></asp:TextBox></td>
 						</tr>
+                        <tr style="height:3px;"><td colspan="3"></td></tr>
                         <tr class="trFilaItem">
 							<td class="tdCeldaLeyendaItem">&nbsp;Descripción</td>
 							<td style="width:5px;"></td>
-							<td class="tdCeldaItem"><asp:TextBox ID="txtTipoCamion" runat="server" CssClass="Textbox_General" width="310px" ></asp:TextBox></td>
+							<td class="tdCeldaItem"><asp:TextBox ID="txtTipoCamion" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
 						</tr>
 					</table>
             </asp:Panel>
@@ -53,14 +53,6 @@
       <tr><td class="tdCeldaMiddleSpace"></td></tr>
       <tr>
          <td>
-         <table>
-            <tr>
-            <td colspan="6">
-                <img src="../../../../Include/Image/Web/Div.png" />
-                <a href="" class="accordionLink"></a><br />
-                <br /></td>
-            </tr>
-        </table>
             <asp:Panel id="pnlGrid" runat="server" Width="100%">
                 <asp:GridView ID="gvApps" runat="server" AutoGenerateColumns="False"
                         AutoUpdateAfterCallBack="True" OnPageIndexChanging="gvApps_PageIndexChanging"

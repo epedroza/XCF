@@ -12,51 +12,59 @@
       <tr>
          <td>
             <asp:Panel id="pnlFormulario" runat="server" Visible="true" Width="100%">
-				<table border="0" cellpadding="2" cellspacing="0" width="100%">
+				<table border="0" cellpadding="0" cellspacing="0" width="100%">
 					<tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;Clave Transportista</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtIdTransportista" runat="server" CssClass="Textbox_General" width="80px" Enabled="False" ></asp:TextBox></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtIdTransportista" runat="server" CssClass="Textbox_General" width="210px" Enabled="False" ></asp:TextBox></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;País</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:DropDownList ID="cboPais" runat="server" CssClass="Textbox_General" width="155px" ></asp:DropDownList></td>
+						<td class="tdCeldaItem"><asp:DropDownList ID="cboPais" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;Estado</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:DropDownList ID="cboEstado" runat="server" CssClass="Textbox_General" width="155px" ></asp:DropDownList></td>
+						<td class="tdCeldaItem"><asp:DropDownList ID="cboEstado" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;Ciudad</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:DropDownList ID="cboCiudad" runat="server" CssClass="Textbox_General" width="155px" ></asp:DropDownList></td>
+						<td class="tdCeldaItem"><asp:DropDownList ID="cboCiudad" runat="server" CssClass="DropDownList_General" width="216px" ></asp:DropDownList></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;Nombre</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="155px" ></asp:TextBox></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtNombre" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;RFC</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtRFC" runat="server" CssClass="Textbox_General" width="310px" ></asp:TextBox></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtRFC" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;Dirección</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtDireccion" runat="server" CssClass="Textbox_General" width="310px" ></asp:TextBox></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtDireccion" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;Colonia</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtColonia" runat="server" CssClass="Textbox_General" width="310px" ></asp:TextBox></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtColonia" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
 					</tr>
+                    <tr style="height:3px;"><td colspan="3"></td></tr>
                     <tr class="trFilaItem">
 						<td class="tdCeldaLeyendaItem">&nbsp;Razón Social</td>
 						<td style="width:5px;"></td>
-						<td class="tdCeldaItem"><asp:TextBox ID="txtRazonSocial" runat="server" CssClass="Textbox_General" width="310px" ></asp:TextBox></td>
+						<td class="tdCeldaItem"><asp:TextBox ID="txtRazonSocial" runat="server" CssClass="Textbox_General" width="210px" ></asp:TextBox></td>
 					</tr>
 				</table>
             </asp:Panel>
